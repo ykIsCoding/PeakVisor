@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
+import { ButtonModule } from 'primeng/button';
 
 describe('ButtonComponent', () => {
   let component: ButtonComponent;

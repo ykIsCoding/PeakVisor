@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-
+import { Component,Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [],
+  imports: [ButtonModule,RouterModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
 })
-export class ButtonComponent {
 
+export class ButtonComponent {
+  @Input() routerlink:string = ''
+  @Input() label:string = ''
+  
 }
