@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { provideLottieOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-root',
@@ -11,3 +13,4 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'peakvisor';
 }
+
