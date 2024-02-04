@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.css";
+@import 'assets/theme.css';
+*{
+    font-family: 'Alegreya Sans', sans-serif !important;
+}
+
+body{
+    margin: 0;
+}
+
+.heading{
+    font-weight: 900;
+}
