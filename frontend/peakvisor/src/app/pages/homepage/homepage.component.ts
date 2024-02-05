@@ -22,6 +22,8 @@ import { bootstrapApplication } from '@angular/platform-browser';
 export class HomepageComponent {
   options: AnimationOptions = {
     path: '/assets/svg/scrolldown.json',
+    loop: true,
+    autoplay:true
   };
 
  
