@@ -9,19 +9,23 @@ import { Error404pageComponent } from './pages/error404page/error404page.compone
 export const routes: Routes = [
     {
         path:'',
-        component:HomepageComponent
+        component:HomepageComponent,
+        data: { animation: 'nextPage' }
     },
     {
         path:'alltrails',
-        component:AlltrailspageComponent
+        component:AlltrailspageComponent,
+        data: { animation: 'nextPage' }
     },
     {
         path:'login',
-        component:LoginpageComponent
+        component:LoginpageComponent,
+        data: { animation: 'nextPage' }
     },
     {
         path:'signup',
-        component:SignuppageComponent
+        component:SignuppageComponent,
+        data: { animation: 'nextPage' }
     },
-    { path: '**', component: Error404pageComponent}
+    { path: '**', component: Error404pageComponent, data: { animation: 'nextPage' }}
 ];

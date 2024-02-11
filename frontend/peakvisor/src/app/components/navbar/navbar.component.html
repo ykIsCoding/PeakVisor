@@ -2,10 +2,10 @@
 <div>
     <img height="100px" width="100px" src="assets/svg/peakvisor_original_svg.svg">
 </div>
-<div class="flex flex-wrap justify-content-center gap-3 align-content-center">
-    <app-button routerlink="/" label="Home"/>
-    <app-button routerlink="/alltrails" label="Trails"/>
-    <app-button routerlink="/login" label="Login"/>
-    
+<div class="flex flex-wrap justify-content-center gap-3 align-content-center align-items-center">
+    <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/" label="Home"/>
+    <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/alltrails" label="Trails"/>
+    <app-button *ngIf="dlmodeOnly==false" routerLink="/login" label="Login"/>
+    <app-iconbutton/>
 </div>
 </div>
