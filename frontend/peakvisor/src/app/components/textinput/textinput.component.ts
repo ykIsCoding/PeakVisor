@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
@@ -9,6 +10,6 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './textinput.component.css'
 })
 export class TextinputComponent {
-  value:String = ""
+  @Output() value:String = ""
   @Input() data:String=""
 }

@@ -8,8 +8,6 @@ export class ToastService {
 
   constructor(public messageService:MessageService) { }
 
-  showToast(msg:string){
-    this.messageService.add({severity:'success',summary:msg,detail:'completed'})
-  }
+
   
 }

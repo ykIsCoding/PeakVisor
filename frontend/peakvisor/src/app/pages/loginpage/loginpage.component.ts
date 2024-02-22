@@ -21,8 +21,8 @@ import { ToastService } from '../../services/toast.service';
   styleUrl: './loginpage.component.css'
 })
 export class LoginpageComponent extends PagewrapperComponent {
-  constructor(private authservice:AuthserviceService){
-    super(this.messageService,this.store)
+  constructor(private authservice:AuthserviceService, messageService:MessageService,store:Store<AppState> ){
+    super(messageService,store)
   }
 
 
