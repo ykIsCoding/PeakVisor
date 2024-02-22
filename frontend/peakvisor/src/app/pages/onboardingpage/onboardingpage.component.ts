@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { ButtonComponent } from '../../components/button/button.component';
 
 @Component({
   selector: 'app-onboardingpage',
   standalone: true,
-  imports: [],
+  imports: [NavbarComponent, ButtonComponent],
   templateUrl: './onboardingpage.component.html',
   styleUrl: './onboardingpage.component.css'
 })
