@@ -14,19 +14,18 @@ $colors: (
 ) !default;
 
 //shades
-$shade000: rgba(255, 255, 255, 0.87) !default; //text color
-$shade100: rgba(255, 255, 255, 0.6) !default; //text secondary color
+$shade000: #FDFDD8 !default; //text color
+$shade100: #0A715A !default; //text secondary color
 $shade500: #3e526d !default;
-$shade600: #304562 !default; //input bg, border, divider
-$shade700: #283951 !default; //unused
+$shade600: #FDFDD8 !default; //input bg, border, divider
+$shade700: #FDFDD8 !default; //unused
 $shade800: #1f2d40 !default; //elevated surface
-$shade900: #17212f !default; //ground surface
+$shade900: #FDFDD8 !default; //ground surface
 
 $hoverBg: rgba(255, 255, 255, 0.03) !default;
 
 //global
-$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$fontFamily: 'Alegreya Sans' !default;
 $fontSize: 1rem !default;
 $fontWeight: normal !default;
 $textColor: $shade000 !default;
@@ -72,7 +71,7 @@ $actionIconBorderRadius: 50% !default;
 $inputPadding: 0.5rem 0.5rem !default;
 $inputTextFontSize: 1rem !default;
 $inputBg: $shade900 !default;
-$inputTextColor: $shade000 !default;
+$inputTextColor: $shade100 !default;
 $inputIconColor: $shade100 !default;
 $inputBorder: 1px solid $shade600 !default;
 $inputHoverBorderColor: $primaryColor !default;
@@ -147,7 +146,7 @@ $plainButtonTextColor: $textSecondaryColor !default;
 $plainButtonHoverBgColor: $hoverBg !default;
 $plainButtonActiveBgColor: rgba(255, 255, 255, 0.16) !default;
 
-$secondaryButtonBg: #78909c !default;
+$secondaryButtonBg: #0A715A !default;
 $secondaryButtonTextColor: #ffffff !default;
 $secondaryButtonBorder: 1px solid $secondaryButtonBg !default;
 $secondaryButtonHoverBg: scale-color(
