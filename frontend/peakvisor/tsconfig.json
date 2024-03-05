@@ -4,14 +4,20 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+
       "@app/*": ["src/app/*"],
-      "@Error404PageComponent": ["src/app/error404/feature/error404"],
-      "@HomePageComponent": ["src/app/home/feature/home"],
-      "@LoginPageComponent": ["src/app/login/feature/login"],
-      "@OnboardingPageComponent": ["src/app/onboarding/feature/onboarding"],
-      "@SettingsPageComponent": ["src/app/settings/feature/settings"],
-      "@SignupPageComponent": ["src/app/signup/feature/signup"],
-      "@TrailsPageComponent": ["src/app/trails/feature/trails"],
+      "@assets/*": ["src/assets/*"],
+      "@environments/*": ["src/environments/*"],
+      "@styles/*": ["src/styles/*"],
+      
+      "error404": ["src/app/error404/*"],
+      "@home": ["src/app/home/*"],
+      "@login": ["src/app/login/*"],
+      "@onboarding": ["src/app/onboarding/*"],
+      "@settings": ["src/app/settings/*"],
+      "@shared": ["src/app/shared/*"],
+      "@signup": ["src/app/signup/*"],
+      "@trails": ["src/app/trails/*"],
 
     },
     "outDir": "./dist/out-tsc",
