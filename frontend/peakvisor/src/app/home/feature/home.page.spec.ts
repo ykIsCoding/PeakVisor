@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomepageComponent } from './homepage.component';
+import { HomepageComponent } from './home.page';
 import { PhotodivComponent } from '../../components/photodiv/photodiv.component';
 
 describe('HomepageComponent', () => {

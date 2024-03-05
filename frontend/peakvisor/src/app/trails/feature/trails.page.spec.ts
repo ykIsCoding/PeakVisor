@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingspageComponent } from './settingspage.component';
+import { AlltrailspageComponent } from './trails.component';
 
-describe('SettingspageComponent', () => {
-  let component: SettingspageComponent;
-  let fixture: ComponentFixture<SettingspageComponent>;
+describe('AlltrailspageComponent', () => {
+  let component: AlltrailspageComponent;
+  let fixture: ComponentFixture<AlltrailspageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SettingspageComponent]
+      imports: [AlltrailspageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SettingspageComponent);
+    fixture = TestBed.createComponent(AlltrailspageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
