@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlltrailspageComponent } from './trails.component';
+import { AlltrailspageComponent } from './trails.page';
 
 describe('AlltrailspageComponent', () => {
   let component: AlltrailspageComponent;
