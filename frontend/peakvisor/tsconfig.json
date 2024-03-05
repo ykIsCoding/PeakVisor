@@ -4,7 +4,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@app/*": ["src/app/*"]
+      "@app/*": ["src/app/*"],
+      "@Error404PageComponent": ["src/app/error404/feature/error404"],
+      "@HomePageComponent": ["src/app/home/feature/home"],
+      "@LoginPageComponent": ["src/app/login/feature/login"],
+      "@OnboardingPageComponent": ["src/app/onboarding/feature/onboarding"],
+      "@SettingsPageComponent": ["src/app/settings/feature/settings"],
+      "@SignupPageComponent": ["src/app/signup/feature/signup"],
+      "@TrailsPageComponent": ["src/app/trails/feature/trails"],
+
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
