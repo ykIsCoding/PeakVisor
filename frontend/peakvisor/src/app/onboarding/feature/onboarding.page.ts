@@ -1,17 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { HeaderComponent } from '@app/shared/ui/header/header.component';
+import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { NgModel } from '@angular/forms';
-import { OnboardcontentdisplayComponent } from '../../components/onboardcontentdisplay/onboardcontentdisplay.component';
+// import { OnboardcontentdisplayComponent } from '../../components/onboardcontentdisplay/onboardcontentdisplay.component';
 
 @Component({
   selector: 'app-onboardingpage',
   standalone: true,
-  imports: [NavbarComponent, ButtonComponent,OnboardcontentdisplayComponent],
-  templateUrl: './onboardingpage.component.html',
-  styleUrl: './onboardingpage.component.css'
+  imports: [HeaderComponent, ButtonComponent],
+  templateUrl: './onboarding.page.html',
+  styleUrl: './onboarding.page.css'
 })
-export class OnboardingpageComponent {
+
+export class OnboardingPage {
   photos = {
     0:'onboard',
     1:'parks',

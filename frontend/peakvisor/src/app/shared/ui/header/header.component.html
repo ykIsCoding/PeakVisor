@@ -7,6 +7,6 @@
     <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/alltrails" label="Trails"/>
     <app-button *ngIf="!(authState$|async) && dlmodeOnly==false" routerLink="/login" label="Login"/>
     <app-button *ngIf="authState$|async" routerLink="/login" label="Menu"/>
-    <app-iconbutton/>
+    <app-icon-button/>
 </div>
 </div>

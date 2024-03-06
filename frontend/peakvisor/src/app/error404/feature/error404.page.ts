@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { HeaderComponent } from '@app/shared/ui/header/header.component';
 
 @Component({
-  selector: 'app-error404page',
+  selector: 'app-error404-page',
   standalone: true,
-  imports: [NavbarComponent],
-  templateUrl: './error404page.component.html',
-  styleUrl: './error404page.component.css'
+  imports: [HeaderComponent],
+  templateUrl: './error404.page.html',
+  styleUrl: './error404.page.css'
 })
-export class Error404pageComponent {
+
+export class Error404Page {
 
 }

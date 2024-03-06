@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { TextinputComponent } from '../../components/textinput/textinput.component';
-import { ButtonComponent } from '../../components/button/button.component';
+import { HeaderComponent } from '@app/shared/ui/header/header.component';
+import { TextInputComponent } from '@app/shared/ui/text-input/textinput.component';
+import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { ButtonModule } from 'primeng/button';
-import { ToastComponent } from '../../components/toast/toast.component';
+import { ToastComponent } from '@app/shared/ui/toast/toast.component';
 import { ToastModule } from 'primeng/toast';
-import { PagewrapperComponent } from '../../components/pagewrapper/pagewrapper.component';
-import { login } from '../../state/authState/authState.actions';
-import { AuthserviceService } from '../../services/authservice.service';
+import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
+import { Login } from '@app/shared/feature/state/auth-state/auth-state.actions';
+import { AuthService } from '@app/shared/data-access/auth/auth.service';
 import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
-import { AppState } from '../../state/app.state';
-import { ToastService } from '../../services/toast.service';
+import { AppState } from '@app/shared/feature/state/app-state/app.state';
+import { ToastService } from '@app/shared/data-access/toast/toast.service';
 
 @Component({
-  selector: 'app-loginpage',
+  selector: 'app-login-page',
   standalone: true,
-  imports: [NavbarComponent, TextinputComponent,ButtonComponent, ButtonModule],
-  templateUrl: './loginpage.component.html',
-  styleUrl: './loginpage.component.css'
+  imports: [HeaderComponent, TextInputComponent, ButtonComponent, ButtonModule],
+  templateUrl: './login.page.html',
+  styleUrl: './login.page.css'
 })
-export class LoginpageComponent extends PagewrapperComponent {
-  constructor(private authservice:AuthserviceService, messageService:MessageService,store:Store<AppState> ){
+
+export class LoginPage extends PageWrapperComponent {
+  constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState> ){
     super(messageService,store)
   }
 
-
-
   login(){
-    this.store.dispatch(login())
+    this.store.dispatch(Login())
   }
 }

@@ -1,6 +1,7 @@
 import { Component,Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+
 @Component({
   selector: 'app-button',
   standalone: true,

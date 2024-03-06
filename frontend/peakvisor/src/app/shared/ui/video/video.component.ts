@@ -7,7 +7,9 @@ import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from
   templateUrl: './video.component.html',
   styleUrl: './video.component.css'
 })
+
 export class VideoComponent implements AfterContentInit{
+
   @Input() src:string = ""
   @ViewChild('vid',{ static: true }) videoplayer: any;
   
@@ -28,4 +30,5 @@ export class VideoComponent implements AfterContentInit{
         console.log(e)
       }
   }
+  
 }

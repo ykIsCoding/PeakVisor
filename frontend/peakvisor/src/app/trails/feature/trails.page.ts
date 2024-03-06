@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { VideoComponent } from '../../components/video/video.component';
-import { PhotocardComponent } from '../../components/photocard/photocard.component';
+
+import { HeaderComponent } from '@app/shared/ui/header/header.component';
+import { VideoComponent } from '@app/shared/ui/video/video.component';
+import { PhotoCardComponent } from '@app/shared/ui/photo-card/photo-card.component';
 
 @Component({
-  selector: 'app-alltrailspage',
+  selector: 'app-trails-page',
   standalone: true,
-  imports: [NavbarComponent,VideoComponent,PhotocardComponent],
-  templateUrl: './alltrailspage.component.html',
-  styleUrl: './alltrailspage.component.css'
+  imports: [HeaderComponent, VideoComponent, PhotoCardComponent],
+  templateUrl: './trails.page.html',
+  styleUrl: './trails.page.css'
 })
-export class AlltrailspageComponent {
+
+export class TrailsPage {
 
 }
