@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-video-background',
@@ -9,4 +9,26 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./video-background.component.css']
 })
 
-export class VideoBackground {}
+export class VideoBackground implements AfterContentInit {
+
+  @Input() src:string = "assets/videos/landingpagevideo.mov"
+  @ViewChild('vid',{ static: true }) videoplayer: any;
+  
+  toggleVideo(event: any) {
+    this.videoplayer.nativeElement.play();
+  }
+
+  ngOnInit(): void {
+  }
+
+  ngAfterContentInit(): void {
+      
+      try{
+        this.videoplayer.nativeElement.muted = true
+        this.videoplayer.nativeElement.play()
+      }catch(e){
+        console.log(e)
+      }
+  }
+
+}
