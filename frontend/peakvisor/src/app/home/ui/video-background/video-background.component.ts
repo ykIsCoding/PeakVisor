@@ -11,7 +11,7 @@ import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from
 
 export class VideoBackground implements AfterContentInit {
 
-  @Input() src:string = "assets/videos/landingpagevideo.mov"
+  @Input() src:string = ""
   @ViewChild('vid',{ static: true }) videoplayer: any;
   
   toggleVideo(event: any) {
