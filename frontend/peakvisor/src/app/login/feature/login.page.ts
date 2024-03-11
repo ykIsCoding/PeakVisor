@@ -12,21 +12,31 @@ import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { ToastService } from '@app/shared/data-access/toast/toast.service';
+import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/graphics-loader.service';
+import { SidebarComponent } from '@app/shared/ui/sidebar/sidebar.component';
+import { IconButtonComponent } from '@app/shared/ui/icon-button/icon-button.component';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [HeaderComponent, TextInputComponent, ButtonComponent, ButtonModule],
+  imports: [HeaderComponent, TextInputComponent,CommonModule, ButtonComponent, ButtonModule,SidebarComponent, IconButtonComponent,AsyncPipe],
+  providers:[GraphicsLoaderService],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css'
 })
 
 export class LoginPage extends PageWrapperComponent {
-  constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState> ){
+  src:string;
+  
+  constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
+    this.src = this.graphicsLoaderService.getGraphic('mbs')
   }
 
   login(){
     this.store.dispatch(Login())
   }
+
+  
 }

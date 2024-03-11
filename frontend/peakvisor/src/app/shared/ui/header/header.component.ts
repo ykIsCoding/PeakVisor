@@ -11,11 +11,13 @@ import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { SelectAuthenticated } from '@app/shared/feature/state/auth-state/auth-state.selector';
 import { AuthStateReducer } from '@app/shared/feature/state/auth-state/auth-state.reducer';
+import { FormsModule } from '@angular/forms';
+import { MenubuttonComponent } from '../menubutton/menubutton.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule, SvgComponent, ButtonComponent, IconButtonComponent, CommonModule, AsyncPipe],
+  imports: [ButtonModule, SvgComponent, ButtonComponent, IconButtonComponent, CommonModule, AsyncPipe, MenubuttonComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

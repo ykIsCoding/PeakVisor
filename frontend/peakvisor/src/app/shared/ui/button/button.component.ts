@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,EventEmitter,Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
@@ -16,4 +16,10 @@ export class ButtonComponent {
   @Input() label:string = '';
   @Input() severity:string = '';
   @Input() text:boolean = false;
+  @Output() $onClk = new EventEmitter();
+
+  public handleClick():void{
+    this.$onClk.emit();
+  }
+
 }

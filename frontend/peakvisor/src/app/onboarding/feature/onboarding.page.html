@@ -1,15 +1,19 @@
 <div class="w-full h-full bg-primary flex flex-column align-items-center flex-1 ">
-    <div class="max-h-4rem absolute z-4 right-0 w-full">
+    <div class="w-full h-8rem">
         <app-header [dlmodeOnly]="true"/>
     </div>
-    <div class="bg-primary top-0 absolute w-full h-full align-items-center z-2 justify-content-evenly vertical-align-middle flex flex-column">
+    <div class=" align-items-center justify-content-center gap-2 vertical-align-middle flex flex-column h-auto">
         <div class="w-7">
             <h3 class="text-color text-6xl text-center heading">Welcome to PeakVisor</h3>
             <h5 class="text-color text-3xl text-center heading">Allow us to guide you through the website so it will be easier for you to navigate</h5>
-            <div class="flex justify-content-center">
-                <!-- <app-onboardcontentdisplay [stage]="stage"/>   -->
-            </div>
-            <app-button label="Next" [text]="false" ($onClk)="nextStage()"/>
+            <div class="flex justify-content-center flex-row">
+                 <app-onboardingcontentdisplay [stage]="stage"></app-onboardingcontentdisplay>
+                </div>
+                
         </div>
+        
+    </div>
+    <div class="w-3 m-5">
+        <app-button label="Next" [text]="false" ($onClk)="nextStage()"/>
     </div>
 </div>
