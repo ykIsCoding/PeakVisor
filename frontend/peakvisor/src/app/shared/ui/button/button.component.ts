@@ -16,6 +16,7 @@ export class ButtonComponent {
   @Input() label:string = '';
   @Input() severity:string = '';
   @Input() text:boolean = false;
+  @Input() fn:Function= ()=>null;
   @Output() $onClk = new EventEmitter();
 
   public handleClick():void{

@@ -16,7 +16,8 @@ export class GraphicsLoaderService {
     'signupphoto':'../../../assets/images/signupphoto.png',
     'trailspagevideo':'../../../assets/videos/trailspagevideo.mov',
     'landingpagevideo':'../../../assets/videos/landingpagevideo.mov',
-    'scrolldown':'../../../assets/animations/scrolldown.json'
+    'eventsvideo':'../../../assets/videos/events.mov',
+    'scrolldown':'../../../assets/animations/scrolldown.json',
   }
   getGraphic(name:string):string{
     return this.images[name]?this.images[name]:''

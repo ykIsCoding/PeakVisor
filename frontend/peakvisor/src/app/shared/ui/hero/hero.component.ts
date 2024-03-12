@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { AfterContentInit, Component, Input, ViewChild } from '@angular/core';
 import { animate, glide, spring, stagger } from "motion"
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   providers:[],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css']
@@ -12,6 +13,7 @@ import { animate, glide, spring, stagger } from "motion"
 
 export class HeroComponent implements AfterContentInit{
   @Input() heading:string=''
+  @Input() subheading:string=''
   @Input() content:any;
  
   ngAfterContentInit(){

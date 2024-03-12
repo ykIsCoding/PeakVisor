@@ -1,8 +1,11 @@
-<div class="flex flex-row w-full">
-<div class="flex flex-column gap-2">
-    <label for="username">Username</label>
-    <input pInputText id="username" aria-describedby="username-help" (ngModel)="value" />
-    <small id="username-help">Enter your username to reset your password.</small>
+<div class="flex flex-column w-full gap-2">
+    <p>Name</p>
+<div class="flex flex-row w-full gap-2">
+    <div class="flex w-9">
+        <app-textinput class="w-full"  data="OTP"/>
+    </div>
+    <div class="flex flex-row w-3">
+        <app-button class="flex-grow-1" (click)="null" label="Edit" severity="secondary"/>
+    </div>
 </div>
-<app-button>hi</app-button>
 </div>

@@ -1,12 +1,13 @@
 import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 @Component({
   selector: 'app-menubutton',
   standalone: true,
-  imports: [DropdownModule, FormsModule],
+  imports: [DropdownModule, FormsModule, SplitButtonModule,RouterModule],
   templateUrl: './menubutton.component.html',
   styleUrl: './menubutton.component.css'
 })
@@ -16,15 +17,16 @@ import { Router } from '@angular/router';
 export class MenubuttonComponent {
   @Input() label:String='';
   options:ButtonOptions[];
-  selectedOption:ButtonOptions = {name: 'Menu', code: ''}
+  selectedOption:ButtonOptions ={label: 'Menu',  command: () => null}
 
   constructor(private router:Router){
     this.options = [
-      {name: 'Menu', code: ''},
-      {name: 'Profile', code: '/profile'},
-      {name: 'Settings', code: '/settings'},
-      {name: 'Logout', code: '/logout'}
-  ];
+      //to move to main component later
+      {label: 'Profile',  command: () =>this.router.navigateByUrl('/profile')},
+      {label: 'Events',  command: () =>this.router.navigateByUrl('/events')},
+      {label: 'Settings',  command: () => this.router.navigateByUrl('/settings')},
+      {label: 'Logout',  command: () => this.router.navigateByUrl('/')},
+    ];
   }
 
 
@@ -39,6 +41,6 @@ export class MenubuttonComponent {
 }
 
 interface ButtonOptions {
-  name: string,
-  code: string
+  label: string,
+  command:any
 }

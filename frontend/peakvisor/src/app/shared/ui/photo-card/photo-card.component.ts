@@ -13,4 +13,5 @@ import { CardModule } from 'primeng/card';
 
 export class PhotoCardComponent {
   @Input() routerLink:string = "";
+  @Input() name:String = '';
 }

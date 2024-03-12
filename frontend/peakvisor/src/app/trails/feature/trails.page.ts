@@ -12,11 +12,12 @@ import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.c
 import { VideoBackground } from '@app/shared/ui/video-background/video-background.component';
 import { HeroComponent } from '@app/shared/ui/hero/hero.component';
 import { GridsectionComponent } from '@app/shared/ui/gridsection/gridsection.component';
+import { ButtongroupComponent } from '../ui/buttongroup/buttongroup.component';
 
 @Component({
   selector: 'app-trails-page',
   standalone: true,
-  imports: [HeaderComponent, VideoComponent, PhotoCardComponent,VideoBackground,HeroComponent,GridsectionComponent],
+  imports: [HeaderComponent, VideoComponent, PhotoCardComponent,VideoBackground,HeroComponent,GridsectionComponent,ButtongroupComponent],
   providers:[GraphicsLoaderService, AuthService,MessageService],
   templateUrl: './trails.page.html',
   styleUrl: './trails.page.css'
@@ -24,6 +25,7 @@ import { GridsectionComponent } from '@app/shared/ui/gridsection/gridsection.com
 
 export class TrailsPage extends PageWrapperComponent {
   src:string;
+  content = [{name:'MacRitchie',routerLink:''},{name:'East Coast Park',routerLink:''},{name:'Botanic Gardens',routerLink:''},{name:'Chinese Garden',routerLink:''}]
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
     this.src = this.graphicsLoaderService.getGraphic('trailspagevideo')
