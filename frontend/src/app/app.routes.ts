@@ -9,6 +9,7 @@ import { OnboardingPage } from './onboarding/feature/onboarding.page';
 import { SettingsPage } from './settings/feature/settings.page';
 import { EventspageComponent } from './eventspage/feature/eventspage.component';
 import { ProfilepageComponent } from './profile/features/profilepage/profilepage.component';
+import { TrailinformationComponent } from './trailinformation/feature/trailinformation.component';
 
 export const AppRoutes: Routes = [
     {
@@ -49,6 +50,11 @@ export const AppRoutes: Routes = [
     {
         path: 'profile',
         component: ProfilepageComponent,
+        data: { animation: 'nextPage' }
+    },
+    {
+        path: 'trailinfo',
+        component: TrailinformationComponent,
         data: { animation: 'nextPage' }
     },
     { 

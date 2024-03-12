@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ImageModule } from 'primeng/image';
 import { CardModule } from 'primeng/card';
 
@@ -14,4 +14,10 @@ import { CardModule } from 'primeng/card';
 export class PhotoCardComponent {
   @Input() routerLink:string = "";
   @Input() name:String = '';
+  @Input() linkTo:any;
+  constructor(private router:Router){}
+  handleClick(){
+    console.log(this.linkTo)
+    this.router.navigateByUrl(this.linkTo)
+  }
 }

@@ -25,7 +25,7 @@ import { ButtongroupComponent } from '../ui/buttongroup/buttongroup.component';
 
 export class TrailsPage extends PageWrapperComponent {
   src:string;
-  content = [{name:'MacRitchie',routerLink:''},{name:'East Coast Park',routerLink:''},{name:'Botanic Gardens',routerLink:''},{name:'Chinese Garden',routerLink:''}]
+  content = [{name:'MacRitchie',routerLink:'/trailinfo'},{name:'East Coast Park',routerLink:'/trailinfo'},{name:'Botanic Gardens',routerLink:'/trailinfo'},{name:'Chinese Garden',routerLink:'/trailinfo'}]
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
     this.src = this.graphicsLoaderService.getGraphic('trailspagevideo')
