@@ -9,8 +9,8 @@ const fs = require('fs');
 const privateKey = fs.readFileSync('private.key');
 
 const eventsQuery = gql`
-query($query: String!) {
-    keywordSearch(input:{first:10},filter:{query:$query,lat:1.3521,lon:103.8198,source:EVENTS}){
+query {
+    keywordSearch(input:{first:10},filter:{query:"hiking",lat:1.3521,lon:103.8198,source:EVENTS}){
        count
       pageInfo {
         endCursor
@@ -50,38 +50,40 @@ router.get('/authenticate',async function(req, res, next) {
     const endpoint = `https://secure.meetup.com/oauth2/access?client_id=${process.env.MEETUP_CLIENTID}&client_secret=${process.env.MEETUP_SECRET}&grant_type=authorization_code&redirect_uri=https://redirectmeto.com/http://localhost:4200/&code=${process.env.MEETUP_CODE}`
     
     try{
-        //const code = await axios.get(codeEndpoint)
-        //console.log(code)
-        const signed_jwt = {
-            "sub": "414395483",
-            "iss": process.env.MEETUP_CLIENTID,
-            "aud": "api.meetup.com",
-            "exp": "3600"
-          }
-        
-        jwt.sign(
+      jwt.sign(
           {},
           privateKey,
           {
+            header:{
+              "kid": process.env.MEETUP_SIGNINGKEY,
+              "typ": "JWT",
+              "alg": "RS256"
+            },
             algorithm: 'RS256',
             issuer: process.env.MEETUP_CLIENTID,
-            subject: "414395483",
+            subject: '414395483',
             audience: 'api.meetup.com',
-            //keyid: '{SIGNING_KEY_ID}',
+            keyid: process.env.MEETUP_SIGNINGKEY,
             expiresIn: 120
+          },async (e,t)=>{
+
+            const jwtendpoint = `https://secure.meetup.com/oauth2/access`
+            const data = await axios.post(jwtendpoint,{
+              grant_type:'urn:ietf:params:oauth:grant-type:jwt-bearer',
+              assertion:t,
+            },{
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            })
+            
+            const {access_token,refresh_token,expires_in} = data
+            setTimeout(async ()=>{
+              const nd = await refreshToken(refresh_token)
+              //console.log(nd)
+            },10000)
           }
         );
-        const jwtendpoint = `https://secure.meetup.com/oauth2/accessgrant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`
-        const {data} = await axios.post(jwtendpoint)
-        const {access_token,refresh_token,expires_in} = data
-        console.log(data)
-        //set up auto refresh token
-        setTimeout(async ()=>{
-            const nd = await refreshToken(refresh_token)
-            console.log(nd)
-        },10000)
-        
-        //console.log(data)
     }catch(e){
         console.log(e)
     }
@@ -95,8 +97,17 @@ async function refreshToken(refresh_token){
 }
 
 router.post('/events', async function(req, res, next) {
-    const endpoint = ''
-    const result = await request(endpoint,eventsQuery)
+    const endpoint = 'https://api.meetup.com/gql'
+    const {token} = req.body
+    const result = await request(endpoint,eventsQuery,{},{
+      Authorization: `bearer ${token}`
+    })
+    let resArr = []
+    for(let x=0;x<result.keywordSearch["edges"].length;x++){
+      resArr.push(result.keywordSearch["edges"][x].node)
+    }
+    console.log(resArr)
+    res.send(resArr)
     next()
 });
 

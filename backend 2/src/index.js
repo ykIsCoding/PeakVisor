@@ -3,11 +3,13 @@ const express = require('express')
 const cors = require('cors')
 const sl = require('serverless-http')
 const app = express();
+const bodyParser = require('body-parser');
 const schema = require('../graphql/schema')
 const tripAdvisorRoutes = require('../routes/tripadvisor')
 const authenticationRoutes = require('../routes/authentication')
 const meetupRoutes = require('../routes/meetup')
 
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use('/tripadvisor',tripAdvisorRoutes)
