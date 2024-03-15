@@ -1,0 +1,19 @@
+@import "primeng/resources/primeng.css";
+@import './assets/scss/light/light.css';
+/* @import "primeng/resources/themes/lara-light-green/theme.css"; */
+*{
+    font-family: 'Alegreya Sans', sans-serif !important;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+}
+
+.heading{
+    font-weight: 900;
+}
+
+html{
+    height: 100vh;
+}

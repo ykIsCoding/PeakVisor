@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  frontend:
+    build: 
+      context: ./frontend
+    ports:
+      - "8080:80"
+    # volumes:
+    #   - ./frontend/dist/peakvisor:/app/dist/peakvisor
+    #   - ./frontend/package.json:/app/package.json
+    #   - ./frontend/package-lock.json:/app/package-lock.json
+
+  # nginx:
+  #   build: 
+  #     context: ./nginx
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - frontend
+  #   volumes: # maps directory relative to docker-compose.yml to container directory
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #   networks:
+  #     - default

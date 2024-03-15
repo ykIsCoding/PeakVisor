@@ -1,0 +1,23 @@
+
+    <div class="inline-flex w-full h-full justify-content-center align-items-center">
+    <div class="h-full flex-1 flex flex-column justify-content-center align-items-center">
+        <div class="flex flex-column justify-content-center align-items-center mt-7 gap-5">
+        <h1 class="heading text-8xl">Sign In</h1>
+        <app-textinput class="w-full"  data="Email"/>
+        <app-textinput class="w-full"  data="Password"/>
+        <div class="w-full flex mb-3 flex-column gap-3">
+            <app-button class="flex-grow-1" (click)="login()" label="Log In" severity="secondary"/>
+            <app-button class="flex-grow-1" [text]="true" routerLink="/" label="Forgot Password" severity="secondary"/>
+        </div>
+        <div class="w-full flex mb-3 flex-column gap-1 mt-5 align-items-center">
+            <h5>No account yet?</h5>
+            <app-button class="flex-grow-1 w-full" routerLink="/signup" label="Sign Up" severity="secondary"/>
+            <p-button (click)="login()" label="Submit"></p-button>
+        </div>
+        </div>
+        
+    </div>
+    <div class="hidden md:block w-6 justify-content-center align-items-center h-full">
+        <img class="w-full h-full" [src]="src"/>
+    </div>
+</div>

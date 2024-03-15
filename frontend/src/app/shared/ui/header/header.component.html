@@ -1,0 +1,16 @@
+<div class="max-h-4rem absolute z-4 right-0 w-full">
+    <div class="flex justify-content-between p-5">
+        <div>
+            <img height="100px" width="100px" src="assets/icons/peakvisor-icon.svg">
+            <!-- <app-svg height="100px" width="100px"></app-svg> -->
+        </div>
+        <div class="flex flex-wrap justify-content-center gap-3 align-content-center align-items-center vertical-align-middle">
+            <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/" label="Home"/>
+            <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/trails" label="Trails"/>
+            <app-button *ngIf="!(authState$|async) && dlmodeOnly==false" routerLink="/login" label="Login"/>
+            
+            <app-menubutton *ngIf="authState$|async" label="Menu"></app-menubutton>
+            <app-icon-button/>
+        </div>
+    </div>
+</div>

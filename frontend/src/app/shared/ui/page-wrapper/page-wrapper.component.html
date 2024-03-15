@@ -1,0 +1,17 @@
+<div class="h-full w-full bg-primary">
+    <app-sidebar [sidebarVisible]="sidebarVisible" class="block md:hidden">
+        <app-button  [text]="true" routerLink="/" label="Home"/>
+        <app-button  [text]="true" routerLink="/trails" label="Trails"/>
+        <app-button *ngIf="!(authState$|async)" routerLink="/login" label="Login"/>
+        <app-button *ngIf="authState$|async" routerLink="/login" label="Menu"/>
+        <div class="inline-flex justify-content-start">
+            <app-icon-button/>
+        </div>
+    </app-sidebar>
+    <div class="w-full h-screen bg-primary flex flex-column align-items-between flex-1 relative z-0">
+        <app-header [dlmodeOnly]="false" class="absolute top-0 z-4 w-full hidden md:block"/>
+        <app-button class="md:hidden z-4" (click)="toggleSidebarVisible()" label="Menu" severity="secondary"/>
+    <ng-content></ng-content>
+    </div>
+    <p-toast position="bottom-left"></p-toast>
+</div>

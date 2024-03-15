@@ -1,0 +1,14 @@
+<div class="w-full h-full bg-primary flex flex-column align-items-center flex-1 mt-8">
+    <div class=" align-items-center justify-content-center gap-2 vertical-align-middle flex flex-column h-auto mt-5 bg-primary">
+        <div class="w-full">
+            <h1 class="text-color lg:text-8xl md:text-7xl sm:text-6xl  text-center heading p-2">My Hiking Profile</h1>
+        </div>
+        <div class="w-full">
+            <app-profilestats></app-profilestats>
+        </div>
+        <h3 class="text-color lg:text-4xl md:text-3xl sm:text-2xl text-center heading">My Hikes</h3>
+    </div>
+    <div class="w-full">
+        <app-gridsection [contentArray]="content"></app-gridsection>
+    </div>
+</div>

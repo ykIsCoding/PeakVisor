@@ -1,0 +1,16 @@
+<div class="w-full h-full bg-primary flex flex-column align-items-center flex-1 mt-8">
+    <div class=" align-items-center justify-content-center gap-2 vertical-align-middle flex flex-column h-auto mt-5">
+        <div class="w-7">
+            <h3 class="text-color lg:text-8xl md:text-7xl sm:text-6xl  text-center heading">Welcome to PeakVisor</h3>
+            <h5 class="text-color lg:text-4xl md:text-3xl sm:text-2xl text-center heading">Allow us to guide you through the website so it will be easier for you to navigate</h5>
+            <div class="flex justify-content-center flex-row">
+                 <app-onboardingcontentdisplay [stage]="stage"></app-onboardingcontentdisplay>
+                </div>
+                
+        </div>
+        
+    </div>
+    <div class="w-3 m-5 h-4">
+        <app-button label="Next" [text]="false" ($onClk)="nextStage()"/>
+    </div>
+</div>
