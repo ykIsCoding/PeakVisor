@@ -4,6 +4,8 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 var rn = require('random-number');
+const { initializeApp } =require("firebase/app");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} =require("firebase/auth");
 
 const url = 'http://localhost:3000/authentication'
 let mailsender = nodemailer.createTransport({
@@ -269,16 +271,74 @@ router.post('/verifyemail', async function(req, res, next) {
 });
 
 router.post('/register', async function(req, res, next) {
-    next()
+    //post request to /register should have email and password data
+    const {email,password} = req.body
+    initialiseApp()
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user.stsTokenManager)
+        res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    res.send({status:errorCode,message:errorMessage})
+  });
 });
 
 router.post('/login', async function(req, res, next) {
-    next()
+    const {email,password} = req.body
+    initialiseApp()
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => { 
+        const user = userCredential.user;
+        res.send({status:"success",message:"User Logged In",token_manager:user.stsTokenManager})
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        res.send({status:errorCode,message:errorMessage})
+    });
+    
 });
+
+router.post('/logout', async function(req, res, next) {
+    const {email,password} = req.body
+    initialiseApp()
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        // Sign-out successful.
+        res.send({status:"success",message:"Logged out"})
+      }).catch((error) => {
+        // An error happened.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        res.send({status:errorCode,message:errorMessage})
+      });
+});
+
+
 
 router.post('/resetpassword', async function(req, res, next) {
     next()
 });
+
+function initialiseApp(){
+    const firebaseConfig = {
+        apiKey: process.env.FIREBASE_APIKEY,
+        authDomain: process.env.FIREBASE_AUTHDOMAIN,
+        projectId: process.env.FIREBASE_PROJECTID,
+        storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+        messagingSenderId: process.env.FIREBASE_MESSAGESENDERID,
+        appId: "1:729504312491:web:01745964315acf2c4e5bee"
+      };
+      
+      // Initialize Firebase
+      firebaseApp = initializeApp(firebaseConfig);
+}
 
 
 

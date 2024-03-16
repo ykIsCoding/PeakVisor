@@ -17,6 +17,7 @@ app.use('/authentication',authenticationRoutes)
 app.use('/meetup',meetupRoutes)
 
 
+
 app.get('/', function (req, res) {
     res.send('Hello World')
   })
