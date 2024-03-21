@@ -17,6 +17,7 @@ import { SidebarComponent } from '@app/shared/ui/sidebar/sidebar.component';
 import { IconButtonComponent } from '@app/shared/ui/icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -30,6 +31,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class LoginPage extends PageWrapperComponent {
   src:string;
   authService: AuthService= inject(AuthService)
+  router: Router = inject(Router)
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -43,7 +45,8 @@ export class LoginPage extends PageWrapperComponent {
   async login(){
     let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
     if(data["status"]=="success"){
-      this.store.dispatch(Login())
+      this.store.dispatch(Login(data))
+      this.router.navigateByUrl('/profile')
     }
   }
 

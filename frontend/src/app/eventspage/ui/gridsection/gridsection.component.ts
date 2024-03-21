@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { PhotoCardComponent } from '../photo-card/photo-card.component';
 import { CommonModule } from '@angular/common';
+import { PhotoCardComponent } from '../photo-card/photo-card.component';
 
 @Component({
   selector: 'app-gridsection',
@@ -11,12 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class GridsectionComponent {
   @Input() contentArray:any = [];
-  processedArray:any=[];
+  
   constructor(){
-    for(let i=0;i<this.contentArray.length;i++){
-      this.processedArray[i]={routerLink:this.contentArray[i].result.eventUrl,name:this.contentArray[i].name}
-    }
-    console.log(this.processedArray)
   }
   contentTrackFn(){
 

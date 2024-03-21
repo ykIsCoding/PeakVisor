@@ -16,8 +16,9 @@ export const initialAuthState: AuthState = {
 
 export const AuthStateReducer = createReducer(
     initialAuthState,
-    on(Login,state=>{
-        return ({...state, authenticated:true})
+    on(Login,(state,props)=>{
+        const {token_manager} = props
+        return ({...state,refresh_token:token_manager.refresh_token,access_token:token_manager.access_token,...props,authenticated:true})
     }),
-    on(Logout,state=>({...state, authenticated:false}))
+    on(Logout,state=>({refresh_token:'',access_token:'',authenticated:false}))
 )

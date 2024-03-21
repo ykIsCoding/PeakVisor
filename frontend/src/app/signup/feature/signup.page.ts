@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
 import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/graphics-loader.service';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
+import { Login } from '@app/shared/feature/state/auth-state/auth-state.actions';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
 import { TextInputComponent } from '@app/shared/ui/text-input/textinput.component';
@@ -23,7 +25,10 @@ export class SignupPage extends PageWrapperComponent{
   src:String;
   stage:number=0;
   otp:string='';
+  disabled:boolean = false;
   authService: AuthService= inject(AuthService)
+  router:Router = inject(Router)
+
   identifier:string = "";
   signUpForm = new FormGroup({
     email: new FormControl(''),
@@ -42,10 +47,18 @@ export class SignupPage extends PageWrapperComponent{
     let d = await this.authService.getOTP(this.signUpForm.value.email as string)
     
     this.identifier = d["identifier"] ?? ""
+    this.disabled = true
+    setTimeout(() => {
+      this.disabled = false
+    }, 120000);
   }
 
   async register(){
-    await this.authService.register(this.signUpForm.value.email as string,this.signUpForm.value.password as string,this.signUpForm.value.name as string,this.identifier,this.signUpForm.value.otp as string)
+    const res = await this.authService.register(this.signUpForm.value.email as string,this.signUpForm.value.password as string,this.signUpForm.value.name as string,this.identifier,this.signUpForm.value.otp as string)
+    if(res["status"]=="success"){
+      this.store.dispatch(Login(res))
+      this.router.navigateByUrl('/onboarding')
+    }
   }
 
   signUpNextStage(){

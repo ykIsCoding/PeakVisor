@@ -34,7 +34,7 @@
                     </span>
                 </div>
                 <div class="flex flex-1 flex-row">
-                    <app-button class="flex-grow-1" (click)="getOTP()" label="Get OTP" severity="secondary"/>
+                    <app-button [disabled]="disabled" class="flex-grow-1" (click)="getOTP()" label="Get OTP" severity="secondary"/>
                 </div>
             </div>
             <div class="w-full flex mb-3 flex-column gap-3">

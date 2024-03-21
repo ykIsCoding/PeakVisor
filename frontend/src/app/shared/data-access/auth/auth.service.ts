@@ -84,8 +84,8 @@ export class AuthService {
           identifier:identifier
         }
       ).subscribe(c=>resolve(c)))
-      console.log(data)
-      return 
+      
+      return data
     }catch(e){
       console.log(e)
     }
