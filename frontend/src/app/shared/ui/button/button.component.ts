@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 })
 
 export class ButtonComponent {
+  @Input() link:boolean = false;
   @Input() class:string='';
   @Input() routerLink:string = '';
   @Input() label:string = '';

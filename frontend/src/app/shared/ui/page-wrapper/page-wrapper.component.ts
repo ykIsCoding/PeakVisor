@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SelectAuthState, SelectAuthenticated } from '@app/shared/feature/state/auth-state/auth-state.selector';
 import { ToastService } from '@app/shared/data-access/toast/toast.service';
@@ -12,11 +12,14 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
 import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
+import { SelectLoading } from '@app/shared/feature/state/display-state/display-state.selector';
+import { Load, Unload } from '@app/shared/feature/state/display-state/display-state.actions';
 
 @Component({
   selector: 'app-pagewrapper',
   standalone: true,
-  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule],
+  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule,LoaderComponent],
   templateUrl: './page-wrapper.component.html',
   styleUrl: './page-wrapper.component.css'
 })
@@ -24,12 +27,19 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 export class PageWrapperComponent {
   sidebarVisible:boolean = false;
   authState$:Observable<boolean>;
+  loadingState$:Observable<boolean>; //move to state
   constructor(public messageService:MessageService, public store:Store<AppState>){
     this.authState$ = this.store.select(SelectAuthenticated)
+    this.loadingState$ = this.store.select(SelectLoading)
+    
   }
 
   showToast(msg:string){
     this.messageService.add({severity:'success',summary:msg,detail:'completed'})
+  }
+
+  toggleLoader(b:boolean){
+    b?this.store.dispatch(Load()):this.store.dispatch(Unload())
   }
 
   toggleSidebarVisible(){

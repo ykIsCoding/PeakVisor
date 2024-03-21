@@ -20,13 +20,13 @@ export class OnboardingPage {
   
   nextStage(){
     this.stage+=1;
-    this.stage = this.stage%3;
+    this.stage = this.stage%4;
     
   }
 
   previousStage(){
     this.stage-=1;
-    this.stage = this.stage%3;
+    this.stage = this.stage%4;
   }
 
 }

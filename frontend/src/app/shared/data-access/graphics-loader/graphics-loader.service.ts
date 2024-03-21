@@ -14,6 +14,7 @@ export class GraphicsLoaderService {
     'onboard':'../../../assets/images/onboard.png',
     'parks':'../../../assets/images/parks.png',
     'signupphoto':'../../../assets/images/signupphoto.png',
+    'allset':'../../../assets/images/allset.png',
     'trailspagevideo':'../../../assets/videos/trailspagevideo.mov',
     'landingpagevideo':'../../../assets/videos/landingpagevideo.mov',
     'eventsvideo':'../../../assets/videos/events.mov',

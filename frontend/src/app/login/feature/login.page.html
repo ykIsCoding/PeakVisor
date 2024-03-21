@@ -1,10 +1,16 @@
 
     <div class="inline-flex w-full h-full justify-content-center align-items-center">
-    <div class="h-full flex-1 flex flex-column justify-content-center align-items-center">
+    <form [formGroup]="loginForm" class="h-full flex-1 flex flex-column justify-content-center align-items-center">
         <div class="flex flex-column justify-content-center align-items-center mt-7 gap-5">
         <h1 class="heading text-8xl">Sign In</h1>
-        <app-textinput class="w-full"  data="Email"/>
-        <app-textinput class="w-full"  data="Password"/>
+        <span class="p-float-label flex-grow-1 flex w-full">
+            <input id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <label id="email">Email</label>
+        </span>
+        <span class="p-float-label flex-grow-1 flex w-full">
+            <input id="password" formControlName="password" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <label id="password">Password</label>
+        </span>
         <div class="w-full flex mb-3 flex-column gap-3">
             <app-button class="flex-grow-1" (click)="login()" label="Log In" severity="secondary"/>
             <app-button class="flex-grow-1" [text]="true" routerLink="/" label="Forgot Password" severity="secondary"/>
@@ -16,7 +22,7 @@
         </div>
         </div>
         
-    </div>
+    </form>
     <div class="hidden md:block w-6 justify-content-center align-items-center h-full">
         <img class="w-full h-full" [src]="src"/>
     </div>

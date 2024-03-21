@@ -7,7 +7,7 @@
         <div class="flex flex-wrap justify-content-center gap-3 align-content-center align-items-center vertical-align-middle">
             <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/" label="Home"/>
             <app-button *ngIf="dlmodeOnly==false" [text]="true" routerLink="/trails" label="Trails"/>
-            <app-button *ngIf="!(authState$|async) && dlmodeOnly==false" routerLink="/login" label="Login"/>
+            <app-button  *ngIf="!(authState$|async) && dlmodeOnly==false" routerLink="/login" label="Login"/>
             
             <app-menubutton *ngIf="authState$|async" label="Menu"></app-menubutton>
             <app-icon-button/>
