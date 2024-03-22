@@ -18,7 +18,8 @@ router.get('/all', async function(req, res, next) {
 });
 
 router.get('/:locationId', async function(req, res, next) {
-    const url = `https://api.content.tripadvisor.com/api/v1/${req.params.locationId}/7269083/details?key=${process.env.TRIPADVISORKEY}`;
+    const url = `https://api.content.tripadvisor.com/api/v1/location/${req.params.locationId}/details?key=${process.env.TRIPADVISORKEY}&language=en`
+    //const url = `https://api.content.tripadvisor.com/api/v1/${req.params.locationId}/7269083/details?key=${process.env.TRIPADVISORKEY}`;
     const options = {headers: {accept: 'application/json'}};
     
     try{
@@ -33,12 +34,13 @@ router.get('/:locationId', async function(req, res, next) {
 });
 
 router.get('/:locationId/photo', async function(req, res, next) {
-    const url = `https://api.content.tripadvisor.com/api/v1/location/${req.params.locationId}/photos?&key=${process.env.TRIPADVISORKEY}&language=en`;
+    const url = `https://api.content.tripadvisor.com/api/v1/location/${req.params.locationId}/photos?language=en&key=${process.env.TRIPADVISORKEY}`;
     const options = {headers: {accept: 'application/json'}};
     
     try{
-        const {data} = await axios.get(url,options)
         console.log('getting photo')
+        const {data} = await axios.get(url,options)
+        
         console.log(data)
         res.send(data.data)
     }catch(e){

@@ -6,7 +6,12 @@ const axios = require('axios');
 var rn = require('random-number');
 const { initializeApp } =require("firebase/app");
 const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} =require("firebase/auth");
+const { v4 } = require('uuid');
 
+const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
+
+var firebaseApp
+var db
 const url = 'http://localhost:3000/authentication'
 let mailsender = nodemailer.createTransport({
     service:"hotmail",
@@ -251,41 +256,87 @@ const mailOptions = {
 }
 
 mailsender.sendMail(mailOptions)
+mailsender.close()
 }
 
-router.get('/verifyemail', async function(req, res, next) {
-    //save otp to database, when post request received, check database
-    let otp = rn({min:1000,max:9999,integer:true})
-      mailsender.verify((error,success)=>{
-        if(error){
-            console.log(error)
-        }else{
-            sendmail('ylim189@e.ntu.edu.sg','Verify Your Email',otp)
-        }
-      })
-    next()
-});
+
 
 router.post('/verifyemail', async function(req, res, next) {
-    next()
+    //generate uuid send to client, when client enter otp use the uuid to verify
+    //to test
+    const identifier = v4()
+    const timeout = 180000;
+    const otpExpiry = Date.now() + timeout
+    const {email} = req.body
+    var otp = rn({min:1000,max:9999,integer:true})
+    sendmail(email,"Verify Your Email for your PeakVisor account",otp)
+    
+    try {
+        initialiseApp()
+        db = getDatabase();
+        
+        const dataRef = ref(db, 'otp/' + identifier)
+        set(dataRef,{
+        identifier:identifier,
+        otp:otp,
+        otpExpiry:otpExpiry
+        }).then((v)=>{
+            setTimeout(()=>remove(dataRef),timeout)
+            res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+        }).catch(e=>console.log(e))
+        //res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+
 });
 
 router.post('/register', async function(req, res, next) {
     //post request to /register should have email and password data
-    const {email,password} = req.body
+    const {email,password,otp,identifier, name} = req.body
     initialiseApp()
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user.stsTokenManager)
-        res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
-    })
-    .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    res.send({status:errorCode,message:errorMessage})
-  });
+
+    const db = getDatabase();
+    const otpRef = ref(db, 'otp/');
+    onValue(otpRef, (snapshot) => { //error part
+        const data = snapshot.val();
+        const item = data[identifier]
+        if(item){
+            
+            if(item && otp == item.otp && item.otpExpiry>Date.now()){
+                const auth = getAuth();
+                createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                const user = userCredential.user;
+                
+                
+                set(ref(db, 'users/' +user.uid), {
+                    name:name,
+                    strava_account:null,
+                    id:user.uid,
+                    deleted:false,
+                    time_till_delete:null
+                });
+                res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+                return
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            res.send({status:errorCode,message:errorMessage})
+            return
+            });
+            }else{
+                res.send({status:"failure",message:"OTP Wrong"})
+                return
+            }
+        }else{
+            res.send({status:"failure",message:"OTP Expired"})
+            return
+        }
+    });
+    
+    return
 });
 
 router.post('/login', async function(req, res, next) {
@@ -295,7 +346,26 @@ router.post('/login', async function(req, res, next) {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => { 
         const user = userCredential.user;
-        res.send({status:"success",message:"User Logged In",token_manager:user.stsTokenManager})
+        const uid = user.uid
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const prevData = snapshot.val()[uid]
+                if(prevData){
+                    var newUpdate = {...prevData,deleted:false,time_till_delete:null}
+                    update(child(dbRef, `users/${uid}`), newUpdate);
+                }
+                
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+                console.error(error);
+        });
+
+        
+        res.send({status:"success",message:"User Logged In",token_manager:user.stsTokenManager,userId:user.uid})
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -305,26 +375,66 @@ router.post('/login', async function(req, res, next) {
     
 });
 
+router.post('/userdata', async function(req, res, next) {
+    const {uid} = req.body
+    initialiseApp()
+    const dbRef = ref(getDatabase());
+    const ud = getAuth()
+    
+    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            res.send({...snapshot.val(),email: ud.currentUser.email});
+        } else {
+            console.log("No data available");
+        }
+    }).catch((error) => {
+            console.error(error);
+    });
+    
+});
+
 router.post('/logout', async function(req, res, next) {
-    const {email,password} = req.body
     initialiseApp()
     const auth = getAuth();
     signOut(auth).then(() => {
-        // Sign-out successful.
         res.send({status:"success",message:"Logged out"})
       }).catch((error) => {
-        // An error happened.
         const errorCode = error.code;
         const errorMessage = error.message;
         res.send({status:errorCode,message:errorMessage})
       });
 });
 
-
-
 router.post('/resetpassword', async function(req, res, next) {
     next()
 });
+
+router.post('/deleteaccount',(req,res,next)=>{
+    const {uid} = req.body
+    const timeTillDelete = 7*24*3600*1000 + Date.now()
+    try{
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const prevData = snapshot.val()[uid]
+                if(prevData){
+                    var newUpdate = {...prevData,deleted:true,time_till_delete:timeTillDelete}
+                    update(child(dbRef, `users/${uid}`), newUpdate);
+                }
+                
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+                console.error(error);
+        });
+    }catch(e){
+        console.log(e)
+    }
+    
+
+})
 
 function initialiseApp(){
     const firebaseConfig = {
@@ -333,12 +443,16 @@ function initialiseApp(){
         projectId: process.env.FIREBASE_PROJECTID,
         storageBucket: process.env.FIREBASE_STORAGEBUCKET,
         messagingSenderId: process.env.FIREBASE_MESSAGESENDERID,
+        databaseURL:process.env.FIREBASE_DATABASEURL,
         appId: "1:729504312491:web:01745964315acf2c4e5bee"
       };
       
       // Initialize Firebase
       firebaseApp = initializeApp(firebaseConfig);
+      db = getDatabase(firebaseApp);
+     
 }
+
 
 
 

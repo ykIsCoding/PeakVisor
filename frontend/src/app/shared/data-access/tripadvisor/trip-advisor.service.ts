@@ -10,6 +10,7 @@ export class TripAdvisorService {
     const url = 'https://peakvisor.onrender.com/tripadvisor/all'
     const data = await fetch(url)
     //return data
+    
     return await data.json()??[];
   }
 

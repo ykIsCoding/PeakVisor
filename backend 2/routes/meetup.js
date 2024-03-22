@@ -77,17 +77,17 @@ router.get('/authenticate',async function(req, res, next) {
               },
             })
             
-            const {access_token,refresh_token,expires_in} = data
-            setTimeout(async ()=>{
-              const nd = await refreshToken(refresh_token)
-              //console.log(nd)
-            },10000)
+            const {access_token,refresh_token,expires_in} = data.data
+            res.send(access_token)
           }
         );
+
+
+
     }catch(e){
-        console.log(e)
+      res.send(e)
     }
-    next()
+    
 })
 
 async function refreshToken(refresh_token){
@@ -106,9 +106,7 @@ router.post('/events', async function(req, res, next) {
     for(let x=0;x<result.keywordSearch["edges"].length;x++){
       resArr.push(result.keywordSearch["edges"][x].node)
     }
-    console.log(resArr)
     res.send(resArr)
-    next()
 });
 
 
