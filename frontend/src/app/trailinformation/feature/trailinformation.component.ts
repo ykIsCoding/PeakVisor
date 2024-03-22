@@ -22,7 +22,7 @@ export class TrailinformationComponent {
     
     this.route.params.subscribe(d=>{
       this.locationId =d['locationId']
-      this.contentService.getLocationPhotosByLocationId(this.locationId).then(res=>{
+      this.contentService.getLocationDetailsByLocationId(this.locationId).then(res=>{
         console.log(res)
         
         this.locationPhotos = [...res]
