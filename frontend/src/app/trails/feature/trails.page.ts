@@ -11,14 +11,16 @@ import { Store } from '@ngrx/store';
 import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
 import { VideoBackground } from '@app/shared/ui/video-background/video-background.component';
 import { HeroComponent } from '@app/shared/ui/hero/hero.component';
-import { GridsectionComponent } from '@app/shared/ui/gridsection/gridsection.component';
+
 import { ButtongroupComponent } from '../ui/buttongroup/buttongroup.component';
 import { TripAdvisorService } from '@app/shared/data-access/tripadvisor/trip-advisor.service';
+import { GridsectionComponent } from '../ui/gridsection/gridsection.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-trails-page',
   standalone: true,
-  imports: [HeaderComponent, VideoComponent, PhotoCardComponent,VideoBackground,HeroComponent,GridsectionComponent,ButtongroupComponent],
+  imports: [RouterOutlet,HeaderComponent, VideoComponent, PhotoCardComponent,VideoBackground,HeroComponent,GridsectionComponent,ButtongroupComponent],
   providers:[GraphicsLoaderService, AuthService,MessageService,TripAdvisorService],
   templateUrl: './trails.page.html',
   styleUrl: './trails.page.css'

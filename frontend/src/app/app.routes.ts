@@ -21,7 +21,7 @@ export const AppRoutes: Routes = [
     {
         path: 'trails',
         component: TrailsPage,
-        data: { animation: 'nextPage' }
+        data: { animation: 'nextPage' },
     },
     {
         path: 'login',
@@ -31,6 +31,11 @@ export const AppRoutes: Routes = [
     {
         path: 'signup',
         component: SignupPage,
+        data: { animation: 'nextPage' }
+    },
+    {
+        path: 'trails/:locationId',
+        component: TrailinformationComponent,
         data: { animation: 'nextPage' }
     },
     {
@@ -55,11 +60,6 @@ export const AppRoutes: Routes = [
         path: 'profile',
         component: ProfilepageComponent,
         canActivate:[authGuard],
-        data: { animation: 'nextPage' }
-    },
-    {
-        path: 'trailinfo',
-        component: TrailinformationComponent,
         data: { animation: 'nextPage' }
     },
     { 

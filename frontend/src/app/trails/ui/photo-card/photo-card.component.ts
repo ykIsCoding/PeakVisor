@@ -12,12 +12,14 @@ import { CardModule } from 'primeng/card';
 })
 
 export class PhotoCardComponent {
-  @Input() routerLink:string = "";
+  
   @Input() name:String = '';
-  @Input() linkTo:any;
+  @Input() locationId:string = '';
+  @Input() content:any;
+
   constructor(private router:Router){}
   handleClick(){
-    console.log(this.linkTo)
-    this.router.navigateByUrl(this.linkTo)
+    
+    this.router.navigateByUrl('/trails/'+this.locationId)
   }
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
 import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/graphics-loader.service';
@@ -31,12 +31,36 @@ export class SignupPage extends PageWrapperComponent{
 
   identifier:string = "";
   signUpForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    name: new FormControl(''),
-    reenterpassword: new FormControl(''),
-    otp: new FormControl('')
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required,Validators.minLength(8)]),
+    name: new FormControl('',[Validators.required]),
+    reenterpassword: new FormControl('',[Validators.required,Validators.minLength(8)]),
+    otp: new FormControl('',[Validators.required])
   })
+
+  get email(){
+    return this.signUpForm.get('email')
+  }
+
+  get password(){
+    return this.signUpForm.get('password')
+  }
+
+  get name(){
+    return this.signUpForm.get('name')
+  }
+
+  get onetimepassword(){
+    return this.signUpForm.get('otp')
+  }
+
+  get reenterpassword(){
+    return this.signUpForm.get('reenterpassword')
+  }
+
+  checkIfPasswordsMatch(){
+    return this.password?.value===this.reenterpassword?.value
+  }
   
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
@@ -55,6 +79,7 @@ export class SignupPage extends PageWrapperComponent{
 
   async register(){
     const res = await this.authService.register(this.signUpForm.value.email as string,this.signUpForm.value.password as string,this.signUpForm.value.name as string,this.identifier,this.signUpForm.value.otp as string)
+    console.log(res)
     if(res["status"]=="success"){
       this.store.dispatch(Login(res))
       this.router.navigateByUrl('/onboarding')

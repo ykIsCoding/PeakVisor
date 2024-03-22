@@ -13,10 +13,7 @@ export class GridsectionComponent {
   @Input() contentArray:any = [];
   processedArray:any=[];
   constructor(){
-    for(let i=0;i<this.contentArray.length;i++){
-      this.processedArray[i]={routerLink:this.contentArray[i].result.eventUrl,name:this.contentArray[i].name}
-    }
-    console.log(this.processedArray)
+    console.log(this.contentArray)
   }
   contentTrackFn(){
 

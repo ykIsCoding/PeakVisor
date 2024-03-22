@@ -16,7 +16,7 @@ import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/g
 import { SidebarComponent } from '@app/shared/ui/sidebar/sidebar.component';
 import { IconButtonComponent } from '@app/shared/ui/icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,9 +33,17 @@ export class LoginPage extends PageWrapperComponent {
   authService: AuthService= inject(AuthService)
   router: Router = inject(Router)
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('',[Validators.email,Validators.required]),
+    password: new FormControl('',[Validators.required]),
   })
+
+  get email(){
+    return this.loginForm.get('email')
+  }
+
+  get password(){
+    return this.loginForm.get('password')
+  }
 
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)

@@ -12,20 +12,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './photo-card.component.css'
 })
 
-export class PhotoCardComponent implements AfterViewInit{
+export class PhotoCardComponent implements OnInit{
   
   @Input() name:String = '';
   @Input() content:any;
-  img='green';
+  img='';
 
   constructor(private router:Router){
     
   }
 
 
-  ngAfterViewInit(): void {
-    console.log(this.content.result.image)
-    this.img =( this.content.result.image.source) ?? ''
+  ngOnInit(): void {
+    this.img =( this.content.result?.image.source) ?? ''
   }
   handleClick(){
     window.open(this.content.result.eventUrl,"_blank")
