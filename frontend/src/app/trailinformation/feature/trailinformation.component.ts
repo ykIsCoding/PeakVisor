@@ -21,6 +21,7 @@ export class TrailinformationComponent {
   constructor(private route:ActivatedRoute){
     
     this.route.params.subscribe(d=>{
+      console.log(d)
       this.locationId =d['locationId']
       
       this.contentService.getLocationDetailsByLocationId(this.locationId).then(res=>{

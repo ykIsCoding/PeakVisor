@@ -18,11 +18,12 @@ import { IconButtonComponent } from '@app/shared/ui/icon-button/icon-button.comp
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ResetpassworddialogComponent } from '../ui/resetpassworddialog/resetpassworddialog/resetpassworddialog.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [HeaderComponent, TextInputComponent,CommonModule, ButtonComponent, ButtonModule,SidebarComponent, IconButtonComponent,AsyncPipe,ReactiveFormsModule],
+  imports: [ResetpassworddialogComponent,HeaderComponent, TextInputComponent,CommonModule, ButtonComponent, ButtonModule,SidebarComponent, IconButtonComponent,AsyncPipe,ReactiveFormsModule],
   providers:[GraphicsLoaderService],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css'
@@ -30,6 +31,7 @@ import { Router } from '@angular/router';
 
 export class LoginPage extends PageWrapperComponent {
   src:string;
+  display:boolean = false;
   authService: AuthService= inject(AuthService)
   router: Router = inject(Router)
   loginForm = new FormGroup({
@@ -56,6 +58,15 @@ export class LoginPage extends PageWrapperComponent {
       this.store.dispatch(Login(data))
       this.router.navigateByUrl('/profile')
     }
+  }
+
+  setDisplayStatus(value:boolean){
+    console.log(value)
+    this.display = value
+  }
+
+  async changePassword(){
+    this.display = true;
   }
 
   async logout(){

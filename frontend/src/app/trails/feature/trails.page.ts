@@ -32,10 +32,12 @@ export class TrailsPage extends PageWrapperComponent implements AfterContentInit
   contentService: TripAdvisorService = inject(TripAdvisorService)
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
+    this.toggleLoader(true)
     this.src = this.graphicsLoaderService.getGraphic('trailspagevideo')
     this.contentService.getAllLocations().then(res=>{
       console.log(res)
       this.content = [...res]
+      this.toggleLoader(false)
     }).catch(e=>console.log(e))
 
   }
