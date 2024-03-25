@@ -24,25 +24,26 @@ router.get('/:locationId', async function(req, res, next) {
     
     try{
         const {data} = await axios.get(url,options)
-        console.log(data)
-        res.send(data.data)
+        res.send(data)
     }catch(e){
         console.log(e)
     }
 
-    next()
+    //next()
 });
 
-router.get('/:locationId/photo', async function(req, res, next) {
-    const url = `https://api.content.tripadvisor.com/api/v1/location/${req.params.locationId}/photos?language=en&key=${process.env.TRIPADVISORKEY}`;
-    const options = {headers: {accept: 'application/json'}};
+router.get('/:locationName/photo', async function(req, res, next) {
+    //TO RESOLVE
+    const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLEAPI_KEY}&cx=65481d5d5a5f841d3&q=${req.params.locationName.replaceAll("&", " ")}`;
+    const options = {};
     
     try{
         console.log('getting photo')
         const {data} = await axios.get(url,options)
         
         console.log(data)
-        res.send(data.data)
+        
+        res.send(data)
     }catch(e){
         console.log(e)
     }
