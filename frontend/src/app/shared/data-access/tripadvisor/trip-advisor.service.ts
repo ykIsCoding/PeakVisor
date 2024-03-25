@@ -14,19 +14,21 @@ export class TripAdvisorService {
     return await data.json()??[];
   }
 
-  async getLocationPhotosByLocationId(locationID:string){
-    const url = `https://peakvisor.onrender.com/tripadvisor/${locationID}/photo`
+  async getLocationPhotosByLocationName(locationName:string){
+    const url = `http://localhost:3000/tripadvisor/tripadvisor/${locationName.replaceAll(" ", "&")}/photo`
     
-    const data = await fetch(url)
+    const data = await fetch(url).catch((e)=>{
+      console.log(e)
+    })
     console.log(data)
-    //return data
-    return await data.json()??[];
+    
+    return await data;
   }
 
   async getLocationDetailsByLocationId(locationID:string){
-    const url = `https://peakvisor.onrender.com/tripadvisor/${locationID}`
+    const url = `http://localhost:3000/tripadvisor/${locationID}`
     const data = await fetch(url)
     //return data
-    return await data.json()??[];
+    return await data.json()??{};
   }
 }

@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validatio
 import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
 import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/graphics-loader.service';
+import { ToastService } from '@app/shared/data-access/toast/toast.service';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { Login } from '@app/shared/feature/state/auth-state/auth-state.actions';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
@@ -27,6 +28,7 @@ export class SignupPage extends PageWrapperComponent{
   otp:string='';
   disabled:boolean = false;
   authService: AuthService= inject(AuthService)
+  
   router:Router = inject(Router)
 
   identifier:string = "";
@@ -83,6 +85,9 @@ export class SignupPage extends PageWrapperComponent{
     if(res["status"]=="success"){
       this.store.dispatch(Login(res))
       this.router.navigateByUrl('/onboarding')
+      this.displaySuccessToast("Registration Successful","Welcome to the community!")
+    }else{
+      this.displayErrorToast("Registration Unsuccessful","Something went wrong. Please try again.")
     }
   }
 

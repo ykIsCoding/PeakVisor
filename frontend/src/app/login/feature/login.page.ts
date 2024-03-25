@@ -33,6 +33,7 @@ export class LoginPage extends PageWrapperComponent {
   src:string;
   display:boolean = false;
   authService: AuthService= inject(AuthService)
+  
   router: Router = inject(Router)
   loginForm = new FormGroup({
     email: new FormControl('',[Validators.email,Validators.required]),
@@ -57,21 +58,21 @@ export class LoginPage extends PageWrapperComponent {
     if(data["status"]=="success"){
       this.store.dispatch(Login(data))
       this.router.navigateByUrl('/profile')
+      this.displaySuccessToast("Login Successful","Welcome back!")
     }
   }
 
   setDisplayStatus(value:boolean){
-    console.log(value)
     this.display = value
   }
 
   async changePassword(){
     this.display = true;
+    this.displaySuccessToast("Password Changed","Don't forget next time!")
   }
 
   async logout(){
     let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
-    console.log(data)
   }
 
   async resetPassword(){

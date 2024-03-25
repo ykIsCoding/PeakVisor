@@ -34,9 +34,14 @@ export class PageWrapperComponent {
     
   }
 
-  showToast(msg:string){
-    this.messageService.add({severity:'success',summary:msg,detail:'completed'})
+  displaySuccessToast(header:string,message:string){
+    this.messageService.add({ severity: 'success', summary: header, detail: message });
   }
+
+  displayErrorToast(header:string,message:string){
+      this.messageService.add({ severity: 'error', summary: header, detail: message });
+  }
+
 
   toggleLoader(b:boolean){
     b?this.store.dispatch(Load()):this.store.dispatch(Unload())
