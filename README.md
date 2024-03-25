@@ -6,6 +6,7 @@
 
 ## Showcase
 ![](https://github.com/ykIsCoding/PeakVisor/blob/draft/UX/peakvisor_computer_showcase.png) 
+![](https://github.com/ykIsCoding/PeakVisor/blob/draft/UX/phone_peakvisor.png) 
 
 
 ## Team Members
