@@ -15,7 +15,7 @@ export class TripAdvisorService {
   }
 
   async getLocationPhotosByLocationName(locationName:string){
-    const url = `http://localhost:3000/tripadvisor/tripadvisor/${locationName.replaceAll(" ", "&")}/photo`
+    const url = `http://localhost:3000/tripadvisor/${locationName.replaceAll(" ", "&")}/photo`
     
     const data = await fetch(url).catch((e)=>{
       console.log(e)
