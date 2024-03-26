@@ -4,20 +4,25 @@ services:
     build: 
       context: ./frontend
     ports:
-      - "8080:80"
-    # volumes:
-    #   - ./frontend/dist/peakvisor:/app/dist/peakvisor
-    #   - ./frontend/package.json:/app/package.json
-    #   - ./frontend/package-lock.json:/app/package-lock.json
+      - "4200:80" # host:container -> ip:4200 maps ip:4200 to container:80
 
-  # nginx:
-  #   build: 
-  #     context: ./nginx
-  #   ports:
-  #     - "8080:80"
-  #   depends_on:
-  #     - frontend
-  #   volumes: # maps directory relative to docker-compose.yml to container directory
-  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #   networks:
-  #     - default
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "3000:3000"
+    volumes: # maps directory relative to docker-compose.yml to container directory
+      - ./backend/src:/app/src
+      - ./backend/package.json:/app/package.json
+      - ./backend/package-lock.json:/app/package-lock.json
+      - /backend/node_modules:/app/node_modules
+
+  nginx:
+    build: 
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
