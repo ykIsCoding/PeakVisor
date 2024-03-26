@@ -3,7 +3,8 @@
     "baseUrl": "./", // Set the base directory for non-relative module names
     "paths": {
       "@routes/*": ["src/routes/*"], // Add an alias "@routes" for the routes directory
-      "@controller/*": ["src/controller/*"] // Add an alias "@routes" for the routes directory
+      "@controller/*": ["src/controller/*"], // Add an alias "@routes" for the routes directory
+      "@services/*": ["src/services/*"]
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
