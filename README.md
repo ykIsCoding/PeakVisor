@@ -13,6 +13,28 @@
 1. 
 
 ## Installation
+
+#### Frontend
 To run the frontend, change directory to /frontend folder and run `ng serve --open` to see it run on the local machine.
 
 To run backend 2 server, change directory to /backend 2 and run the command `npm run serve`
+
+
+#### Backend Container
+- The Backend is deployed as a Docker container that contains all dependencies needed to run
+- Run ```docker-compose up --build -d``` to build all containers or just ```docker-compose up --build -d backend``` for the backend
+- NodeJS w/ TypeScript
+- Webpack bundler
+- Express
+
+#### Nginx Reverse Proxy Container
+- The Nginx Reverse Proxy is deployed as a Docker container that contains all dependencies needed to run
+- Proxies HTTP requests to domain to the containers 
+- Run ```docker-compose up --build -d``` to build all containers or just ```docker-compose up --build -d nginx``` for the backend
+
+<br>
+
+
+
+
+

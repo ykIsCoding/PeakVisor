@@ -1,3 +1,2 @@
-External APIs
-
+#### Services
 StravaAPI
