@@ -10,4 +10,5 @@ import { Component, Input } from '@angular/core';
 export class InformationsectionComponent {
   @Input() content:string= '';
   @Input() sectionHeader:string = ''
+  
 }

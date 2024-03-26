@@ -10,7 +10,7 @@ import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/g
   styleUrl: './onboardingcontentdisplay.component.css'
 })
 export class OnboardingcontentdisplayComponent implements DoCheck {
-  phtos = ['onboard','parks','linkaccount','onboard'];
+  phtos = ['onboard','parks','linkaccount','allset'];
   src:string='';
 
   updateSrc(){

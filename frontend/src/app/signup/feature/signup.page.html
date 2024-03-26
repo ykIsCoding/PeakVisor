@@ -1,33 +1,63 @@
 <div class="inline-flex w-full h-full justify-content-center align-items-center">
-    <div class="h-full flex-1 flex flex-column justify-content-center align-items-center">
+    <form [formGroup]="signUpForm" class="h-full flex-1 flex flex-column justify-content-center align-items-center">
         <div class="flex flex-column justify-content-center align-items-center mt-7">
         <h1 class="heading text-8xl">Sign Up</h1>
         <div class="gap-5 flex flex-column w-full" *ngIf="stage==1">
-            <app-textinput  class="w-full"  data="Password"/>
-            <app-textinput  class="w-full"  data="Re-enter Password"/>
+            <span class="flex-grow-1 flex flex-column  w-full">
+                <label id="password" >Password</label>
+                <small class="p-error block font-bold" *ngIf="password!.errors?.['required'] && password?.touched">Password is required.</small>
+                <small class="p-error block font-bold" *ngIf="password!.errors?.['minlength'] && password?.touched">Password has to be at least 8 characters long</small>
+                <input type="password" id="password" formControlName="password" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                
+            </span>
+            <span class="flex-grow-1 flex flex-column  w-full">
+                
+                <label id="reenterpassword">Re-Enter Password</label>
+                <small class="p-error block font-bold" *ngIf="!checkIfPasswordsMatch() && reenterpassword?.touched">Password has to match</small>
+                <input type="password" id="reenterpassword" formControlName="reenterpassword" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                
+            </span>
             <div class="w-full flex mb-3 flex-column gap-3">
-                <app-button class="flex-grow-1" (click)="null" label="Sign Up" severity="secondary"/>
+                <app-button class="flex-grow-1" (click)="register()" label="Sign Up" severity="secondary"/>
             </div>
         </div>
-        <div class="gap-5 flex flex-column w-full" *ngIf="stage==0">
-            <app-textinput class="w-full"  data="Name"/>
-            <app-textinput class="w-full"  data="Email"/>
+        <div  *ngIf="stage==0">
+        <div class="gap-5 flex flex-column w-full" >
+            <span class="flex-grow-1 flex flex-column  w-full">
+                <label id="name" >Name</label>
+            <small class="p-error block font-bold" *ngIf="name!.errors?.['required'] && name?.touched">Name is required.</small>
+            <input id="name" type="text" formControlName="name" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            
+        </span>
+        <span class="flex-grow-1 flex flex-column  w-full">
+            <label id="email" >Email</label>
+            <small class="p-error block font-bold" *ngIf="email!.errors?.['required'] && email?.touched">Email is required.</small>
+            <small class="p-error block font-bold" *ngIf="email!.errors?.['email'] && email?.touched">Email has to be valid</small>
+            <input id="email" type="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            
+        </span>
+        
             <div class="flex flex-row w-full gap-2">
                 <div class="flex flex-3 h-full">
-                    <app-textinput class="w-full"  data="OTP"/>
+                    <span class="p-float-label flex-grow-1 flex">
+                        <input formControlName="otp" id="otp" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                        <label id="otp" type="number" >OTP</label>
+                    </span>
                 </div>
+                
                 <div class="flex flex-1 flex-row">
-                    <app-button class="flex-grow-1" (click)="getOTP()" label="Get OTP" severity="secondary"/>
+                    <app-button [disabled]="disabled" class="flex-grow-1" (click)="getOTP()" label="Get OTP" severity="secondary"/>
                 </div>
+                <small class="p-error block font-bold" *ngIf="onetimepassword!.errors?.['required'] && onetimepassword?.touched">OTP is required</small>
             </div>
             <div class="w-full flex mb-3 flex-column gap-3">
-                <app-button class="flex-grow-1" (click)="signUpNextStage()" label="Next" severity="secondary"/>
+                <app-button class="flex-grow-1" (click)="(name?.hasError('required')|| email?.hasError('required') || onetimepassword?.hasError('required'))?null:signUpNextStage()" label="Next" severity="secondary"/>
             </div>
         </div>
-       
+        </div>
         </div>
         
-    </div>
+    </form>
     <div class="hidden md:block w-6 justify-content-center align-items-center h-full">
         <img class="w-full h-full" [src]="src"/>
     </div>

@@ -4,7 +4,14 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 var rn = require('random-number');
+const { initializeApp } =require("firebase/app");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail} =require("firebase/auth");
+const { v4 } = require('uuid');
 
+const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
+
+var firebaseApp
+var db
 const url = 'http://localhost:3000/authentication'
 let mailsender = nodemailer.createTransport({
     service:"hotmail",
@@ -249,36 +256,224 @@ const mailOptions = {
 }
 
 mailsender.sendMail(mailOptions)
+mailsender.close()
 }
 
-router.get('/verifyemail', async function(req, res, next) {
-    //save otp to database, when post request received, check database
-    let otp = rn({min:1000,max:9999,integer:true})
-      mailsender.verify((error,success)=>{
-        if(error){
-            console.log(error)
-        }else{
-            sendmail('ylim189@e.ntu.edu.sg','Verify Your Email',otp)
-        }
-      })
-    next()
-});
+
 
 router.post('/verifyemail', async function(req, res, next) {
-    next()
+    //generate uuid send to client, when client enter otp use the uuid to verify
+    //to test
+    const identifier = v4()
+    const timeout = 180000;
+    const otpExpiry = Date.now() + timeout
+    const {email} = req.body
+    var otp = rn({min:1000,max:9999,integer:true})
+    
+    try {
+        sendmail(email,"Verify Your Email for your PeakVisor account",otp)
+        initialiseApp()
+        db = getDatabase();
+        
+        const dataRef = ref(db, 'otp/' + identifier)
+        set(dataRef,{
+        identifier:identifier,
+        otp:otp,
+        otpExpiry:otpExpiry
+        }).then((v)=>{
+            setTimeout(()=>remove(dataRef),timeout)
+            res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+        }).catch(e=>{
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        })
+        //res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+      } catch (e) {
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+      }
+
 });
 
 router.post('/register', async function(req, res, next) {
-    next()
+    //post request to /register should have email and password data
+    const {email,password,otp,identifier, name} = req.body
+    initialiseApp()
+
+    const db = getDatabase();
+    const otpRef = ref(db, 'otp/');
+
+    get(otpRef).then((snapshot) => {
+        const data = snapshot.val();
+        const item = data[identifier]
+        if(item){
+            if(item && otp == item.otp && item.otpExpiry>Date.now()){
+                const auth = getAuth();
+                createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                const user = userCredential.user;
+                
+                
+                set(ref(db, 'users/' +user.uid), {
+                    name:name,
+                    strava_account:null,
+                    id:user.uid,
+                    deleted:false,
+                    time_till_delete:null
+                });
+                res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+                return
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            res.send({status:errorCode,message:errorMessage})
+            return
+            });
+            }else{
+                res.send({status:"failure",message:"OTP Wrong"})
+                return
+            }
+        }else{
+            res.send({status:"failure",message:"OTP Expired"})
+            return
+        }
+    }).catch((error) => {
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    });
+
+    
+    
+    return
 });
 
 router.post('/login', async function(req, res, next) {
-    next()
+    const {email,password} = req.body
+    initialiseApp()
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => { 
+        const user = userCredential.user;
+        const uid = user.uid
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const prevData = snapshot.val()[uid]
+                if(prevData){
+                    var newUpdate = {...prevData,deleted:false,time_till_delete:null}
+                    update(child(dbRef, `users/${uid}`), newUpdate);
+                }
+                
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+                console.error(error);
+        });
+
+        
+        res.send({status:"success",message:"User Logged In",token_manager:user.stsTokenManager,userId:user.uid})
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        res.send({status:errorCode,message:errorMessage})
+    });
+    
+});
+
+router.post('/userdata', async function(req, res, next) {
+    const {uid} = req.body
+    initialiseApp()
+    const dbRef = ref(getDatabase());
+    const ud = getAuth()
+    
+    get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            res.send({...snapshot.val(),email: ud.currentUser.email});
+        } else {
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        }
+    }).catch((error) => {
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    });
+    
+});
+
+router.post('/logout', async function(req, res, next) {
+    initialiseApp()
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        res.send({status:"success",message:"Logged out"})
+      }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        res.send({status:errorCode,message:errorMessage})
+      });
 });
 
 router.post('/resetpassword', async function(req, res, next) {
-    next()
+    
+    try{
+        initialiseApp()
+        const {email} = req.body
+        sendPasswordResetEmail(getAuth(), email).then(() => {
+            res.send({status:"success",message:"check your email for a link to reset your password"})
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            res.send({status:errorCode,message:errorMessage})
+            });
+        
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
 });
+
+router.post('/deleteaccount',(req,res,next)=>{
+    const {uid} = req.body
+    const timeTillDelete = 7*24*3600*1000 + Date.now()
+    try{
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                const prevData = snapshot.val()[uid]
+                if(prevData){
+                    var newUpdate = {...prevData,deleted:true,time_till_delete:timeTillDelete}
+                    update(child(dbRef, `users/${uid}`), newUpdate);
+                }
+                
+            } else {
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
+            }
+        }).catch((error) => {
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        });
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
+    
+
+})
+
+function initialiseApp(){
+    const firebaseConfig = {
+        apiKey: process.env.FIREBASE_APIKEY,
+        authDomain: process.env.FIREBASE_AUTHDOMAIN,
+        projectId: process.env.FIREBASE_PROJECTID,
+        storageBucket: process.env.FIREBASE_STORAGEBUCKET,
+        messagingSenderId: process.env.FIREBASE_MESSAGESENDERID,
+        databaseURL:process.env.FIREBASE_DATABASEURL,
+        appId: "1:729504312491:web:01745964315acf2c4e5bee"
+      };
+      
+      // Initialize Firebase
+      firebaseApp = initializeApp(firebaseConfig);
+      db = getDatabase(firebaseApp);
+     
+}
+
 
 
 

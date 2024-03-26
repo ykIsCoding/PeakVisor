@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '@app/shared/ui/header/header.component';
 import { TextInputComponent } from '@app/shared/ui/text-input/textinput.component';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
@@ -16,11 +16,14 @@ import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/g
 import { SidebarComponent } from '@app/shared/ui/sidebar/sidebar.component';
 import { IconButtonComponent } from '@app/shared/ui/icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ResetpassworddialogComponent } from '../ui/resetpassworddialog/resetpassworddialog/resetpassworddialog.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [HeaderComponent, TextInputComponent,CommonModule, ButtonComponent, ButtonModule,SidebarComponent, IconButtonComponent,AsyncPipe],
+  imports: [ResetpassworddialogComponent,HeaderComponent, TextInputComponent,CommonModule, ButtonComponent, ButtonModule,SidebarComponent, IconButtonComponent,AsyncPipe,ReactiveFormsModule],
   providers:[GraphicsLoaderService],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css'
@@ -28,15 +31,52 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 
 export class LoginPage extends PageWrapperComponent {
   src:string;
+  display:boolean = false;
+  authService: AuthService= inject(AuthService)
   
+  router: Router = inject(Router)
+  loginForm = new FormGroup({
+    email: new FormControl('',[Validators.email,Validators.required]),
+    password: new FormControl('',[Validators.required]),
+  })
+
+  get email(){
+    return this.loginForm.get('email')
+  }
+
+  get password(){
+    return this.loginForm.get('password')
+  }
+
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
     this.src = this.graphicsLoaderService.getGraphic('mbs')
   }
 
-  login(){
-    this.store.dispatch(Login())
+  async login(){
+    let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
+    if(data["status"]=="success"){
+      this.store.dispatch(Login(data))
+      this.router.navigateByUrl('/profile')
+      this.displaySuccessToast("Login Successful","Welcome back!")
+    }
   }
 
+  setDisplayStatus(value:boolean){
+    this.display = value
+  }
+
+  async changePassword(){
+    this.display = true;
+    this.displaySuccessToast("Password Changed","Don't forget next time!")
+  }
+
+  async logout(){
+    let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
+  }
+
+  async resetPassword(){
+    
+  }
   
 }

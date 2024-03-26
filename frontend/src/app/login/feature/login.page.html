@@ -1,13 +1,24 @@
 
-    <div class="inline-flex w-full h-full justify-content-center align-items-center">
-    <div class="h-full flex-1 flex flex-column justify-content-center align-items-center">
+    <div class="inline-flex w-full bg-primary justify-content-center align-items-stretch">
+        <app-resetpassworddialog [display]="display" (displayStatus)="setDisplayStatus($event)"/>
+    <form [formGroup]="loginForm" class="h-full flex-1 flex flex-column justify-content-center align-items-center">
         <div class="flex flex-column justify-content-center align-items-center mt-7 gap-5">
         <h1 class="heading text-8xl">Sign In</h1>
-        <app-textinput class="w-full"  data="Email"/>
-        <app-textinput class="w-full"  data="Password"/>
+        <span class="flex-grow-1 flex flex-column gap-2 w-full">
+            <label id="email">Email</label>
+            <small class="p-error block font-bold" *ngIf="email!.errors?.['required'] && email?.touched">Email is required.</small>
+            <small class="p-error block font-bold" *ngIf="email!.errors?.['email'] && email?.touched">Email has to be valid</small>
+            <input id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            
+        </span>
+        <span class="flex-grow-1 flex flex-column gap-2 w-full">
+            <label id="password">Password</label>
+            <small class="p-error block font-bold" *ngIf="password!.errors?.['required'] && password?.touched">Password is required.</small>
+            <input id="password" formControlName="password" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+        </span>
         <div class="w-full flex mb-3 flex-column gap-3">
             <app-button class="flex-grow-1" (click)="login()" label="Log In" severity="secondary"/>
-            <app-button class="flex-grow-1" [text]="true" routerLink="/" label="Forgot Password" severity="secondary"/>
+            <app-button class="flex-grow-1" [text]="true" (click)="changePassword()" label="Forgot Password" severity="secondary"/>
         </div>
         <div class="w-full flex mb-3 flex-column gap-1 mt-5 align-items-center">
             <h5>No account yet?</h5>
@@ -16,8 +27,8 @@
         </div>
         </div>
         
-    </div>
-    <div class="hidden md:block w-6 justify-content-center align-items-center h-full">
+    </form>
+    <div class="hidden md:block w-6 justify-content-center align-items-stretch">
         <img class="w-full h-full" [src]="src"/>
     </div>
 </div>

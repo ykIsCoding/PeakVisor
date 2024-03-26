@@ -11,6 +11,9 @@ import { ButtonModule } from 'primeng/button';
 })
 
 export class ButtonComponent {
+  @Input() link:boolean = false;
+ 
+  @Input() disabled:boolean = false;
   @Input() class:string='';
   @Input() routerLink:string = '';
   @Input() label:string = '';
@@ -20,6 +23,7 @@ export class ButtonComponent {
   @Output() $onClk = new EventEmitter();
 
   public handleClick():void{
+    if(this.disabled) return
     this.$onClk.emit();
   }
 

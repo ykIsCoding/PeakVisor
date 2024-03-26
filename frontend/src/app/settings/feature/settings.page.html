@@ -3,14 +3,53 @@
         <div class="w-full">
             <h1 class="text-color lg:text-8xl md:text-7xl sm:text-6xl  text-center heading p-2">Account Settings</h1>
         </div>
-        <div class="w-full p-4">
-                <app-settingsinput/>
-                <app-settingsinput/>
-                <app-settingsinput/>
-                <app-settingsinput/>
+        <form [formGroup]="settingsForm" class="w-full p-4">
+                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">
+                        <h5 class="text-3xl m-0">Name</h5>
+                        <small class="p-error block font-bold" *ngIf="name!.errors?.['required']">Name is required.</small>
+                    <div class="flex flex-row w-full gap-2">
+                        <div class="flex w-9">
+                            <span class="p-float-label flex-grow-1 flex w-full">
+                                <input type="text" [readonly]="currentlyEditing!=1" id="name" formControlName="name" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                            </span>
+                        </div>
+                        <div class="flex flex-row w-3">
+                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=1)?null:currentlyEditing==1?setCurrentlyEditing(0):setCurrentlyEditing(1)" [label]="currentlyEditing==1?'Save':'Edit'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=1)" [severity]="currentlyEditing==1?'warning':'secondary'"/>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">
+                        <h5 class="text-3xl m-0">Strava</h5>
+                    <div class="flex flex-row w-full gap-2">
+                        <div class="flex w-9">
+                            <span class="p-float-label flex-grow-1 flex w-full">
+                                <input [readonly]="currentlyEditing!=2" id="strava" formControlName="strava" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                            </span>
+                        </div>
+                        <div class="flex flex-row w-3">
+                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=2)?null:currentlyEditing==2?setCurrentlyEditing(0):setCurrentlyEditing(2)" [label]="currentlyEditing==2?'Save':'Edit'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=2)" [severity]="currentlyEditing==2?'warning':'secondary'"/>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">
+                        <h5 class="text-3xl m-0">Email</h5>
+                        <small class="p-error block font-bold" *ngIf="email!.errors?.['required']">Email is required.</small>
+                        <small class="p-error block font-bold" *ngIf="email!.errors?.['email']">Email has to be valid</small>
+                    <div class="flex flex-row w-full gap-2">
+                        <div class="flex w-9">
+                            <span class="p-float-label flex-grow-1 flex w-full">
+                                <input type="email" [readonly]="currentlyEditing!=3" id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                            </span>
+                        </div>
+                        <div class="flex flex-row w-3">
+                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=3)?null:currentlyEditing==3?setCurrentlyEditing(0):setCurrentlyEditing(3)" [label]="currentlyEditing==3?'Save':'Edit'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=3)" [severity]="currentlyEditing==3?'warning':'secondary'"/>
+                        </div>
+                    </div>
+                    </div>
+                
                 <div class="mt-8">
-                    <app-deletesection/>
+                    <app-deletesection />
                 </div>
-        </div>
+            </form>
     </div>
 </div>

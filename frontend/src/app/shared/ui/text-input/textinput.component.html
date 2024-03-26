@@ -1,4 +1,6 @@
 <span class="p-float-label flex-grow-1 flex">
-    <input class="w-full h-full p-inputtext-lg"  pInputText [id]="data" (ngModel)="value" />
-    <label [for]="data">{{data}}</label>
+    
+    <input [id]="id" class="w-full h-full p-inputtext-lg"  pInputText (ngModel)="value" />
+    <label [id]="id" [for]="data">{{data}}</label>
+   
 </span>

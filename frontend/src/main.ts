@@ -1,6 +1,17 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppConfig } from '@app/app.config';
-import { AppComponent } from './app/app.component';
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-bootstrapApplication(AppComponent, AppConfig)
-  .catch((err) => console.error(err));
+import { AppComponent } from './app/app.component';
+import { AppConfig } from './app/app.config';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    ...AppConfig.providers, 
+    importProvidersFrom(
+      HttpClientModule, 
+      BrowserAnimationsModule,
+    ),
+  ],
+}).catch((err) => console.error(err));
