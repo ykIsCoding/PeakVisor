@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-  frontend:
-    build: 
-      context: ./frontend
-    ports:
-      - "4200:80" # host:container -> ip:4200 maps ip:4200 to container:80
+  # frontend:
+  #   build: 
+  #     context: ./frontend
+  #   ports:
+  #     - "4200:80" # host:container -> ip:4200 maps ip:4200 to container:80
 
   backend:
     build: 
