@@ -7,10 +7,13 @@
 ## Showcase
 ![](https://github.com/ykIsCoding/PeakVisor/blob/draft/UX/peakvisor_computer_showcase.png) 
 ![](https://github.com/ykIsCoding/PeakVisor/blob/draft/UX/phone_peakvisor.png) 
+<br>
 
 
 ## Team Members
 1. 
+<br>
+
 
 ## Installation
 
@@ -26,6 +29,7 @@ To run backend 2 server, change directory to /backend 2 and run the command `npm
 - NodeJS w/ TypeScript
 - Webpack bundler
 - Express
+
 
 #### Nginx Reverse Proxy Container
 - The Nginx Reverse Proxy is deployed as a Docker container that contains all dependencies needed to run
