@@ -5,7 +5,7 @@ var router = express.Router();
 const axios = require('axios');
 var rn = require('random-number');
 const { initializeApp } =require("firebase/app");
-const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} =require("firebase/auth");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail} =require("firebase/auth");
 const { v4 } = require('uuid');
 
 const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
@@ -269,9 +269,9 @@ router.post('/verifyemail', async function(req, res, next) {
     const otpExpiry = Date.now() + timeout
     const {email} = req.body
     var otp = rn({min:1000,max:9999,integer:true})
-    sendmail(email,"Verify Your Email for your PeakVisor account",otp)
     
     try {
+        sendmail(email,"Verify Your Email for your PeakVisor account",otp)
         initialiseApp()
         db = getDatabase();
         
@@ -283,10 +283,12 @@ router.post('/verifyemail', async function(req, res, next) {
         }).then((v)=>{
             setTimeout(()=>remove(dataRef),timeout)
             res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
-        }).catch(e=>console.log(e))
+        }).catch(e=>{
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        })
         //res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
       } catch (e) {
-        console.error("Error adding document: ", e);
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
       }
 
 });
@@ -298,11 +300,11 @@ router.post('/register', async function(req, res, next) {
 
     const db = getDatabase();
     const otpRef = ref(db, 'otp/');
-    onValue(otpRef, (snapshot) => { //error part
+
+    get(otpRef).then((snapshot) => {
         const data = snapshot.val();
         const item = data[identifier]
         if(item){
-            
             if(item && otp == item.otp && item.otpExpiry>Date.now()){
                 const auth = getAuth();
                 createUserWithEmailAndPassword(auth, email, password)
@@ -334,7 +336,11 @@ router.post('/register', async function(req, res, next) {
             res.send({status:"failure",message:"OTP Expired"})
             return
         }
+    }).catch((error) => {
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     });
+
+    
     
     return
 });
@@ -385,10 +391,10 @@ router.post('/userdata', async function(req, res, next) {
         if (snapshot.exists()) {
             res.send({...snapshot.val(),email: ud.currentUser.email});
         } else {
-            console.log("No data available");
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
         }
     }).catch((error) => {
-            console.error(error);
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     });
     
 });
@@ -406,7 +412,22 @@ router.post('/logout', async function(req, res, next) {
 });
 
 router.post('/resetpassword', async function(req, res, next) {
-    next()
+    
+    try{
+        initialiseApp()
+        const {email} = req.body
+        sendPasswordResetEmail(getAuth(), email).then(() => {
+            res.send({status:"success",message:"check your email for a link to reset your password"})
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            res.send({status:errorCode,message:errorMessage})
+            });
+        
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
 });
 
 router.post('/deleteaccount',(req,res,next)=>{
@@ -424,13 +445,13 @@ router.post('/deleteaccount',(req,res,next)=>{
                 }
                 
             } else {
-                console.log("No data available");
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
             }
         }).catch((error) => {
-                console.error(error);
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
         });
     }catch(e){
-        console.log(e)
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
     
 

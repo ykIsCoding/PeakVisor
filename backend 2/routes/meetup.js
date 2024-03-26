@@ -10,7 +10,7 @@ const privateKey = fs.readFileSync('private.key');
 
 const eventsQuery = gql`
 query {
-    keywordSearch(input:{first:10},filter:{query:"hiking",lat:1.3521,lon:103.8198,source:EVENTS}){
+    keywordSearch(input:{first:30},filter:{query:"hiking",lat:1.3521,lon:103.8198,source:EVENTS}){
        count
       pageInfo {
         endCursor
@@ -85,7 +85,7 @@ router.get('/authenticate',async function(req, res, next) {
 
 
     }catch(e){
-      res.send(e)
+      res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
     
 })
@@ -97,6 +97,7 @@ async function refreshToken(refresh_token){
 }
 
 router.post('/events', async function(req, res, next) {
+  try{
     const endpoint = 'https://api.meetup.com/gql'
     const {token} = req.body
     const result = await request(endpoint,eventsQuery,{},{
@@ -107,6 +108,9 @@ router.post('/events', async function(req, res, next) {
       resArr.push(result.keywordSearch["edges"][x].node)
     }
     res.send(resArr)
+  }catch(e){
+    res.send({status:"failure",message:"Something went wrong. Please try again."})
+  }
 });
 
 

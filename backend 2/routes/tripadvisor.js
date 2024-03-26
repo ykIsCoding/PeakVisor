@@ -11,7 +11,7 @@ router.get('/all', async function(req, res, next) {
         const {data} = await axios.get(url,options)
         res.send(data.data)
     }catch(e){
-        console.log(e)
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
 
     next()
@@ -26,16 +26,26 @@ router.get('/:locationId', async function(req, res, next) {
         const {data} = await axios.get(url,options)
         res.send(data)
     }catch(e){
-        console.log(e)
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
 
     //next()
 });
 
-router.get('/:locationName/photo', async function(req, res, next) {
+router.post('/location/photo', async function(req, res, next) {
     //TO RESOLVE
-    const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLEAPI_KEY}&cx=65481d5d5a5f841d3&q=${req.params.locationName.replaceAll("&", " ")}`;
-    const options = {};
+    const {q} = req.body
+    console.log(req.body)
+    const url = `https://serpapi.com/search.json`
+    //const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLEAPI_KEY}&cx=65481d5d5a5f841d3&q=${req.params.locationName.replaceAll("&", " ")}`;
+    const options = {
+        params:{
+            q: q,
+            engine: "google_images",
+            ijn: "0",
+            api_key: process.env.SERPAPI_KEY 
+        }
+    };
     
     try{
         console.log('getting photo')
@@ -45,10 +55,10 @@ router.get('/:locationName/photo', async function(req, res, next) {
         
         res.send(data)
     }catch(e){
-        console.log(e)
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
 
-    next()
+    
 });
 
 module.exports = router;
