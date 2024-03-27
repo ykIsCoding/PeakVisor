@@ -37,7 +37,7 @@ export class AuthService {
       
       return data 
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
 
@@ -53,7 +53,7 @@ export class AuthService {
       
       return data 
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
 
@@ -68,7 +68,22 @@ export class AuthService {
       
       return data 
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async passwordReset(email:string){
+    try{
+      const url = "http://localhost:3000/authentication/resetpassword"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,
+        {
+          email:email
+        }
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
 
@@ -84,7 +99,7 @@ export class AuthService {
       
       return {...data}
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
 
@@ -98,7 +113,7 @@ export class AuthService {
       ).subscribe(c=>resolve(c)))
       return data 
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
 
@@ -119,7 +134,7 @@ export class AuthService {
       
       return data
     }catch(e){
-      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
   

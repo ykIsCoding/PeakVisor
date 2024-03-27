@@ -68,7 +68,6 @@ export class LoginPage extends PageWrapperComponent {
 
   async changePassword(){
     this.display = true;
-    this.displaySuccessToast("Password Changed","Don't forget next time!")
   }
 
   async logout(){

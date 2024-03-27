@@ -40,7 +40,7 @@ router.post('/location/photo', async function(req, res, next) {
     //const url = `https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLEAPI_KEY}&cx=65481d5d5a5f841d3&q=${req.params.locationName.replaceAll("&", " ")}`;
     const options = {
         params:{
-            q: q,
+            q: q + "Singapore",
             engine: "google_images",
             ijn: "0",
             api_key: process.env.SERPAPI_KEY 
@@ -51,7 +51,7 @@ router.post('/location/photo', async function(req, res, next) {
         console.log('getting photo')
         const {data} = await axios.get(url,options)
         
-        console.log(data)
+        //console.log(data)
         
         res.send(data)
     }catch(e){
