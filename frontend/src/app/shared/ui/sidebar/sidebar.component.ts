@@ -9,4 +9,7 @@ import { SidebarModule } from 'primeng/sidebar';
 })
 export class SidebarComponent {
   @Input() sidebarVisible = false;
+  @Input() class:any;
+
+  
 }

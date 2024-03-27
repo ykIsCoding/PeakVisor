@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component,EventEmitter,Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -5,14 +6,14 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [ButtonModule, RouterModule],
+  imports: [ButtonModule, RouterModule,CommonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
 })
 
 export class ButtonComponent {
   @Input() link:boolean = false;
- 
+  @Input() icon:any;
   @Input() disabled:boolean = false;
   @Input() class:string='';
   @Input() routerLink:string = '';

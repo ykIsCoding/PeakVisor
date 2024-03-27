@@ -15,11 +15,12 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { LoaderComponent } from '../loader/loader.component';
 import { SelectLoading } from '@app/shared/feature/state/display-state/display-state.selector';
 import { Load, Unload } from '@app/shared/feature/state/display-state/display-state.actions';
+import { NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-pagewrapper',
   standalone: true,
-  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule,LoaderComponent],
+  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule,LoaderComponent,NgIcon],
   templateUrl: './page-wrapper.component.html',
   styleUrl: './page-wrapper.component.css'
 })

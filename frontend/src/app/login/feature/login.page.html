@@ -8,13 +8,13 @@
             <label id="email">Email</label>
             <small class="p-error block font-bold" *ngIf="email!.errors?.['required'] && email?.touched">Email is required.</small>
             <small class="p-error block font-bold" *ngIf="email!.errors?.['email'] && email?.touched">Email has to be valid</small>
-            <input id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <input id="email" formControlName="email" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
             
         </span>
         <span class="flex-grow-1 flex flex-column gap-2 w-full">
             <label id="password">Password</label>
             <small class="p-error block font-bold" *ngIf="password!.errors?.['required'] && password?.touched">Password is required.</small>
-            <input id="password" formControlName="password" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <input id="password" formControlName="password" class=" border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
         </span>
         <div class="w-full flex mb-3 flex-column gap-3">
             <app-button class="flex-grow-1" (click)="login()" label="Log In" severity="secondary"/>
