@@ -1,1 +1,3 @@
-<p-button [disabled]="disabled"  size="large"  [text]="text" (click)="handleClick()" [link]="link" [style]="{'width':'100%','color':'#FDFDD8'}" [class]="class" [routerLink]="routerLink.length>0?routerLink:null" [label]="label" [severity]="severity"></p-button>
+<p-button [disabled]="disabled"  size="large"  [text]="text" (click)="handleClick()" [link]="link" [style]="{'width':'100%','color':'#FDFDD8'}" [class]="class" [routerLink]="routerLink.length>0?routerLink:null" [label]="label" [severity]="severity">
+    <ng-content></ng-content>
+</p-button>

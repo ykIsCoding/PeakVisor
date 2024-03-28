@@ -8,6 +8,7 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { MessageService } from 'primeng/api';
 import { PageWrapperComponent } from './shared/ui/page-wrapper/page-wrapper.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

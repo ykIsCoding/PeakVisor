@@ -7,14 +7,14 @@
                 <label id="password" >Password</label>
                 <small class="p-error block font-bold" *ngIf="password!.errors?.['required'] && password?.touched">Password is required.</small>
                 <small class="p-error block font-bold" *ngIf="password!.errors?.['minlength'] && password?.touched">Password has to be at least 8 characters long</small>
-                <input type="password" id="password" formControlName="password" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                <input type="password" id="password" formControlName="password" class="border-round-md text-xl text-primary font-bold bg-yellow-50 w-full h-full p-inputtext-lg h-3rem"  pInputText/>
                 
             </span>
             <span class="flex-grow-1 flex flex-column  w-full">
                 
                 <label id="reenterpassword">Re-Enter Password</label>
                 <small class="p-error block font-bold" *ngIf="!checkIfPasswordsMatch() && reenterpassword?.touched">Password has to match</small>
-                <input type="password" id="reenterpassword" formControlName="reenterpassword" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                <input type="password" id="reenterpassword" formControlName="reenterpassword" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
                 
             </span>
             <div class="w-full flex mb-3 flex-column gap-3">
@@ -26,21 +26,21 @@
             <span class="flex-grow-1 flex flex-column  w-full">
                 <label id="name" >Name</label>
             <small class="p-error block font-bold" *ngIf="name!.errors?.['required'] && name?.touched">Name is required.</small>
-            <input id="name" type="text" formControlName="name" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <input id="name" type="text" formControlName="name" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
             
         </span>
         <span class="flex-grow-1 flex flex-column  w-full">
             <label id="email" >Email</label>
             <small class="p-error block font-bold" *ngIf="email!.errors?.['required'] && email?.touched">Email is required.</small>
             <small class="p-error block font-bold" *ngIf="email!.errors?.['email'] && email?.touched">Email has to be valid</small>
-            <input id="email" type="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+            <input id="email" type="email" formControlName="email" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
             
         </span>
         
             <div class="flex flex-row w-full gap-2">
                 <div class="flex flex-3 h-full">
                     <span class="p-float-label flex-grow-1 flex">
-                        <input formControlName="otp" id="otp" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
+                        <input formControlName="otp" id="otp" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
                         <label id="otp" type="number" >OTP</label>
                     </span>
                 </div>

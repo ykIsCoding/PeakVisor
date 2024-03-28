@@ -1,4 +1,12 @@
-<p-sidebar class="" [(visible)]="sidebarVisible">
-    <h3>Menu</h3>
-    <ng-content></ng-content>
+<p-sidebar [(visible)]="sidebarVisible">
+    <ng-template  pTemplate="headless">
+        <div class="bg-primary h-full p-5 flex align-items-center flex-column">
+            <div class="flex justify-content-center flex-row align-items-center">
+                <img height="100px" width="100px" src="assets/icons/peakvisor-icon.svg">
+            </div>
+            <h3 class="text-4xl">Menu</h3>
+            <ng-content></ng-content>
+            
+        </div>
+    </ng-template>
 </p-sidebar>

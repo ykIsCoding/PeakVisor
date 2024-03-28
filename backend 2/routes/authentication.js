@@ -254,9 +254,13 @@ const mailOptions = {
     subject:subject,
     html: verifyemailHTML
 }
+try{
+    mailsender.sendMail(mailOptions)
+    mailsender.close()
+}catch(e){
+    return false;
+}
 
-mailsender.sendMail(mailOptions)
-mailsender.close()
 }
 
 
@@ -271,7 +275,9 @@ router.post('/verifyemail', async function(req, res, next) {
     var otp = rn({min:1000,max:9999,integer:true})
     
     try {
-        sendmail(email,"Verify Your Email for your PeakVisor account",otp)
+        const r = sendmail(email,"Verify Your Email for your PeakVisor account",otp)
+        if(!r) throw new Error("Email not sent.");
+        
         initialiseApp()
         db = getDatabase();
         

@@ -59,6 +59,8 @@ export class LoginPage extends PageWrapperComponent {
       this.store.dispatch(Login(data))
       this.router.navigateByUrl('/profile')
       this.displaySuccessToast("Login Successful","Welcome back!")
+    }else{
+      this.displayErrorToast("Login Unsuccessful","An error occurred. Please try again.")
     }
   }
 
@@ -68,7 +70,6 @@ export class LoginPage extends PageWrapperComponent {
 
   async changePassword(){
     this.display = true;
-    this.displaySuccessToast("Password Changed","Don't forget next time!")
   }
 
   async logout(){

@@ -32,6 +32,9 @@ export class TrailinformationComponent {
           
         this.contentService.getLocationPhotosByLocationName(this.details['name']).then((i)=>{
           console.log(i)
+          if(i["images_results"][1].original.toString().endsWith(".jpg")){
+            this.src = i["images_results"][1].original
+          }
         })
       }
         //this.locationPhotos = [...res]
