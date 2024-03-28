@@ -74,6 +74,7 @@ export class SignupPage extends PageWrapperComponent{
     
     this.identifier = d["identifier"] ?? ""
     this.disabled = true
+    this.displaySuccessToast("OTP Sent","Please check your email.")
     setTimeout(() => {
       this.disabled = false
     }, 120000);
