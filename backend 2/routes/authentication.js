@@ -463,6 +463,26 @@ router.post('/deleteaccount',(req,res,next)=>{
 
 })
 
+router.get('/usercount',(req,res,next)=>{
+    try{
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val())
+                
+                
+            } else {
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
+            }
+        }).catch((error) => {
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        });
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
+})
+
 function initialiseApp(){
     const firebaseConfig = {
         apiKey: process.env.FIREBASE_APIKEY,

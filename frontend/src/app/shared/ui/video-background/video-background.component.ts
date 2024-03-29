@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input, AfterViewInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-video-background',
@@ -9,26 +9,51 @@ import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from
   styleUrls: ['./video-background.component.css']
 })
 
-export class VideoBackground implements AfterContentInit {
+export class VideoBackground implements OnDestroy, AfterViewInit {
 
   @Input() src:string = ""
-  @ViewChild('vid',{ static: true }) videoplayer: any;
+  @ViewChild('vid') videoplayer?:ElementRef;
+  isPlaying:boolean = false
+  
   
   toggleVideo(event: any) {
-    this.videoplayer.nativeElement.play();
+    this.videoplayer?.nativeElement.play();
   }
 
   ngOnInit(): void {
   }
 
-  ngAfterContentInit(): void {
-      
-      try{
-        this.videoplayer.nativeElement.muted = true
-        this.videoplayer.nativeElement.play()
-      }catch(e){
-        console.log(e)
+  ngAfterViewInit():void {
+    try{
+      const vid = this.videoplayer?.nativeElement
+      vid.muted = true
+      if(!this.isPlaying){
+        vid.play().then((r:any)=>{
+          
+          this.isPlaying = true
+        }).catch((e:any)=>{
+          
+        })
       }
+    }catch(e){
+      console.log(e)
+    }
   }
+
+  ngOnDestroy(): void {
+    try{
+    const vid = this.videoplayer?.nativeElement
+
+    if (!vid.paused && this.isPlaying) {
+      vid.pause();
+      this.isPlaying = false
+      vid.removeAttribute('src'); // empty source
+      vid.load()
+  }
+    
+  
+    }catch(e){
+
+}}
 
 }

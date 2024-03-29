@@ -14,7 +14,7 @@ router.get('/all', async function(req, res, next) {
         res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
 
-    next()
+    //next()
 });
 
 router.get('/:locationId', async function(req, res, next) {

@@ -71,10 +71,13 @@ export class SignupPage extends PageWrapperComponent{
 
   async getOTP(){
     let d = await this.authService.getOTP(this.signUpForm.value.email as string)
-    
-    this.identifier = d["identifier"] ?? ""
-    this.disabled = true
-    this.displaySuccessToast("OTP Sent","Please check your email.")
+    if(d && d.status=="failure"){
+      this.displayErrorToast("OTP Not Sent","Please check that you have entered a valid email.")
+    }else{
+      this.identifier = d["identifier"] ?? ""
+      this.disabled = true
+      this.displaySuccessToast("OTP Sent","Please check your email.")
+    }
     setTimeout(() => {
       this.disabled = false
     }, 120000);
