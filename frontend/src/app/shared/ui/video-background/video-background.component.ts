@@ -32,7 +32,7 @@ export class VideoBackground implements OnDestroy, AfterViewInit {
           
           this.isPlaying = true
         }).catch((e:any)=>{
-          
+          vid.play()
         })
       }
     }catch(e){
