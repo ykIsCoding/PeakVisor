@@ -1,5 +1,5 @@
 
-    <div class="inline-flex w-full bg-primary justify-content-center align-items-stretch">
+    <div class="inline-flex w-full min-h-full bg-primary justify-content-center align-items-stretch">
         <app-resetpassworddialog [display]="display" (displayStatus)="setDisplayStatus($event)"/>
     <form [formGroup]="loginForm" class="h-full flex-1 flex flex-column justify-content-center align-items-center">
         <div class="flex flex-column justify-content-center align-items-center mt-7 gap-5">
@@ -27,7 +27,7 @@
         </div>
         
     </form>
-    <div class="hidden md:block w-6 justify-content-center align-items-stretch">
-        <img class="w-full h-full" [src]="src"/>
+    <div class="min-h-full hidden md:block w-6 justify-content-center align-items-stretch">
+        <img class="w-full min-h-full" [src]="src"/>
     </div>
 </div>
