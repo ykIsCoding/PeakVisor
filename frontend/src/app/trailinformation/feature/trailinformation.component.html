@@ -4,9 +4,9 @@
 
 <app-photo-background [src]="src"/>
 <app-informationsection sectionHeader="General Information" [content]="details['description']"/>
-<app-informationsection sectionHeader="Address" [content]="getDescription"/>
+<app-informationsection sectionHeader="Address" [content]="getDescription" class="bg-green-900" />
 <app-informationsection sectionHeader="Bearings" [content]="getBearings"/>
-<app-informationsection sectionHeader="Rating" [content]="getRatings">
+<app-informationsection sectionHeader="Rating" [content]="getRatings" class="bg-green-900" >
   <img *ngIf="details['rating_image_url']" [src]="details['rating_image_url']"/>
 </app-informationsection>
 </div>

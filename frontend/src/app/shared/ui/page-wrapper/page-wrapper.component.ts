@@ -10,6 +10,7 @@ import { ButtonComponent } from '../button/button.component';
 import { Sidebar } from 'primeng/sidebar';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from "../footer/footer.component";
 import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { LoaderComponent } from '../loader/loader.component';
@@ -19,11 +20,11 @@ import { NgIcon } from '@ng-icons/core';
 import { Login } from '@app/shared/feature/state/auth-state/auth-state.actions';
 
 @Component({
-  selector: 'app-pagewrapper',
-  standalone: true,
-  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule,LoaderComponent,NgIcon],
-  templateUrl: './page-wrapper.component.html',
-  styleUrl: './page-wrapper.component.css'
+    selector: 'app-pagewrapper',
+    standalone: true,
+    templateUrl: './page-wrapper.component.html',
+    styleUrl: './page-wrapper.component.css',
+    imports: [ToastModule, ButtonComponent, SidebarComponent, HeaderComponent, IconButtonComponent, AsyncPipe, CommonModule, LoaderComponent, NgIcon, FooterComponent]
 })
 
 export class PageWrapperComponent{
