@@ -87,10 +87,12 @@ export class SignupPage extends PageWrapperComponent{
     const res = await this.authService.register(this.signUpForm.value.email as string,this.signUpForm.value.password as string,this.signUpForm.value.name as string,this.identifier,this.signUpForm.value.otp as string)
     console.log(res)
     if(res["status"]=="success"){
+      
       this.store.dispatch(Login(res))
       this.router.navigateByUrl('/onboarding')
       this.displaySuccessToast("Registration Successful","Welcome to the community!")
       localStorage.setItem("logindata", JSON.stringify(res));
+      
     }else{
       this.displayErrorToast("Registration Unsuccessful","Something went wrong. Please try again.")
     }

@@ -11,6 +11,8 @@ import { SelectUserId } from '@app/shared/feature/state/auth-state/auth-state.se
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { CommonModule } from '@angular/common';
 import { PasswordchangesectionComponent } from '../ui/passwordchangesection/passwordchangesection.component';
+import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-settingspage',
@@ -20,7 +22,7 @@ import { PasswordchangesectionComponent } from '../ui/passwordchangesection/pass
   styleUrl: './settings.page.css'
 })
 
-export class SettingsPage implements AfterViewInit, OnInit {
+export class SettingsPage extends PageWrapperComponent implements AfterViewInit, OnInit {
   authService = inject(AuthService)
   userId$:any;
   currentlyEditing = 0;
@@ -52,14 +54,30 @@ export class SettingsPage implements AfterViewInit, OnInit {
   }
 
   setCurrentlyEditing(num:number){
-    this.currentlyEditing = num
-    this.settingsForm.markAllAsTouched()
-    console.log(this.email!.errors)
+    if(!this.settingsForm.valid){
+      this.displayErrorToast("Saving failed","Please fix the input errors.")
+    }else{
+      this.currentlyEditing = num
+      
+      this.store.select(SelectUserId).subscribe(d=>{
+        const {email,name,strava} = this.settingsForm.value
+        
+        this.authService.update(email??'',name??'',strava??'',d).then(res=>{
+          console.log(res)
+          if(res["status"]=="failure") throw new Error
+          this.displaySuccessToast("Changes saved","yay")
+        }).catch(e=>{
+          
+          this.displayErrorToast("Changes not saved.","Something went wrong.")
+        })
+      })
+    }
   }
 
-  constructor(store:Store<AppState>){
-    console.log("here")
+  constructor(messageService:MessageService,store:Store<AppState>){
+    super(messageService,store)
     this.userId$ = (store.select(SelectUserId)).subscribe(d=>{
+      
       this.authService.getUserSettings(d).then(userdata=>{
         
         userdata = {...userdata}
@@ -69,6 +87,8 @@ export class SettingsPage implements AfterViewInit, OnInit {
               email:userdata.email ?? ''
         })
       })
+    
+
     })
   }
 

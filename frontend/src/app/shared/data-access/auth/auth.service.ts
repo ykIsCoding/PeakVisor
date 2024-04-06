@@ -134,6 +134,25 @@ export class AuthService {
       
       return data
     }catch(e){
+      
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async update(email:string,name:string,strava:string,uid:string){
+    try{
+      const url = "http://localhost:3000/authentication/update"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,
+        {
+          uid,
+          email,
+          name,
+          strava
+        }
+      ).subscribe(c=>resolve(c)))
+      
+      return data
+    }catch(e){
       return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }

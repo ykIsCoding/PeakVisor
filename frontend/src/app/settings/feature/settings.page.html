@@ -41,9 +41,7 @@
                                 <input type="email" [readonly]="currentlyEditing!=3" id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
                             </span>
                         </div>
-                        <div class="flex flex-row w-3">
-                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=3)?null:currentlyEditing==3?setCurrentlyEditing(0):setCurrentlyEditing(3)" [label]="currentlyEditing==3?'Save':'Edit'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=3)" [severity]="currentlyEditing==3?'warning':'secondary'"/>
-                        </div>
+                       
                     </div>
                     </div>
                 <div class="mt-8">
