@@ -5,7 +5,7 @@ var router = express.Router();
 const axios = require('axios');
 var rn = require('random-number');
 const { initializeApp } =require("firebase/app");
-const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail} =require("firebase/auth");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail, updateProfile, updateEmail} =require("firebase/auth");
 const { v4 } = require('uuid');
 
 const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
@@ -14,6 +14,7 @@ var firebaseApp
 var db
 const url = 'http://localhost:3000/authentication'
 let mailsender = nodemailer.createTransport({
+    //host: "smtp.mail.yahoo.com",
     service:"hotmail",
     auth:{
         user: process.env.AUTHMAILER,
@@ -257,6 +258,7 @@ const mailOptions = {
 try{
     mailsender.sendMail(mailOptions)
     mailsender.close()
+    return true
 }catch(e){
     return false;
 }
@@ -276,6 +278,7 @@ router.post('/verifyemail', async function(req, res, next) {
     
     try {
         const r = sendmail(email,"Verify Your Email for your PeakVisor account",otp)
+        
         if(!r) throw new Error("Email not sent.");
         
         initialiseApp()
@@ -306,47 +309,55 @@ router.post('/register', async function(req, res, next) {
 
     const db = getDatabase();
     const otpRef = ref(db, 'otp/');
+    
+        get(otpRef).then((snapshot) => {
+            const data = snapshot.val();
+            console.log(req.body)
+            console.log(data)
+            const item = data[identifier]
+            if(item){
+                if(item && otp == item.otp && item.otpExpiry>Date.now()){
+                    const auth = getAuth();
+                    createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                    const user = userCredential.user;
+                   
+                    
+                    set(ref(db, 'users/' +user.uid), {
+                        name:name,
+                        strava_account:null,
+                        id:user.uid,
+                        deleted:false,
+                        time_till_delete:null
+                    });
 
-    get(otpRef).then((snapshot) => {
-        const data = snapshot.val();
-        const item = data[identifier]
-        if(item){
-            if(item && otp == item.otp && item.otpExpiry>Date.now()){
-                const auth = getAuth();
-                createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                const user = userCredential.user;
+                    
+                        res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+                    
+                    
+                    
                 
-                
-                set(ref(db, 'users/' +user.uid), {
-                    name:name,
-                    strava_account:null,
-                    id:user.uid,
-                    deleted:false,
-                    time_till_delete:null
-                });
-                res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+
+                })
+                .catch((error) => {
+                    
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                res.send({status:errorCode,message:errorMessage})
                 return
-            })
-            .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            res.send({status:errorCode,message:errorMessage})
-            return
-            });
+                });
+                }else{
+                    res.send({status:"failure",message:"OTP Wrong"})
+                    return
+                }
             }else{
-                res.send({status:"failure",message:"OTP Wrong"})
+                res.send({status:"failure",message:"OTP Expired"})
                 return
             }
-        }else{
-            res.send({status:"failure",message:"OTP Expired"})
-            return
-        }
-    }).catch((error) => {
-        res.send({status:"failure",message:"Something went wrong. Please try again."})
-    });
-
-    
+        }).catch((error) => {
+            console.log(error)
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        });
     
     return
 });
@@ -394,6 +405,7 @@ router.post('/userdata', async function(req, res, next) {
     const ud = getAuth()
     
     get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+    
         if (snapshot.exists()) {
             res.send({...snapshot.val(),email: ud.currentUser.email});
         } else {
@@ -404,6 +416,7 @@ router.post('/userdata', async function(req, res, next) {
     });
     
 });
+
 
 router.post('/logout', async function(req, res, next) {
     initialiseApp()
@@ -457,6 +470,43 @@ router.post('/deleteaccount',(req,res,next)=>{
             res.send({status:"failure",message:"Something went wrong. Please try again."})
         });
     }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
+    
+
+})
+
+router.post('/update',(req,res,next)=>{
+    const {uid,email,name,strava} = req.body
+    
+    try{
+        initialiseApp()
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        //TESTING
+        
+        //
+        
+            get(child(dbRef, `users/`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const prevData = snapshot.val()[uid]
+                    if(prevData){
+                        var newUpdate = {...prevData,name,strava}
+                        update(child(dbRef, `users/${uid}`), newUpdate);
+                    }
+                    res.send({status:"Success",message:"Changes saved."})
+                } else {
+                    res.send({status:"failure",message:"Something went wrong. Please try again."})
+                }
+            }).catch((error) => {
+                console.log(error)
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
+            });
+        
+        
+        
+    }catch(e){
+        
         res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
     
