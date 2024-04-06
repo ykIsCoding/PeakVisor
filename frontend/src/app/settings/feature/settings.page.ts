@@ -10,11 +10,12 @@ import { Observable } from 'rxjs';
 import { SelectUserId } from '@app/shared/feature/state/auth-state/auth-state.selector';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { CommonModule } from '@angular/common';
+import { PasswordchangesectionComponent } from '../ui/passwordchangesection/passwordchangesection.component';
 
 @Component({
   selector: 'app-settingspage',
   standalone: true,
-  imports: [HeaderComponent, SettingsInputComponent,DeletesectionComponent, ReactiveFormsModule,ButtonComponent,CommonModule],
+  imports: [HeaderComponent, SettingsInputComponent,DeletesectionComponent,PasswordchangesectionComponent,ReactiveFormsModule,ButtonComponent,CommonModule],
   templateUrl: './settings.page.html',
   styleUrl: './settings.page.css'
 })
@@ -45,13 +46,15 @@ export class SettingsPage implements AfterViewInit, OnInit {
       this.settingsForm =new FormGroup({
         name: new FormControl('',Validators.required),
         strava: new FormControl('',Validators.required),
-        email:new FormControl('',Validators.required)
+        email:new FormControl('',[Validators.required,Validators.email])
       })
       console.log(this.settingsForm)
   }
 
   setCurrentlyEditing(num:number){
     this.currentlyEditing = num
+    this.settingsForm.markAllAsTouched()
+    console.log(this.email!.errors)
   }
 
   constructor(store:Store<AppState>){

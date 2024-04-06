@@ -56,9 +56,12 @@ export class LoginPage extends PageWrapperComponent {
   async login(){
     let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
     if(data["status"]=="success"){
+      console.log(data)
       this.store.dispatch(Login(data))
       this.router.navigateByUrl('/profile')
       this.displaySuccessToast("Login Successful","Welcome back!")
+      localStorage.setItem("logindata", JSON.stringify(data));
+      
     }else{
       this.displayErrorToast("Login Unsuccessful","An error occurred. Please try again.")
     }

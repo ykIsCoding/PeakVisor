@@ -90,6 +90,7 @@ export class SignupPage extends PageWrapperComponent{
       this.store.dispatch(Login(res))
       this.router.navigateByUrl('/onboarding')
       this.displaySuccessToast("Registration Successful","Welcome to the community!")
+      localStorage.setItem("logindata", JSON.stringify(res));
     }else{
       this.displayErrorToast("Registration Unsuccessful","Something went wrong. Please try again.")
     }

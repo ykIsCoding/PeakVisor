@@ -6,7 +6,7 @@
         <form [formGroup]="settingsForm" class="w-full p-4">
                     <div class="flex flex-column w-full gap-2 mt-3 mb-3">
                         <h5 class="text-3xl m-0">Name</h5>
-                        <small class="p-error block font-bold" *ngIf="name!.errors?.['required']">Name is required.</small>
+                        <small class="p-error block font-bold" *ngIf="name!.errors?.['required'] && name?.touched">Name is required.</small>
                     <div class="flex flex-row w-full gap-2">
                         <div class="flex w-9">
                             <span class="p-float-label flex-grow-1 flex w-full">
@@ -33,8 +33,8 @@
                     </div>
                     <div class="flex flex-column w-full gap-2 mt-3 mb-3">
                         <h5 class="text-3xl m-0">Email</h5>
-                        <small class="p-error block font-bold" *ngIf="email!.errors?.['required']">Email is required.</small>
-                        <small class="p-error block font-bold" *ngIf="email!.errors?.['email']">Email has to be valid</small>
+                        <small class="p-error block font-bold" *ngIf="email!.errors?.['required'] && email?.touched">Email is required.</small>
+                        <small class="p-error block font-bold" *ngIf="email!.errors?.['email'] && email?.touched">Email has to be valid</small>
                     <div class="flex flex-row w-full gap-2">
                         <div class="flex w-9">
                             <span class="p-float-label flex-grow-1 flex w-full">
@@ -46,7 +46,9 @@
                         </div>
                     </div>
                     </div>
-                
+                <div class="mt-8">
+                        <app-passwordchangesection [email]="this.settingsForm.value.email ?? ''"/>
+                </div>
                 <div class="mt-8">
                     <app-deletesection />
                 </div>

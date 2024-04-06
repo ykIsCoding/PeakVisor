@@ -31,6 +31,7 @@ export class MenubuttonComponent {
       {label: 'Logout',  command: () => {
         store.dispatch(Logout())
         this.router.navigateByUrl('/')
+        localStorage.removeItem("logindata")
       }},
     ];
   }
