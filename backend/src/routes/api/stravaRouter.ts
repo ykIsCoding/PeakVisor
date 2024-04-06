@@ -5,6 +5,6 @@ const router: Router = Router();
 
 router.get('/', stravaController.get);
 router.get('/auth', stravaController.redirectToStravaAuth);
-router.get('/callback', stravaController.handleStravaCallback);
+router.get('/callback', stravaController.redirectStravaCallback);
 
 export default router;
