@@ -14,7 +14,8 @@
         <span class="flex-grow-1 flex flex-column gap-2 w-full">
             <label id="password">Password</label>
             <small class="p-error block font-bold" *ngIf="password!.errors?.['required'] && password?.touched">Password is required.</small>
-            <input id="password" formControlName="password" class=" border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
+            <small class="p-error block font-bold" *ngIf="password!.errors?.['invalidPassword'] && password?.touched">Password is wrong. Please try again.</small>
+            <input id="password" formControlName="password" type="password" class=" border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
         </span>
         <div class="w-full flex mb-3 flex-column gap-3">
             <app-button class="flex-grow-1" (click)="login()" label="Log In" severity="secondary"/>
