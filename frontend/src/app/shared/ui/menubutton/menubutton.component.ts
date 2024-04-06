@@ -26,7 +26,7 @@ export class MenubuttonComponent {
     this.options = [
       //to move to main component later
       {label: 'Profile',  command: () =>this.router.navigateByUrl('/profile')},
-      {label: 'Events',  command: () =>this.router.navigateByUrl('/events')},
+      //{label: 'Events',  command: () =>this.router.navigateByUrl('/events')},
       {label: 'Settings',  command: () => this.router.navigateByUrl('/settings')},
       {label: 'Logout',  command: () => {
         store.dispatch(Logout())
