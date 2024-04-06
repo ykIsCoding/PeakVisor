@@ -54,6 +54,7 @@ export class LoginPage extends PageWrapperComponent {
   }
 
   async login(){
+    try {
     let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
     if(data["status"]=="success"){
       console.log(data)
@@ -63,7 +64,13 @@ export class LoginPage extends PageWrapperComponent {
       localStorage.setItem("logindata", JSON.stringify(data));
       
     }else{
+      // Set error message for invalid password
+      const passwordControl = this.loginForm.get('password');
+      if (passwordControl) passwordControl.setErrors({ 'invalidPassword': true });
       this.displayErrorToast("Login Unsuccessful","An error occurred. Please try again.")
+    } } catch (error) {
+      console.error("Login error:", error);
+      this.displayErrorToast("Login Unsuccessful", "An error occurred. Please try again.");
     }
   }
 
