@@ -3,7 +3,7 @@ import { HeaderComponent } from '@app/shared/ui/header/header.component';
 import { SettingsInputComponent } from '@app/shared/ui/settings-input/settings-input.component';
 import { DeletesectionComponent } from '../ui/deletesection/deletesection.component';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from '@angular/forms';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -44,7 +44,7 @@ export class SettingsPage implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
       this.settingsForm =new FormGroup({
-        name: new FormControl('',Validators.required),
+        name: new FormControl('',[Validators.required, this.validateName]),
         strava: new FormControl('',Validators.required),
         email:new FormControl('',[Validators.required,Validators.email])
       })
@@ -74,6 +74,15 @@ export class SettingsPage implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
       
+  }
+
+
+  validateName(control: AbstractControl): {[key: string]: any} | null {
+    const nameRegex = /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
+    if (!nameRegex.test(control.value)) {
+      return { 'invalidName': true };
+    }
+    return null;
   }
 
 }
