@@ -46,12 +46,12 @@
                 </div>
                 
                 <div class="flex flex-1 flex-row">
-                    <app-button [disabled]="disabled" class="flex-grow-1" (click)="getOTP()" label="Get OTP" severity="secondary"/>
+                    <app-button [disabled]="disabled" class="flex-grow-1" (click)="(!signUpForm.get('name')?.valid || !signUpForm.get('email')?.valid) ? null : getOTP()" label="Get OTP" severity="secondary"/>
                 </div>
                 <small class="p-error block font-bold" *ngIf="onetimepassword!.errors?.['required'] && onetimepassword?.touched">OTP is required</small>
             </div>
             <div class="w-full flex mb-3 flex-column gap-3">
-                <app-button class="flex-grow-1" (click)="(name?.hasError('required')|| email?.hasError('required') || onetimepassword?.hasError('required'))?null:signUpNextStage()" label="Next" severity="secondary"/>
+                <app-button class="flex-grow-1" (click)="(name?.hasError('required')|| email?.hasError('required') || onetimepassword?.hasError('required')) ? null : signUpNextStage()" label="Next" severity="secondary"/>
             </div>
         </div>
         </div>

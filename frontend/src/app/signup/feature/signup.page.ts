@@ -27,8 +27,9 @@ export class SignupPage extends PageWrapperComponent{
   stage:number=0;
   otp:string='';
   disabled:boolean = false;
+  currentlyEditing = 0;
   authService: AuthService= inject(AuthService)
-  
+  sentOTP: string = '';
   router:Router = inject(Router)
 
   identifier:string = "";
@@ -74,6 +75,7 @@ export class SignupPage extends PageWrapperComponent{
     if(d && d.status=="failure"){
       this.displayErrorToast("OTP Not Sent","Please check that you have entered a valid email.")
     }else{
+      this.sentOTP = d.otp as string;
       this.identifier = d["identifier"] ?? ""
       this.disabled = true
       this.displaySuccessToast("OTP Sent","Please check your email.")
@@ -98,7 +100,13 @@ export class SignupPage extends PageWrapperComponent{
     }
   }
 
-  signUpNextStage(){
-    this.stage=1;
+  async signUpNextStage(){
+    // this.stage=1;
+    const enteredOTP = this.signUpForm.value.otp as string;
+    console.log(enteredOTP);
+    console.log(this.sentOTP);
+
+    if (enteredOTP == this.sentOTP) this.stage = 1;
+    else this.displayErrorToast("Wrong OTP", "Please try again.");
   }
 }

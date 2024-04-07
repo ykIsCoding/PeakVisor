@@ -265,8 +265,6 @@ try{
 
 }
 
-
-
 router.post('/verifyemail', async function(req, res, next) {
     //generate uuid send to client, when client enter otp use the uuid to verify
     //to test
@@ -291,7 +289,7 @@ router.post('/verifyemail', async function(req, res, next) {
         otpExpiry:otpExpiry
         }).then((v)=>{
             setTimeout(()=>remove(dataRef),timeout)
-            res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+            res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry,otp:otp})
         }).catch(e=>{
             res.send({status:"failure",message:"Something went wrong. Please try again."})
         })
