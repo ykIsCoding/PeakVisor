@@ -513,19 +513,57 @@ router.post('/update',(req,res,next)=>{
 
 })
 
-router.get('/usercount',(req,res,next)=>{
+router.get('/appstats',(req,res,next)=>{
     try{
+        initialiseApp()
+        
         const dbRef = ref(getDatabase());
         const db = getDatabase()
         get(child(dbRef, `users/`)).then((snapshot) => {
+            console.log(snapshot)
             if (snapshot.exists()) {
-                console.log(snapshot.val())
+                let arr = []
+                snapshot.forEach(data=>{
+                    arr.push(data.val())
+                })
+                let usercount = arr.length
+                let totaldistance = arr.filter(x=>x.stravaData && x.stravaData.total_distance).reduce((s, a) => s + a, 0)
+                let totaltrips = arr.filter(x=>x.stravaData && x.stravaData.total_trips).reduce((s, a) => s + a, 0)
                 
+                res.send({status:"success",data:{usercount,totaldistance,totaltrips}})
                 
             } else {
                 res.send({status:"failure",message:"Something went wrong. Please try again."})
             }
         }).catch((error) => {
+            console.log(error)
+            res.send({status:"failure",message:"Something went wrong. Please try again."})
+        });
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
+})
+
+router.post('/userstats',(req,res,next)=>{
+    const {uid} = req.body
+    try{
+        initialiseApp()
+        
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()
+        get(child(dbRef, `users/${uid}`)).then((snapshot) => {
+            console.log('hehhe',snapshot.val())
+            if (snapshot.exists()) {
+                
+                
+                
+                res.send({status:"success",data:{}})
+                
+            } else {
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
+            }
+        }).catch((error) => {
+            console.log(error)
             res.send({status:"failure",message:"Something went wrong. Please try again."})
         });
     }catch(e){

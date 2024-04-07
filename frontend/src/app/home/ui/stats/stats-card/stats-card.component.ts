@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, inject } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit, inject } from '@angular/core';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
 
 @Component({
@@ -9,21 +9,21 @@ import { AuthService } from '@app/shared/data-access/auth/auth.service';
   styleUrl: './stats-card.component.css'
 })
 
-export class StatsCardComponent implements AfterContentInit {
+export class StatsCardComponent implements OnInit {
   @Input() mode:string = 'app'
-  @Input() uid:string='';
+  
   authService:AuthService = inject(AuthService)
   data:any = []
-  ngAfterContentInit(): void {
+  ngOnInit(): void {
       if(this.mode=='app'){
         this.authService.getAppStats().then((x)=>{
           //add to array
+          this.data = x.data
+          if(x["status"]=="failure") throw "failure"
+        }).catch((e)=>{
+          console.log(e)
         })
 
-      }else if(this.mode=='user'){
-        this.authService.getUserStats(this.uid).then((x)=>{
-          //add to array
-        })
       }
   }
 }

@@ -19,11 +19,12 @@ export class AuthService {
   async getAppStats(){
     try{
       const url = "http://localhost:3000/authentication/appstats"
-      const data = await new Promise<any>(resolve =>  this.http.get(url,
+      const data = await new Promise<any>(resolve =>  this.http.get(url
       ).subscribe(c=>resolve(c)))
       
       return data 
     }catch(e){
+      console.log(e)
       return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
