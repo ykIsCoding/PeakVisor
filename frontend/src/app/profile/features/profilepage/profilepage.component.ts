@@ -7,11 +7,12 @@ import { GridsectionComponent } from '@app/shared/ui/gridsection/gridsection.com
 import { HeaderComponent } from '@app/shared/ui/header/header.component';
 
 import { StravaAuthService } from '@app/services/strava/strava-auth.service';
+import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
 @Component({
   selector: 'app-profilepage',
   standalone: true,
-  imports: [HeaderComponent,ButtonComponent,GridsectionComponent,ProfilestatsComponent],
+  imports: [HeaderComponent,ButtonComponent,GridsectionComponent,ProfilestatsComponent,FooterComponent],
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.css'
 })

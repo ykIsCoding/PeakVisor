@@ -16,7 +16,31 @@ export class AuthService {
     this.authState$ = this.store.pipe(select(SelectAuthenticated))
   }
 
-  
+  async getAppStats(){
+    try{
+      const url = "http://localhost:3000/authentication/appstats"
+      const data = await new Promise<any>(resolve =>  this.http.get(url,
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async getUserStats(uid:string){
+    try{
+      const url = "http://localhost:3000/authentication/userstats"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,{
+        uid
+      }
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
 
   async getAuthStatus(){
     return this.store.pipe(select(SelectAuthenticated))

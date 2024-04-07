@@ -20,6 +20,7 @@ export class TrailinformationComponent {
   locationId:string='';
   contentService: TripAdvisorService = inject(TripAdvisorService)
   details:any = {}
+  
   constructor(private route:ActivatedRoute){
     
     this.route.params.subscribe(d=>{

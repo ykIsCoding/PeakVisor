@@ -477,7 +477,7 @@ router.post('/deleteaccount',(req,res,next)=>{
 })
 
 router.post('/update',(req,res,next)=>{
-    const {uid,email,name,strava} = req.body
+    const {uid,email,name,strava,stravaData} = req.body
     
     try{
         initialiseApp()
@@ -491,7 +491,7 @@ router.post('/update',(req,res,next)=>{
                 if (snapshot.exists()) {
                     const prevData = snapshot.val()[uid]
                     if(prevData){
-                        var newUpdate = {...prevData,name,strava}
+                        var newUpdate = {...prevData,name,strava,stravaData}
                         update(child(dbRef, `users/${uid}`), newUpdate);
                     }
                     res.send({status:"Success",message:"Changes saved."})

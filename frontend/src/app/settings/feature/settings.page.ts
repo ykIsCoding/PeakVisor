@@ -13,11 +13,12 @@ import { CommonModule } from '@angular/common';
 import { PasswordchangesectionComponent } from '../ui/passwordchangesection/passwordchangesection.component';
 import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
 import { MessageService } from 'primeng/api';
+import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
 @Component({
   selector: 'app-settingspage',
   standalone: true,
-  imports: [HeaderComponent, SettingsInputComponent,DeletesectionComponent,PasswordchangesectionComponent,ReactiveFormsModule,ButtonComponent,CommonModule],
+  imports: [HeaderComponent, SettingsInputComponent,FooterComponent,DeletesectionComponent,PasswordchangesectionComponent,ReactiveFormsModule,ButtonComponent,CommonModule],
   templateUrl: './settings.page.html',
   styleUrl: './settings.page.css'
 })
