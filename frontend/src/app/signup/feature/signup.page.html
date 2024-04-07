@@ -26,6 +26,7 @@
             <span class="flex-grow-1 flex flex-column  w-full">
                 <label id="name" >Name</label>
             <small class="p-error block font-bold" *ngIf="name!.errors?.['required'] && name?.touched">Name is required.</small>
+            <small class="p-error block font-bold" *ngIf="name!.errors?.['invalidName'] && name?.touched && !name!.errors?.['required']">Name is invalid.</small>
             <input id="name" type="text" formControlName="name" class="border-round-md w-full h-full p-inputtext-lg h-3rem text-xl text-primary font-bold bg-yellow-50"  pInputText/>
             
         </span>
@@ -44,7 +45,6 @@
                         <label id="otp" type="number" >OTP</label>
                     </span>
                 </div>
-                
                 <div class="flex flex-1 flex-row">
                     <app-button [disabled]="disabled" class="flex-grow-1" (click)="(!signUpForm.get('name')?.valid || !signUpForm.get('email')?.valid) ? null : getOTP()" label="Get OTP" severity="secondary"/>
                 </div>

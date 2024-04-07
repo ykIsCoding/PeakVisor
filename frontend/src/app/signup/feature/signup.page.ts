@@ -36,7 +36,7 @@ export class SignupPage extends PageWrapperComponent{
   signUpForm = new FormGroup({
     email: new FormControl('',[Validators.required,Validators.email]),
     password: new FormControl('',[Validators.required,Validators.minLength(8)]),
-    name: new FormControl('',[Validators.required]),
+    name: new FormControl('',[Validators.required, this.validateName]),
     reenterpassword: new FormControl('',[Validators.required,Validators.minLength(8)]),
     otp: new FormControl('',[Validators.required])
   })
@@ -108,5 +108,13 @@ export class SignupPage extends PageWrapperComponent{
 
     if (enteredOTP == this.sentOTP) this.stage = 1;
     else this.displayErrorToast("Wrong OTP", "Please try again.");
+  }
+
+  validateName(control: AbstractControl): {[key: string]: any} | null {
+    const nameRegex = /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
+    if (!nameRegex.test(control.value)) {
+      return { 'invalidName': true };
+    }
+    return null;
   }
 }
