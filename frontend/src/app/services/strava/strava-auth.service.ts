@@ -12,9 +12,10 @@ export class StravaAuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  redirectToStravaAuth(currentUrl: string) {
+  redirectToStravaAuth(currentUrl: string,uid:string) {
     const stateParameter = encodeURIComponent(currentUrl);
-    window.location.href = `${this.backendUrl}/strava/auth?state=${stateParameter}`; 
+    window.open(`${this.backendUrl}/strava/auth?state=${stateParameter}&uid=${uid}`,"_blank")
+    //window.location.href = `${this.backendUrl}/strava/auth?state=${stateParameter}`; 
   }
 
   handleStravaCallback(code: string) {

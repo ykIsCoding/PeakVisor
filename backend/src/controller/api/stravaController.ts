@@ -11,8 +11,9 @@ const get = (req: Request, res: Response): void => {
 const redirectToStravaAuth = async (req: Request, res: Response): Promise<void> => {
   try {
     const encodedState: string = req.query.state as string;
+    const uid: string = req.query.uid as string;
     const redirectUri: string = `${req.protocol}://${req.get('host')}/strava/callback`;
-    const authUrl: string = await stravaService.getStravaAuthUrl(redirectUri, encodedState);  
+    const authUrl: string = await stravaService.getStravaAuthUrl(redirectUri, encodedState,uid);  
     res.redirect(authUrl);
 
   } catch (error) {
@@ -24,10 +25,11 @@ const redirectToStravaAuth = async (req: Request, res: Response): Promise<void> 
 const redirectStravaCallback = async (req: Request, res: Response): Promise<void> => {
   try {
     const code: string | undefined = req.query.code as string;
+    const uid:string = req.query.uid as string;
     const decodedState: string = decodeURIComponent(req.query.state as string);
     const tokenData: TokenData = await stravaService.exchangeCodeForToken(code);
     const athleteStats: AthleteStats = await stravaService.getAthleteStats(tokenData.athlete.id, tokenData.access_token);
-    await stravaModel.storeAthleteStats(tokenData.athlete.id, athleteStats.all_run_totals.count, athleteStats.all_run_totals.distance)
+    await stravaModel.storeAthleteStats(uid,tokenData.athlete.id, athleteStats.all_run_totals.count, athleteStats.all_run_totals.distance)
     res.redirect(`${decodedState}`);
 
   } catch (error) {

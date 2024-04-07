@@ -5,8 +5,8 @@ class StravaService {
     private clientId: string = process.env.STRAVA_CLIENT_ID || '';
     private clientSecret: string = process.env.STRAVA_CLIENT_SECRET || '';
 
-    getStravaAuthUrl(redirectUri: string, state: string) {
-        return `http://www.strava.com/oauth/authorize?client_id=${this.clientId}&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=read&state=${encodeURIComponent(state)}`;
+    getStravaAuthUrl(redirectUri: string, state: string,uid:string) {
+        return `http://www.strava.com/oauth/authorize?client_id=${this.clientId}&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=read&state=${encodeURIComponent(state)}&uid=${uid}`;
     }
 
     async exchangeCodeForToken(code: string): Promise<any> {
