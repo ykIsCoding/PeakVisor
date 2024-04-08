@@ -488,8 +488,9 @@ router.post('/update',(req,res,next)=>{
             get(child(dbRef, `users/`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const prevData = snapshot.val()[uid]
+                    
                     if(prevData){
-                        var newUpdate = {...prevData,name,strava,stravaData}
+                        var newUpdate = {...prevData,name,strava,stravaData:stravaData??''}
                         update(child(dbRef, `users/${uid}`), newUpdate);
                         res.send({status:"Success",message:"Changes saved."})
                     }else{
