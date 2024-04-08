@@ -7,7 +7,7 @@
                     <div class="flex flex-column w-full gap-2 mt-3 mb-3">
                         <h5 class="text-3xl m-0">Name</h5>
                         <small class="p-error block font-bold" *ngIf="name!.errors?.['required'] && name?.touched">Name is required.</small>
-                        <small class="p-error block font-bold" *ngIf="name!.errors?.['invalidName'] && name?.touched">Name is invalid.</small>
+                        <small class="p-error block font-bold" *ngIf="name!.errors?.['invalidName'] && name?.touched && !name!.errors?.['required']">Name is invalid.</small>
                     <div class="flex flex-row w-full gap-2">
                         <div class="flex w-9">
                             <span class="p-float-label flex-grow-1 flex w-full">
