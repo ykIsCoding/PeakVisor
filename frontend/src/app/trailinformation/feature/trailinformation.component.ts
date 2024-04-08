@@ -21,7 +21,6 @@ export class TrailinformationComponent {
   locationId:string='';
   contentService: TripAdvisorService = inject(TripAdvisorService)
   details:any = {}
-  mapId: string = '1';
   trails: {title: string, lat: number, lng: number, mapId: string}[];
   
   constructor(private route:ActivatedRoute){
@@ -40,20 +39,13 @@ export class TrailinformationComponent {
             }
           })
         }
-        // if (this.details['latitude'] && this.details['longitude']) {
-        //   console.log("HIII")
-        //   this.details['latitude'] = Number(this.details['latitude'])
-        //   console.log(this.details['latitude'])
-        //   this.details['latitude'] = Number(this.details['longitude'])
-        //   console.log(this.details['longitude'])
-        // }
         //this.locationPhotos = [...res]
         //this.src = res[0].images.original.url
       }).catch((e)=>{console.log(e)})
     })
 
     this.trails = [
-      { title: this.details['name'], lat: 40.7128, lng: -74.0060, mapId:'1' },   
+      { title: 'New York', lat: 40.7128, lng: -74.0060, mapId:'1' }, 
     ];
   }
 

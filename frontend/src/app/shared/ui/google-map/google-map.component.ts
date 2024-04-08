@@ -24,28 +24,23 @@ export class GoogleMapComponent {
   }
 
   private async initMap(): Promise<void> {
-    try {
-      const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-      const map = new Map(
-        document.getElementById("map") as HTMLElement,
-        {
-          zoom: 4,
-          center: this.position,
-          mapId: this.mapId, 
-        }
-      );
-      const marker = new AdvancedMarkerElement({
-        map: map,
-        position: this.position,
-        title: this.title,
-      });
-      console.log(`map ${this.mapId} generated!`)
-
-    } catch (error) {
-      console.log(`Error in ${this.initMap.name}: `, error);
-    }
+    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+    const map = new Map(
+      document.getElementById(`map-${this.mapId}`) as HTMLElement,
+      {
+        zoom: 4,
+        center: this.position,
+        mapId: this.mapId,
+      }
+    );
+    const marker = new AdvancedMarkerElement({
+      map: map,
+      position: this.position,
+      title: this.title,
+    });
+    console.log(`map ${this.mapId} generated!`)
   }
-    
 
 }
+
