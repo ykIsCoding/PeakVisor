@@ -4,9 +4,5 @@
 </app-hero>
 <app-video-background [src]="src"></app-video-background> 
 <app-gridsection [contentArray]="content"></app-gridsection>
-<div *ngFor="let trail of trails">
-    <h3 style="color: black">{{ trail.title }}</h3>
-    <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>
-</div>
 </router-outlet>
 

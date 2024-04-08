@@ -28,11 +28,11 @@ export class GoogleMapComponent {
       const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
       const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
       const map = new Map(
-        document.getElementById(`map-${this.mapId}`) as HTMLElement,
+        document.getElementById("map") as HTMLElement,
         {
           zoom: 4,
           center: this.position,
-          mapId: this.mapId,
+          mapId: this.mapId, 
         }
       );
       const marker = new AdvancedMarkerElement({
