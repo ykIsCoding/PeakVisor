@@ -9,7 +9,7 @@
 <app-informationsection sectionHeader="Rating" [content]="getRatings" class="bg-green-900" >
   <img *ngIf="details['rating_image_url']" [src]="details['rating_image_url']"/>
 </app-informationsection>
-<div *ngFor="let trail of trails">
+<div class="w-6 m-2" *ngFor="let trail of trails">
   <h3 style="color: black">{{ trail.title }}</h3>
   <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>
 </div> 

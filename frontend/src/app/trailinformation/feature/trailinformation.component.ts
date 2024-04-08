@@ -31,6 +31,8 @@ export class TrailinformationComponent {
       
       this.contentService.getLocationDetailsByLocationId(this.locationId).then((res)=>{
         this.details = res
+        this.trails = [{ title: res.name, lat: Number(res.latitude), lng: Number(res.longitude), mapId:'1' }]
+        console.log(res)
         if(this.details['name']){
           this.contentService.getLocationPhotosByLocationName(this.details['name']).then((i)=>{
             console.log(i)
