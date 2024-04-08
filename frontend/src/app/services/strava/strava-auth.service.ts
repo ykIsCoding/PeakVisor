@@ -8,7 +8,7 @@ import { environment } from '@environments/environment';
 })
 
 export class StravaAuthService {
-  private backendUrl = environment.backendUrl; 
+  private backendUrl = environment.stravaBackendUrl; 
 
   constructor(private http: HttpClient, private router: Router) { }
 

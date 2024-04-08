@@ -5,11 +5,12 @@ import { InformationsectionComponent } from '../ui/informationsection/informatio
 import { TripAdvisorService } from '@app/shared/data-access/tripadvisor/trip-advisor.service';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { GoogleMapComponent } from '@app/shared/ui/google-map/google-map.component';
 
 @Component({
   selector: 'app-trailinformation',
   standalone: true,
-  imports: [HeroComponent,PhotoBackgroundComponent,InformationsectionComponent,CommonModule],
+  imports: [HeroComponent,PhotoBackgroundComponent,InformationsectionComponent,CommonModule, GoogleMapComponent],
   providers:[],
   templateUrl: './trailinformation.component.html',
   styleUrl: './trailinformation.component.css'
@@ -20,6 +21,8 @@ export class TrailinformationComponent {
   locationId:string='';
   contentService: TripAdvisorService = inject(TripAdvisorService)
   details:any = {}
+  mapId: string = '1';
+  trails: {title: string, lat: number, lng: number, mapId: string}[];
   
   constructor(private route:ActivatedRoute){
     
@@ -30,20 +33,28 @@ export class TrailinformationComponent {
       this.contentService.getLocationDetailsByLocationId(this.locationId).then((res)=>{
         this.details = res
         if(this.details['name']){
-          
-        this.contentService.getLocationPhotosByLocationName(this.details['name']).then((i)=>{
-          console.log(i)
-          if(i["images_results"][1].original.toString().endsWith(".jpg")){
-            this.src = i["images_results"][1].original
-          }
-        })
-      }
+          this.contentService.getLocationPhotosByLocationName(this.details['name']).then((i)=>{
+            console.log(i)
+            if(i["images_results"][1].original.toString().endsWith(".jpg")){
+              this.src = i["images_results"][1].original
+            }
+          })
+        }
+        // if (this.details['latitude'] && this.details['longitude']) {
+        //   console.log("HIII")
+        //   this.details['latitude'] = Number(this.details['latitude'])
+        //   console.log(this.details['latitude'])
+        //   this.details['latitude'] = Number(this.details['longitude'])
+        //   console.log(this.details['longitude'])
+        // }
         //this.locationPhotos = [...res]
         //this.src = res[0].images.original.url
       }).catch((e)=>{console.log(e)})
     })
-    
-    
+
+    this.trails = [
+      { title: this.details['name'], lat: 40.7128, lng: -74.0060, mapId:'1' },   
+    ];
   }
 
   get getDescription(){
