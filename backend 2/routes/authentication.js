@@ -488,11 +488,17 @@ router.post('/update',(req,res,next)=>{
             get(child(dbRef, `users/`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const prevData = snapshot.val()[uid]
-                    
+                    console.log("previous data",prevData)
                     if(prevData){
                         var newUpdate = {...prevData,name,strava,stravaData:stravaData??''}
-                        update(child(dbRef, `users/${uid}`), newUpdate);
-                        res.send({status:"Success",message:"Changes saved."})
+                        console.log("new update object",newUpdate)
+                        update(child(dbRef, `users/${uid}`), newUpdate).then((e)=>{
+                            res.send({status:"Success",message:"Changes saved."})
+                        }).catch(e=>{
+                            console.log("error sending strava data",e)
+                            res.send({status:"failure",message:"Something went wrong. Please try again."})
+                        });
+                        
                     }else{
                         throw "user does not exist"
                     }
