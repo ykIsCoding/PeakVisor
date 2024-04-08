@@ -491,8 +491,10 @@ router.post('/update',(req,res,next)=>{
                     if(prevData){
                         var newUpdate = {...prevData,name,strava,stravaData}
                         update(child(dbRef, `users/${uid}`), newUpdate);
+                        res.send({status:"Success",message:"Changes saved."})
+                    }else{
+                        throw "user does not exist"
                     }
-                    res.send({status:"Success",message:"Changes saved."})
                 } else {
                     res.send({status:"failure",message:"Something went wrong. Please try again."})
                 }
