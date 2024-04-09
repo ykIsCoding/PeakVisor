@@ -10,11 +10,13 @@ import { AnimationLoader, AnimationOptions, LottieComponent, provideLottieOption
 import { AnimationItem } from 'lottie-web';
 import Lottie from 'lottie-web';
 import { animate } from '@angular/animations';
+import { Footer } from 'primeng/api';
+import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, AboutComponent, HeroComponent, StatsBoardComponent, TrailsComponent, VideoBackground,LottieComponent],
+  imports: [HeaderComponent, AboutComponent, HeroComponent, StatsBoardComponent, TrailsComponent, VideoBackground,LottieComponent, FooterComponent],
   templateUrl: 'home.page.html',
   providers:[GraphicsLoaderService,provideLottieOptions({
     player: () => import(/* webpackChunkName: 'lottie-web' */ 'lottie-web'),

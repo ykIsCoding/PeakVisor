@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterContentInit, Component, OnInit, inject } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
@@ -10,29 +10,43 @@ import { ButtonComponent } from '../button/button.component';
 import { Sidebar } from 'primeng/sidebar';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from "../footer/footer.component";
 import { IconButtonComponent } from '../icon-button/icon-button.component';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { LoaderComponent } from '../loader/loader.component';
 import { SelectLoading } from '@app/shared/feature/state/display-state/display-state.selector';
 import { Load, Unload } from '@app/shared/feature/state/display-state/display-state.actions';
 import { NgIcon } from '@ng-icons/core';
+import { Login, Logout } from '@app/shared/feature/state/auth-state/auth-state.actions';
+import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-pagewrapper',
-  standalone: true,
-  imports: [ToastModule, ButtonComponent,SidebarComponent, HeaderComponent,IconButtonComponent,AsyncPipe, CommonModule,LoaderComponent,NgIcon],
-  templateUrl: './page-wrapper.component.html',
-  styleUrl: './page-wrapper.component.css'
+    selector: 'app-pagewrapper',
+    standalone: true,
+    templateUrl: './page-wrapper.component.html',
+    styleUrl: './page-wrapper.component.css',
+    imports: [ToastModule,ButtonModule, ButtonComponent, SidebarComponent, HeaderComponent, IconButtonComponent, AsyncPipe, CommonModule, LoaderComponent, NgIcon, FooterComponent]
 })
 
-export class PageWrapperComponent {
+export class PageWrapperComponent{
   sidebarVisible:boolean = false;
   authState$:Observable<boolean>;
+  nrouter:Router = inject(Router)
   loadingState$:Observable<boolean>; //move to state
   constructor(public messageService:MessageService, public store:Store<AppState>){
     this.authState$ = this.store.select(SelectAuthenticated)
     this.loadingState$ = this.store.select(SelectLoading)
+
+    var loggedIn:any = localStorage.getItem("logindata")??''
+    if(loggedIn){
+      loggedIn = JSON.parse(loggedIn)
+    }
     
+   
+    if(loggedIn && Number(loggedIn.token_manager.expirationTime)>Date.now()){
+      this.store.dispatch(Login(loggedIn))
+    }
   }
 
   displaySuccessToast(header:string,message:string){
@@ -46,6 +60,13 @@ export class PageWrapperComponent {
 
   toggleLoader(b:boolean){
     b?this.store.dispatch(Load()):this.store.dispatch(Unload())
+  }
+
+  sidebarLogout(){
+    console.log("logging out")
+    this.store.dispatch(Logout())
+    this.nrouter.navigateByUrl('/')
+    localStorage.removeItem("logindata")
   }
 
   toggleSidebarVisible(){

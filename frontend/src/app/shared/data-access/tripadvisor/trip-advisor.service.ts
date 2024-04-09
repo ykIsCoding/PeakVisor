@@ -33,6 +33,17 @@ export class TripAdvisorService {
     return '';
   }
 
+  async getChat(prompt:string){
+    try{
+      const url = `http://localhost:3000/ai/chat?location=${prompt}`
+      const data = await new Promise<any>(resolve =>  this.http.get(url).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
   async getLocationDetailsByLocationId(locationID:string){
     const url = `http://localhost:3000/tripadvisor/${locationID}`
     const data = await fetch(url)

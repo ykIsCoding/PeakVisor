@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { CanvasComponent } from '../canvas/canvas.component';
 
 @Component({
   selector: 'app-video-background',
   standalone: true,
-  imports: [],
+  imports: [CanvasComponent],
   providers: [],
   templateUrl: './video-background.component.html',
   styleUrls: ['./video-background.component.css']
@@ -32,7 +33,7 @@ export class VideoBackground implements OnDestroy, AfterViewInit {
           
           this.isPlaying = true
         }).catch((e:any)=>{
-          
+          vid.play()
         })
       }
     }catch(e){

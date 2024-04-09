@@ -1,18 +1,22 @@
-<div *ngIf="!(loadingState$ | async)" class="h-full w-screen bg-primary">
+<div *ngIf="!(loadingState$ | async)" class="h-full w-full bg-primary">
     <app-sidebar ondblclick="toggleSidebarVisible()" [sidebarVisible]="sidebarVisible" class="block md:hidden">
         <app-button ($onClk)="toggleSidebarVisible()" [text]="true" routerLink="/" label="Home"/>
         <app-button ($onClk)="toggleSidebarVisible()"  [text]="true" routerLink="/trails" label="Trails"/>
         <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="!(authState$|async)" routerLink="/login" label="Login"/>
-        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/login" label="Menu"/>
+        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/settings" label="Settings"/>
+        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/profile" label="Profile"/>
+        <app-button ($onClk)="sidebarLogout()" *ngIf="authState$|async" severity="warning" class="w-full" label="Logout"/>
     </app-sidebar>
     <div class="w-full h-screen flex flex-column align-items-between flex-1 relative z-0">
         <app-header [dlmodeOnly]="false" class="absolute top-0 z-4 w-full hidden md:block"/>
         <app-button class="md:hidden z-4" (click)="toggleSidebarVisible()" icon="pi pi-bars" label="Menu" severity="secondary">
             <ng-icon name="matMenuRound"></ng-icon>
         </app-button>
-    <ng-content></ng-content>
+        <ng-content></ng-content>
+        <!-- <app-footer></app-footer> -->
     </div>
     <p-toast position="bottom-left"></p-toast>
+    
 </div>
 <div *ngIf="(loadingState$ | async)" class=" h-full w-full bg-primary flex flex-column justify-content-center align-items-center">
     <h1 class="m-5 mb-7 mt-7 text-6xl font-bold">Loading</h1>

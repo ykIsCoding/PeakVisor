@@ -1,12 +1,29 @@
+
+<p-dialog header="PeakVisor AI says..." [(visible)]="chat" [style]="{width: '85vw'}">
+    <span *ngFor="let s of chatcontent" class="">
+      <p class="text-lg">{{s}}</p>
+    </span>
+</p-dialog>
 <div class="flex flex-column w-full bg-primary">
+  
 <app-hero subheading="" [heading]="details['name']">
 </app-hero>
 
 <app-photo-background [src]="src"/>
 <app-informationsection sectionHeader="General Information" [content]="details['description']"/>
-<app-informationsection sectionHeader="Address" [content]="getDescription"/>
+<app-informationsection sectionHeader="Address" [content]="getDescription" class="bg-green-900" />
 <app-informationsection sectionHeader="Bearings" [content]="getBearings"/>
-<app-informationsection sectionHeader="Rating" [content]="getRatings">
+<app-informationsection sectionHeader="Rating" [content]="getRatings" class="bg-green-900" >
   <img *ngIf="details['rating_image_url']" [src]="details['rating_image_url']"/>
 </app-informationsection>
+<div class="flex justify-content-start p-4 md:p-5 flex-column align-items-start gap-2">
+<div class="w-full" *ngFor="let trail of trails">
+  <h3 class="heading text-6xl w-full m-0">{{ trail.title }}</h3>
+  <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>
+  
+</div> 
+<span class="w-full md:w-2 lg:w-2">
+  <app-button [disabled]="generating==true" ($onClk)="prompt()" severity="secondary" [label]="generating==true?'Loading':'Tell Me More'"/>
+</span>
+</div>
 </div>

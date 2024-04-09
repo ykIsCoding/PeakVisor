@@ -10,11 +10,12 @@ import { VideoBackground } from '@app/shared/ui/video-background/video-backgroun
 import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { GridsectionComponent } from '../ui/gridsection/gridsection.component';
+import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
 @Component({
   selector: 'app-eventspage',
   standalone: true,
-  imports: [HeroComponent,ButtonComponent,GridsectionComponent,VideoBackground],
+  imports: [HeroComponent,ButtonComponent,GridsectionComponent,VideoBackground,FooterComponent],
   templateUrl: './eventspage.component.html',
   providers:[MeetupService],
   styleUrl: './eventspage.component.css'
