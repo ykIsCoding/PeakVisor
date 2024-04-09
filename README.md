@@ -13,7 +13,7 @@
 ## Team Members
 1. 
 2. Lim Yong Kang (ykIsCoding)
-3.
+3. Ben Yew (malepsyche)
 4.
 5.
 6.
@@ -24,24 +24,37 @@
 ## Installation
 
 #### Frontend
-To run the frontend, change directory to /frontend folder and run `ng serve --open` to see it run on the local machine.
+- Run `ng serve --open` inside ```frontend``` to serve it on the browser
+- AngularJS w/ Typescript
+- Bootstrap
 
-To run backend 2 server, change directory to /backend 2 and run the command `npm run serve`
-
-
-#### Backend Container
-- The Backend is deployed as a Docker container that contains all dependencies needed to run
-- Run ```docker-compose up --build -d``` to build all containers or just ```docker-compose up --build -d backend``` for the backend
+#### Backend
+- Run ```npm run dev``` inside ```backend``` to start the backend server
 - NodeJS w/ TypeScript
+- ExpressJS
 - Webpack bundler
-- Express
 
 
-#### Nginx Reverse Proxy Container
-- The Nginx Reverse Proxy is deployed as a Docker container that contains all dependencies needed to run
-- Proxies HTTP requests to domain to the containers 
-- Run ```docker-compose up --build -d``` to build all containers or just ```docker-compose up --build -d nginx``` for the backend
+#### Backend 2
+- Run ```npm run serve``` to start the backend2 server
+- NodeJS 
+- ExpressJS
+<br>
 
+
+## APIs and Services Used
+
+#### StravaAPI
+- StravaAPI endpoints exist on Backend
+- Best practices used includes:
+- 1. Seperation of concerns via MVC (Model-View-Controller) architecture 
+- 2. Decoupled Models, Controllers and Services via Dependency Injection
+- 3. Secure Oauth 2.0 Http Transactions
+
+#### Google Maps
+- Exists on Frontend
+- Makes dynamic requests to Google Maps API
+- Provides live frontend rendering of Google Maps
 <br>
 
 
