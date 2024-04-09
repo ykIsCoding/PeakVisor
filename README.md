@@ -55,6 +55,32 @@
 - Exists on Frontend
 - Makes dynamic requests to Google Maps API
 - Provides live frontend rendering of Google Maps
+
+#### SeraApi
+- Exists on Frontend
+- Gets images of the different places
+- API Limitation: 100 API calls/day for free plan that we are using
+- REST Architecture
+
+#### OpenAI API (ChatGPT 3.5 Turbo)
+- Exists on Frontend
+- Provides AI generated tips and information for the places
+
+#### Meetup.com API 
+- Exists on Frontend
+- Provides data for the Events Page
+- GraphQL Architecture
+- OAuth required to get token
+
+#### TripAdvisor API 
+- Exists on Frontend
+- Provides data for the Trails Page and Trails Information Page
+- REST Architecture
+- Limitation: 5000 free API calls/month, does not allow free plan users to query images
+
+#### Firebase 
+- Exists on Frontend
+- Provides authentication and database storage support
 <br>
 
 
