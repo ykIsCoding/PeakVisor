@@ -17,6 +17,7 @@ import { TripAdvisorService } from '@app/shared/data-access/tripadvisor/trip-adv
 import { GridsectionComponent } from '../ui/gridsection/gridsection.component';
 import { RouterOutlet } from '@angular/router';
 
+
 @Component({
   selector: 'app-trails-page',
   standalone: true,
@@ -28,8 +29,9 @@ import { RouterOutlet } from '@angular/router';
 
 export class TrailsPage extends PageWrapperComponent implements AfterContentInit {
   src:string;
-  content = [{name:'MacRitchie',routerLink:'/trailinfo', location_id:'0'}]
-  contentService: TripAdvisorService = inject(TripAdvisorService)
+  content = [{name:'MacRitchie',routerLink:'/trailinfo', location_id:'0'}];
+  contentService: TripAdvisorService = inject(TripAdvisorService);
+
   constructor(private authservice: AuthService, messageService:MessageService,store:Store<AppState>,private graphicsLoaderService:GraphicsLoaderService){
     super(messageService,store)
     this.toggleLoader(true)

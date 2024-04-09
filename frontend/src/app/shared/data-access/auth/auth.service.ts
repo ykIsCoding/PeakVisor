@@ -16,7 +16,47 @@ export class AuthService {
     this.authState$ = this.store.pipe(select(SelectAuthenticated))
   }
 
-  
+  async getAppStats(){
+    try{
+      const url = "http://localhost:3000/authentication/appstats"
+      const data = await new Promise<any>(resolve =>  this.http.get(url
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      console.log(e)
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async unlinkStrava(uid:string){
+    try{
+      console.log("UNLINKING",uid)
+      const url = "http://localhost:3000/authentication/unlinkstrava"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,{
+        uid
+      }
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async getUserStats(uid:string){
+    try{
+      const url = "http://localhost:3000/authentication/userstats"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,{
+        uid
+      }
+      ).subscribe(c=>resolve(c)))
+      
+      return data 
+    }catch(e){
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
 
   async getAuthStatus(){
     return this.store.pipe(select(SelectAuthenticated))
@@ -40,6 +80,8 @@ export class AuthService {
       return {status:"failure",message:"Something went wrong. Please try again."}
     }
   }
+
+  
 
   async login(email:string,password:string){
     try{
@@ -129,6 +171,25 @@ export class AuthService {
           password:password,
           name:name,
           identifier:identifier
+        }
+      ).subscribe(c=>resolve(c)))
+      
+      return data
+    }catch(e){
+      
+      return {status:"failure",message:"Something went wrong. Please try again."}
+    }
+  }
+
+  async update(email:string,name:string,strava:string,uid:string){
+    try{
+      const url = "http://localhost:3000/authentication/update"
+      const data = await new Promise<any>(resolve =>  this.http.post(url,
+        {
+          uid,
+          email,
+          name,
+          strava
         }
       ).subscribe(c=>resolve(c)))
       

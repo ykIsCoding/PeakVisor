@@ -1,8 +1,10 @@
 <div class="w-full h-full flex flex-column align-items-center flex-1 bg-primary">
-<div class="w-full grid m-1 bg-primary">
+<div class="w-full grid bg-primary m-0">
     <div *ngFor="let item of contentArray; index as i; trackBy: contentTrackFn" class="col-12 sm:col-12 md:col-6 lg:col-4">
         <app-photocard [name]="item.name" [content]="item" />
     </div>
-    
+</div>
+<div class="w-full m-0">
+    <app-footer/>
 </div>
 </div>
