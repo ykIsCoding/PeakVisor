@@ -36,7 +36,7 @@
 
 
 #### Backend 2
-- Run ```npm run serve``` to start the backend2 server
+- Run ```npm run serve``` inside ```backend2``` to start the backend2 server
 - NodeJS 
 - ExpressJS
 <br>
@@ -47,9 +47,9 @@
 #### StravaAPI
 - StravaAPI endpoints exist on Backend
 - Best practices used includes:
-- 1. Seperation of concerns via MVC (Model-View-Controller) architecture 
-- 2. Decoupled Models, Controllers and Services via Dependency Injection
-- 3. Secure Oauth 2.0 Http Transactions
+>> 1. Seperation of concerns via MVC (Model-View-Controller) architecture 
+>> 2. Decoupled Models, Controllers and Services via Dependency Injection
+>> 3. Secure Oauth 2.0 Http Transactions
 
 #### Google Maps
 - Exists on Frontend
