@@ -1,9 +1,11 @@
-<div *ngIf="!(loadingState$ | async)" class="h-full w-screen bg-primary">
+<div *ngIf="!(loadingState$ | async)" class="h-full w-full bg-primary">
     <app-sidebar ondblclick="toggleSidebarVisible()" [sidebarVisible]="sidebarVisible" class="block md:hidden">
         <app-button ($onClk)="toggleSidebarVisible()" [text]="true" routerLink="/" label="Home"/>
         <app-button ($onClk)="toggleSidebarVisible()"  [text]="true" routerLink="/trails" label="Trails"/>
         <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="!(authState$|async)" routerLink="/login" label="Login"/>
-        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/login" label="Menu"/>
+        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/settings" label="Settings"/>
+        <app-button ($onClk)="toggleSidebarVisible()"  *ngIf="authState$|async" routerLink="/profile" label="Profile"/>
+        <app-button ($onClk)="sidebarLogout()" *ngIf="authState$|async" severity="warning" class="w-full" label="Logout"/>
     </app-sidebar>
     <div class="w-full h-screen flex flex-column align-items-between flex-1 relative z-0">
         <app-header [dlmodeOnly]="false" class="absolute top-0 z-4 w-full hidden md:block"/>

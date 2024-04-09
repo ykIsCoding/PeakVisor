@@ -9,8 +9,10 @@
 <app-informationsection sectionHeader="Rating" [content]="getRatings" class="bg-green-900" >
   <img *ngIf="details['rating_image_url']" [src]="details['rating_image_url']"/>
 </app-informationsection>
-<div class="w-11 lg:w-6 md:w-6 m-2" *ngFor="let trail of trails">
-  <h3 style="color: black">{{ trail.title }}</h3>
+<div class="flex justify-content-start p-4 md:p-5 flex-column align-items-start gap-2">
+<div class="w-full" *ngFor="let trail of trails">
+  <h3 class="heading text-6xl w-full m-0">{{ trail.title }}</h3>
   <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>
 </div> 
+</div>
 </div>

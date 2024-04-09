@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit, inject } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
@@ -17,19 +17,22 @@ import { LoaderComponent } from '../loader/loader.component';
 import { SelectLoading } from '@app/shared/feature/state/display-state/display-state.selector';
 import { Load, Unload } from '@app/shared/feature/state/display-state/display-state.actions';
 import { NgIcon } from '@ng-icons/core';
-import { Login } from '@app/shared/feature/state/auth-state/auth-state.actions';
+import { Login, Logout } from '@app/shared/feature/state/auth-state/auth-state.actions';
+import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-pagewrapper',
     standalone: true,
     templateUrl: './page-wrapper.component.html',
     styleUrl: './page-wrapper.component.css',
-    imports: [ToastModule, ButtonComponent, SidebarComponent, HeaderComponent, IconButtonComponent, AsyncPipe, CommonModule, LoaderComponent, NgIcon, FooterComponent]
+    imports: [ToastModule,ButtonModule, ButtonComponent, SidebarComponent, HeaderComponent, IconButtonComponent, AsyncPipe, CommonModule, LoaderComponent, NgIcon, FooterComponent]
 })
 
 export class PageWrapperComponent{
   sidebarVisible:boolean = false;
   authState$:Observable<boolean>;
+  nrouter:Router = inject(Router)
   loadingState$:Observable<boolean>; //move to state
   constructor(public messageService:MessageService, public store:Store<AppState>){
     this.authState$ = this.store.select(SelectAuthenticated)
@@ -57,6 +60,13 @@ export class PageWrapperComponent{
 
   toggleLoader(b:boolean){
     b?this.store.dispatch(Load()):this.store.dispatch(Unload())
+  }
+
+  sidebarLogout(){
+    console.log("logging out")
+    this.store.dispatch(Logout())
+    this.nrouter.navigateByUrl('/')
+    localStorage.removeItem("logindata")
   }
 
   toggleSidebarVisible(){

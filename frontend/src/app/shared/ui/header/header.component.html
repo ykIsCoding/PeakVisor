@@ -11,7 +11,7 @@
             <app-button  *ngIf="!(authState$|async) && dlmodeOnly==false" routerLink="/login" label="Login"/>
             
             <app-menubutton *ngIf="authState$|async" label="Menu"></app-menubutton>
-            <app-icon-button/>
+            
         </div>
     </div>
 </div>
