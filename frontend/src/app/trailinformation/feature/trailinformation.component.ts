@@ -9,11 +9,12 @@ import { GoogleMapComponent } from '@app/shared/ui/google-map/google-map.compone
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
+import { ImageModule } from 'primeng/image';
 
 @Component({
   selector: 'app-trailinformation',
   standalone: true,
-  imports: [HeroComponent,DialogModule,PhotoBackgroundComponent,InformationsectionComponent,CommonModule, GoogleMapComponent,ButtonComponent],
+  imports: [HeroComponent,ImageModule ,DialogModule,PhotoBackgroundComponent,InformationsectionComponent,CommonModule, GoogleMapComponent,ButtonComponent],
   providers:[],
   templateUrl: './trailinformation.component.html',
   styleUrl: './trailinformation.component.css'

@@ -1,7 +1,13 @@
 
-<p-dialog header="PeakVisor AI says..." [(visible)]="chat" [style]="{width: '85vw'}">
-    <span *ngFor="let s of chatcontent" class="">
-      <p class="text-lg">{{s}}</p>
+<p-dialog position="bottomright" [(visible)]="chat" [breakpoints]="{ '500px': '95vw' }" [style]="{width: '40vw',borderRadius: '12px'}">
+  <ng-template pTemplate="header">
+    <div class="inline-flex align-items-center justify-content-center gap-2">
+      <img height="150px" width="150px" src="assets/icons/pv-ai.svg">
+    <h3 class="text-3xl font-bold text-color-secondary"> PeakVisor AI says...</h3>
+    </div>
+  </ng-template>
+    <span *ngFor="let s of chatcontent" class="font-semibold text-color-primary">
+      <p class="text-xl">{{s}}</p>
     </span>
 </p-dialog>
 <div class="flex flex-column w-full bg-primary">
