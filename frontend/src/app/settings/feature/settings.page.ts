@@ -58,20 +58,25 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     if(!this.settingsForm.valid){
       this.displayErrorToast("Saving failed","Please fix the input errors.")
     }else{
-      this.currentlyEditing = num
+      
       
       this.store.select(SelectUserId).subscribe(d=>{
         const {email,name,strava} = this.settingsForm.value
-        
+        this.currentlyEditing = num
+        if(num==0){
         this.authService.update(email??'',name??'',strava??'',d).then(res=>{
           
           if(res["status"]=="failure") throw new Error
-          this.displaySuccessToast("Changes saved","yay")
+          
+            this.displaySuccessToast("Changes saved","yay")
+          
+          
         }).catch(e=>{
           
           this.displayErrorToast("Changes not saved.","Something went wrong.")
         })
-      })
+      }  })
+    
     }
   }
 
@@ -102,7 +107,12 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
       this.authService.unlinkStrava(d).then((e)=>{
         
         if(e['status']=='Success'){
-          this.settingsForm.value.strava = 'Not Connected'
+          
+          this.settingsForm.setValue({
+            name: this.settingsForm.value.name??' ',
+            strava:'Not Connected',
+            email:this.settingsForm.value.email??''
+      })
           this.displaySuccessToast("Changes saved.","Strava Unlinked")
         }
       }).catch((e)=>{

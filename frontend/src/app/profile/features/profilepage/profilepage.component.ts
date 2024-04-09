@@ -38,7 +38,7 @@ export class ProfilepageComponent implements OnInit,AfterContentInit{
     }))
     var uid = await uidObservable
     var udata = await this.authService.getUserStats(uid as string)
-    this.connected = udata.data && udata.data.strava && String(udata.data.strava).length>0
+    this.connected = udata.data && udata.data.strava && String(udata.data.strava).length>0 && String(udata.data.strava)!='Not Connected'
     this.stats = udata.data.stravaData
     console.log(this.stats)
     this.userid = uid
