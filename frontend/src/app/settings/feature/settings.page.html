@@ -28,9 +28,9 @@
                                 <input [readonly]="currentlyEditing!=2" id="strava" formControlName="strava" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>
                             </span>
                         </div>
-                        <div class="flex flex-row w-3">
-                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=2)?null:currentlyEditing==2?setCurrentlyEditing(0):setCurrentlyEditing(2)" 
-                                [label]="currentlyEditing==2?'Save':'Edit'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=2)" [severity]="currentlyEditing==2?'warning':'secondary'"/>
+                        <div *ngIf="settingsForm.value.strava!='Not Connected'" class="flex flex-row w-3">
+                            <app-button class="flex-grow-1" (click)="unlinkStrava()" 
+                                label="Unlink"  severity="danger"/>
                         </div>
                     </div>
                     </div>

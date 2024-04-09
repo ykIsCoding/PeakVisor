@@ -474,6 +474,41 @@ router.post('/deleteaccount',(req,res,next)=>{
 
 })
 
+router.post('/unlinkstrava',(req,res,next)=>{
+    const {uid} = req.body
+    try{
+        initialiseApp()
+        const dbRef = ref(getDatabase());
+        get(child(dbRef, `users/`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log("SNAPSHOT",uid)
+                    const prevData = snapshot.val()[uid]
+                    if(prevData){
+                        var newUpdate = {...prevData,strava:null,stravaData:null}
+                        update(child(dbRef, `users/${uid}`), newUpdate).then((e)=>{
+                            res.send({status:"Success",message:"Changes saved."})
+                        }).catch(e=>{
+                            res.send({status:"failure",message:"Something went wrong. Please try again."})
+                        });
+                        
+                    }else{
+                        throw "user does not exist"
+                    }
+                } else {
+                    res.send({status:"failure",message:"Something went wrong. Please try again."})
+                }
+            }).catch((error) => {
+                console.log(error)
+                res.send({status:"failure",message:"Something went wrong. Please try again."})
+            });
+        
+        
+        
+    }catch(e){
+        res.send({status:"failure",message:"Something went wrong. Please try again."})
+    }
+})
+
 router.post('/update',(req,res,next)=>{
     const {uid,email,name,strava,stravaData} = req.body
     
@@ -487,15 +522,20 @@ router.post('/update',(req,res,next)=>{
         
             get(child(dbRef, `users/`)).then((snapshot) => {
                 if (snapshot.exists()) {
+                    
                     const prevData = snapshot.val()[uid]
-                    console.log("previous data",prevData)
+                    
                     if(prevData){
-                        var newUpdate = {...prevData,name,strava,stravaData:stravaData??''}
-                        console.log("new update object",newUpdate)
+                        var newUpdate = {...prevData,strava,stravaData:stravaData??''}
+                        
+                        if(name){
+                            newUpdate = {...prevData,name,strava,stravaData:stravaData??''}
+                        }
+                        
+                
                         update(child(dbRef, `users/${uid}`), newUpdate).then((e)=>{
                             res.send({status:"Success",message:"Changes saved."})
                         }).catch(e=>{
-                            console.log("error sending strava data",e)
                             res.send({status:"failure",message:"Something went wrong. Please try again."})
                         });
                         
@@ -533,9 +573,11 @@ router.get('/appstats',(req,res,next)=>{
                 snapshot.forEach(data=>{
                     arr.push(data.val())
                 })
+                console.log("ARRAY",arr)
                 let usercount = arr.length
-                let totaldistance = arr.filter(x=>x.stravaData && x.stravaData.total_distance).reduce((s, a) => s + a, 0)
-                let totaltrips = arr.filter(x=>x.stravaData && x.stravaData.total_trips).reduce((s, a) => s + a, 0)
+                let totaldistance = arr.filter(x=>x.stravaData && x.stravaData.total_distance).reduce((s, a) => s + a.stravaData.total_distance, 0)
+                
+                let totaltrips = arr.filter(x=>x.stravaData && x.stravaData.total_trips).reduce((s, a) => s + a.stravaData.total_trips, 0)
                 
                 res.send({status:"success",data:{usercount,totaldistance,totaltrips}})
                 
@@ -559,12 +601,12 @@ router.post('/userstats',(req,res,next)=>{
         const dbRef = ref(getDatabase());
         const db = getDatabase()
         get(child(dbRef, `users/${uid}`)).then((snapshot) => {
-            console.log('hehhe',snapshot.val())
+            
             if (snapshot.exists()) {
                 
                 
                 
-                res.send({status:"success",data:{}})
+                res.send({status:"success",data:snapshot.val()})
                 
             } else {
                 res.send({status:"failure",message:"Something went wrong. Please try again."})

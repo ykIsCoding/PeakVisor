@@ -9,21 +9,26 @@ import { AuthService } from '@app/shared/data-access/auth/auth.service';
   styleUrl: './stats-card.component.css'
 })
 
-export class StatsCardComponent implements OnInit {
+export class StatsCardComponent implements OnInit,AfterContentInit {
   @Input() mode:string = 'app'
   
   authService:AuthService = inject(AuthService)
   data:any = []
-  ngOnInit(): void {
-      if(this.mode=='app'){
-        this.authService.getAppStats().then((x)=>{
-          //add to array
-          this.data = x.data
-          if(x["status"]=="failure") throw "failure"
-        }).catch((e)=>{
-          console.log(e)
-        })
 
-      }
+  ngAfterContentInit(): void {
+    if(this.mode=='app'){
+      this.authService.getAppStats().then((x)=>{
+        //add to array
+        this.data = x.data
+        
+        if(x["status"]=="failure") throw "failure"
+      }).catch((e)=>{
+        console.log(e)
+      })
+
+    }
+  }
+  ngOnInit(): void {
+      
   }
 }

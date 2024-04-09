@@ -19,7 +19,7 @@ export class GoogleMapComponent {
 
   ngOnInit() {
     this.position = {lat: this.lat, lng: this.lng};
-    this.zoom = 6;
+    this.zoom = 10;
     this.initMap();
   }
 
@@ -29,7 +29,7 @@ export class GoogleMapComponent {
     const map = new Map(
       document.getElementById(`map-${this.mapId}`) as HTMLElement,
       {
-        zoom: 4,
+        zoom: 15,
         center: this.position,
         mapId: this.mapId,
       }

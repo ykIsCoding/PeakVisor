@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { AfterContentInit, Component, OnInit, inject } from '@angular/core';
 import { AsyncPipe, CommonModule, Location } from '@angular/common';
 
 import { ProfilestatsComponent } from '@app/profile/ui/profilestats/profilestats.component';
@@ -18,9 +18,10 @@ import { CardComponent } from '@app/profile/ui/card/card.component';
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.css'
 })
-export class ProfilepageComponent implements OnInit{
+export class ProfilepageComponent implements OnInit,AfterContentInit{
   connected:boolean = false;
   userid:any = ''
+  stats = { total_trips: 0, total_distance: 0 }
   content = [{name:'June 10 Hike'},{name:'June 20 Hike'},{name:'June 30 Hike'},]
   authService:AuthService = inject(AuthService)
   constructor(
@@ -36,15 +37,27 @@ export class ProfilepageComponent implements OnInit{
       resolve(a)
     }))
     var uid = await uidObservable
+    var udata = await this.authService.getUserStats(uid as string)
+    this.connected = udata.data && udata.data.strava && String(udata.data.strava).length>0
+    this.stats = udata.data.stravaData
+    console.log(this.stats)
     this.userid = uid
-    
+    let cnt = await this.stravaAuthService.getActivities(udata.data.stravaData.code)
+    this.content = cnt;
+    console.log(cnt)
     }catch(e){
       console.log(e)
     }
   }
 
+  ngAfterContentInit(): void {
+    this.retreiveUID()
+  }
+
   ngOnInit(): void {
-      this.retreiveUID()
+      
+      
+      //change state n set connected to true
   }
   
   async requestStravaAuth() {

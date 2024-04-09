@@ -64,7 +64,7 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
         const {email,name,strava} = this.settingsForm.value
         
         this.authService.update(email??'',name??'',strava??'',d).then(res=>{
-          console.log(res)
+          
           if(res["status"]=="failure") throw new Error
           this.displaySuccessToast("Changes saved","yay")
         }).catch(e=>{
@@ -95,6 +95,23 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
 
   ngAfterViewInit(): void {
       
+  }
+
+  unlinkStrava(){
+    this.store.select(SelectUserId).subscribe(d=>{
+      this.authService.unlinkStrava(d).then((e)=>{
+        
+        if(e['status']=='Success'){
+          this.settingsForm.value.strava = 'Not Connected'
+          this.displaySuccessToast("Changes saved.","Strava Unlinked")
+        }
+      }).catch((e)=>{
+        console.log(e)
+        this.displayErrorToast("Changes not saved.","Something went wrong.")
+      })
+      
+    })
+    
   }
 
 

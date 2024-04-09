@@ -10,18 +10,12 @@ import { AuthService } from '@app/shared/data-access/auth/auth.service';
 })
 export class ProfilestatsComponent implements AfterViewInit {
   @Input() uid:any='';
+  @Input() stats:any;
   authService:AuthService = inject(AuthService)
   data:any = []
 
   ngAfterViewInit(): void {
-    this.authService.getUserStats(this.uid).then((x)=>{
-      //add to array
-      //have distance and total trips added to data object
-      this.data = x
-      if(x["status"]=="failure") throw "failure"
-    }).catch((e)=>{
-      console.log(e)
-    })
+    
   }
 
   
