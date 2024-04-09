@@ -8,6 +8,7 @@ const schema = require('../graphql/schema')
 const tripAdvisorRoutes = require('../routes/tripadvisor')
 const authenticationRoutes = require('../routes/authentication')
 const meetupRoutes = require('../routes/meetup')
+const aiRoutes = require('../routes/ai')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.json());
@@ -15,7 +16,7 @@ app.use(cors(corsOptions));
 app.use('/tripadvisor',tripAdvisorRoutes)
 app.use('/authentication',authenticationRoutes)
 app.use('/meetup',meetupRoutes)
-
+app.use('/ai',aiRoutes)
 
 
 app.get('/', function (req, res) {

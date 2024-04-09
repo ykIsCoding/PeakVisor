@@ -1,4 +1,11 @@
+
+<p-dialog header="PeakVisor AI says..." [(visible)]="chat" [style]="{width: '85vw'}">
+    <span *ngFor="let s of chatcontent" class="">
+      <p class="text-lg">{{s}}</p>
+    </span>
+</p-dialog>
 <div class="flex flex-column w-full bg-primary">
+  
 <app-hero subheading="" [heading]="details['name']">
 </app-hero>
 
@@ -13,6 +20,10 @@
 <div class="w-full" *ngFor="let trail of trails">
   <h3 class="heading text-6xl w-full m-0">{{ trail.title }}</h3>
   <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>
+  
 </div> 
+<span class="w-full md:w-2 lg:w-2">
+  <app-button [disabled]="generating==true" ($onClk)="prompt()" severity="secondary" [label]="generating==true?'Loading':'Tell Me More'"/>
+</span>
 </div>
 </div>
