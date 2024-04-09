@@ -11,99 +11,15 @@
 
 
 ## Team Members
-1. 
+1. Jeannie Wong
 2. Lim Yong Kang (ykIsCoding)
 3. Ben Yew (malepsyche)
-4.
-5.
-6. Chong Choy Jun
+4. Brendan Yap
+5. Chong Choy Jun
+6. Lucas Ng
 7.
 <br>
-# PeakVisor
 
-PeakVisor is a standalone web application designed for hiking enthusiasts, outdoor lovers, and beginners in Singapore. It helps users find, manage, and share their hiking experiences and join community events at nature trails across the country.
-
-![PeakVisor Logo](link_to_logo.png)
-
-## Overview
-
-PeakVisor interfaces with multiple APIs, including TripAdvisor API for user reviews, Meetup API for community events, and OneMap API for trail locations.
-
-## System Diagram
-
-A system diagram illustrating the main components, subsystem interconnections, and external interfaces is provided below.
-
-[Insert System Diagram Image Here]
-
-## Product Functions
-
-### Account Management
-
-Users can manage saved hiking trips, completed trail history, and data from linked Strava accounts. Basic account management and security features are included.
-
-### Search Function
-
-Users can search for new nature trails and community events, filtering results by location for personalized recommendations.
-
-### View Trails
-
-Users can select from a variety of nature trails and view information such as description, location, and user ratings from TripAdvisor.
-
-### Join Events
-
-Users can explore and sign up for community events, accessing details like location and dates, and connecting with other outdoor enthusiasts via Meetup.
-
-## Installation
-
-Instructions for installing and setting up PeakVisor locally will be provided here, including dependencies and system requirements.
-
-## Usage
-
-Guidelines on how to use PeakVisor, covering basic functionalities, advanced features, and tips for maximizing user experience.
-
-## Contributing
-# PeakVisor
-
-PeakVisor is a standalone web application designed for hiking enthusiasts, outdoor lovers, and beginners in Singapore. It helps users find, manage, and share their hiking experiences and join community events at nature trails across the country.
-
-![PeakVisor Logo](link_to_logo.png)
-
-## Overview
-
-PeakVisor interfaces with multiple APIs, including TripAdvisor API for user reviews, Meetup API for community events, and OneMap API for trail locations.
-
-## System Diagram
-
-A system diagram illustrating the main components, subsystem interconnections, and external interfaces is provided below.
-
-[Insert System Diagram Image Here]
-
-## Product Functions
-
-### Account Management
-
-Users can manage saved hiking trips, completed trail history, and data from linked Strava accounts. Basic account management and security features are included.
-
-### Search Function
-
-Users can search for new nature trails and community events, filtering results by location for personalized recommendations.
-
-### View Trails
-
-Users can select from a variety of nature trails and view information such as description, location, and user ratings from TripAdvisor.
-
-### Join Events
-
-Users can explore and sign up for community events, accessing details like location and dates, and connecting with other outdoor enthusiasts via Meetup.
-
-
-## Usage
-
-Guidelines on how to use PeakVisor, covering basic functionalities, advanced features, and tips for maximizing user experience.
-
-## Contributing
-
-Instructions for contributing to PeakVisor, including how to report issues, suggest new features, and submit code contributions.
 
 ## Installation
 
