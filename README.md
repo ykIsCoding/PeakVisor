@@ -12,6 +12,12 @@
 
 ## Team Members
 1. 
+2. Lim Yong Kang (ykIsCoding)
+3.
+4.
+5.
+6.
+7.
 <br>
 
 
