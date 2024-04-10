@@ -7,6 +7,8 @@ var rn = require('random-number');
 const { initializeApp } =require("firebase/app");
 const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail, updateProfile, updateEmail,deleteUser} =require("firebase/auth");
 const { v4 } = require('uuid');
+var admin = require("firebase-admin");
+const firebaseAdmin = require("firebase-admin/auth");
 
 const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
 
@@ -299,9 +301,20 @@ router.post('/verifyemail', async function(req, res, next) {
       }
 
 });
+
+
 function deleteDeletedAccounts(){
+    console.log("testing")
+    
     try{
-        initialiseApp()
+        var serviceAccount = require("../admin.json");
+        var adminacc = admin.apps.length? admin.app():admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+            databaseURL: "https://peakvisor-b4a1c-default-rtdb.asia-southeast1.firebasedatabase.app"
+            });
+            
+
+
         const dbRef = ref(getDatabase());
         const db = getDatabase()    
             get(child(dbRef, `users/`)).then((snapshot) => {
@@ -312,7 +325,7 @@ function deleteDeletedAccounts(){
                         if(user.deleted && (user.time_till_delete-Date.now())<120000){
                             console.log(user," is the user to be deleted in ",user.time_till_delete-Date.now()," miliseconds")
                             setTimeout(() => {
-                                getAuth().deleteUser(user.id).then((r)=>{
+                                firebaseAdmin.getAuth().deleteUser(user.id).then((r)=>{
                                     set(child(dbRef, `users/${user.id}`),null)
                                     console.log("scheduled deletion")
                                 }).catch(e=>console.log(e))
@@ -323,7 +336,7 @@ function deleteDeletedAccounts(){
                 
                 }
             }).catch((error) => {
-                
+                console.log(error)
                
             })
         }catch(e){
@@ -489,20 +502,16 @@ router.post('/deleteaccount',(req,res,next)=>{
             console.log("DELETION UID",uid)
             
             if (snapshot.exists()) {
-                update(child(dbRef, `users/${uid}`), null);
-                    deleteUser(getAuth().currentUser).then(e=>{
-                        console.log("user deleted")
-                    }).catch(e=>{
-                        console.log(e)
-                    })
-                //const prevData = snapshot.val()[uid]
+                
+                const prevData = snapshot.val()[uid]
                 if(true){
                     var newUpdate = {...prevData,deleted:true,time_till_delete:timeTillDelete}
-                    
-                    //setInterval(()=>{
-                       // console.log("checking accounts to delete")
-                       // return deleteDeletedAccounts()
-                   // },60000)
+                    update(child(dbRef, `users/${uid}`), newUpdate);
+                    deleteDeletedAccounts()
+                    setInterval(()=>{
+                        console.log("checking accounts to delete")
+                        return deleteDeletedAccounts()
+                    },60000)
                 }
                 
             } else {
