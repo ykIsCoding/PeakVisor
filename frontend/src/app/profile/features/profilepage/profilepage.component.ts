@@ -10,6 +10,10 @@ import { StravaAuthService } from '@app/services/strava/strava-auth.service';
 import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
 import { CardComponent } from '@app/profile/ui/card/card.component';
+import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.component';
+import { MessageService } from 'primeng/api';
+import { AppState } from '@app/shared/feature/state/app-state/app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profilepage',
@@ -18,7 +22,7 @@ import { CardComponent } from '@app/profile/ui/card/card.component';
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.css'
 })
-export class ProfilepageComponent implements OnInit,AfterContentInit{
+export class ProfilepageComponent extends PageWrapperComponent implements OnInit,AfterContentInit{
   connected:boolean = false;
   userid:any = ''
   stats = { total_trips: 0, total_distance: 0 }
@@ -27,8 +31,10 @@ export class ProfilepageComponent implements OnInit,AfterContentInit{
   constructor(
     private stravaAuthService: StravaAuthService,
     private location: Location,
+    messageService:MessageService,
+    store:Store<AppState>
   ){
-
+    super(messageService,store)
   }
 
   async retreiveUID(){
@@ -37,6 +43,11 @@ export class ProfilepageComponent implements OnInit,AfterContentInit{
       resolve(a)
     }))
     var uid = await uidObservable
+    let creds:any =   localStorage.getItem("logindata");
+    creds = JSON.parse(creds)
+    if(!uid && creds){
+      uid = creds["uid"]
+    }
     var udata = await this.authService.getUserStats(uid as string)
     this.connected = udata.data && udata.data.strava && String(udata.data.strava).length>0 && String(udata.data.strava)!='Not Connected'
     this.stats = udata.data.stravaData
@@ -61,15 +72,26 @@ export class ProfilepageComponent implements OnInit,AfterContentInit{
   }
   
   async requestStravaAuth() {
+    
+    let creds:any =   localStorage.getItem("logindata");
+    creds = JSON.parse(creds)
     try{
+    
+    console.log(creds)
     var uidObservable = new Promise(async resolve=>(await this.authService.getUid()).subscribe(a=>{
       resolve(a)
     }))
     var uid = await uidObservable
+    
+    if(!uid && creds){
+      uid = creds["uid"]
+    }
     const currentUrl: string = window.location.href;
     this.stravaAuthService.redirectToStravaAuth(currentUrl,uid as string);
+    
   }
 catch(e){
+  this.displayErrorToast("Connection Unsuccessful","Something went wrong.")
   console.log(e)
 }
   }

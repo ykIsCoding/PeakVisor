@@ -26,10 +26,14 @@ export class DeletesectionComponent {
   async deleteAccount(){
     try{
     (await this.authService.getUid()).subscribe(async e=>{
-      const id = await e;
+      var id:any = await e;
       console.log(id)
+      if(!id && localStorage.getItem("logindata")){
+        id = JSON.parse(localStorage.getItem("logindata")??'')['uid']
+      }
       this.authService.deleteAccount(id)
       this.store.dispatch(Logout())
+      localStorage.removeItem("logindata")
       this.router.navigateByUrl('/')
     })
   }catch(e){

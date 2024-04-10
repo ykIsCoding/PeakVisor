@@ -5,7 +5,7 @@ var router = express.Router();
 const axios = require('axios');
 var rn = require('random-number');
 const { initializeApp } =require("firebase/app");
-const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail, updateProfile, updateEmail} =require("firebase/auth");
+const { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail, updateProfile, updateEmail,deleteUser} =require("firebase/auth");
 const { v4 } = require('uuid');
 
 const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
@@ -299,6 +299,38 @@ router.post('/verifyemail', async function(req, res, next) {
       }
 
 });
+function deleteDeletedAccounts(){
+    try{
+        initialiseApp()
+        const dbRef = ref(getDatabase());
+        const db = getDatabase()    
+            get(child(dbRef, `users/`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    snapshot.forEach(ur=>{
+                        let user = ur.val()
+                        console.log(user)
+                        if(user.deleted && (user.time_till_delete-Date.now())<120000){
+                            console.log(user," is the user to be deleted in ",user.time_till_delete-Date.now()," miliseconds")
+                            setTimeout(() => {
+                                getAuth().deleteUser(user.id).then((r)=>{
+                                    set(child(dbRef, `users/${user.id}`),null)
+                                    console.log("scheduled deletion")
+                                }).catch(e=>console.log(e))
+                                
+                            }, user.time_till_delete-Date.now());
+                        }
+                    })
+                
+                }
+            }).catch((error) => {
+                
+               
+            })
+        }catch(e){
+        
+        }}
+
+
 
 router.post('/register', async function(req, res, next) {
     //post request to /register should have email and password data
@@ -330,7 +362,7 @@ router.post('/register', async function(req, res, next) {
                     });
 
                     
-                        res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager})
+                        res.send({status:"success",message:"Account Registered",token_manager:user.stsTokenManager,uid:user.uid})
                     
                     
                     
@@ -449,16 +481,28 @@ router.post('/resetpassword', async function(req, res, next) {
 
 router.post('/deleteaccount',(req,res,next)=>{
     const {uid} = req.body
-    const timeTillDelete = 7*24*3600*1000 + Date.now()
+    const timeTillDelete = 120000+Date.now()// 7*24*3600*1000 + Date.now()
     try{
         const dbRef = ref(getDatabase());
         const db = getDatabase()
         get(child(dbRef, `users/`)).then((snapshot) => {
+            console.log("DELETION UID",uid)
+            
             if (snapshot.exists()) {
-                const prevData = snapshot.val()[uid]
-                if(prevData){
+                update(child(dbRef, `users/${uid}`), null);
+                    deleteUser(getAuth().currentUser).then(e=>{
+                        console.log("user deleted")
+                    }).catch(e=>{
+                        console.log(e)
+                    })
+                //const prevData = snapshot.val()[uid]
+                if(true){
                     var newUpdate = {...prevData,deleted:true,time_till_delete:timeTillDelete}
-                    update(child(dbRef, `users/${uid}`), newUpdate);
+                    
+                    //setInterval(()=>{
+                       // console.log("checking accounts to delete")
+                       // return deleteDeletedAccounts()
+                   // },60000)
                 }
                 
             } else {
@@ -471,7 +515,7 @@ router.post('/deleteaccount',(req,res,next)=>{
         res.send({status:"failure",message:"Something went wrong. Please try again."})
     }
     
-
+    
 })
 
 router.post('/unlinkstrava',(req,res,next)=>{
@@ -481,7 +525,7 @@ router.post('/unlinkstrava',(req,res,next)=>{
         const dbRef = ref(getDatabase());
         get(child(dbRef, `users/`)).then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log("SNAPSHOT",uid)
+                    
                     const prevData = snapshot.val()[uid]
                     if(prevData){
                         var newUpdate = {...prevData,strava:null,stravaData:null}
@@ -498,7 +542,7 @@ router.post('/unlinkstrava',(req,res,next)=>{
                     res.send({status:"failure",message:"Something went wrong. Please try again."})
                 }
             }).catch((error) => {
-                console.log(error)
+                
                 res.send({status:"failure",message:"Something went wrong. Please try again."})
             });
         
@@ -536,6 +580,7 @@ router.post('/update',(req,res,next)=>{
                         update(child(dbRef, `users/${uid}`), newUpdate).then((e)=>{
                             res.send({status:"Success",message:"Changes saved."})
                         }).catch(e=>{
+                            
                             res.send({status:"failure",message:"Something went wrong. Please try again."})
                         });
                         
@@ -543,10 +588,11 @@ router.post('/update',(req,res,next)=>{
                         throw "user does not exist"
                     }
                 } else {
+                    
                     res.send({status:"failure",message:"Something went wrong. Please try again."})
                 }
             }).catch((error) => {
-                console.log(error)
+                
                 res.send({status:"failure",message:"Something went wrong. Please try again."})
             });
         

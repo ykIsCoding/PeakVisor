@@ -82,8 +82,10 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
 
   constructor(messageService:MessageService,store:Store<AppState>){
     super(messageService,store)
-    this.userId$ = (store.select(SelectUserId)).subscribe(d=>{
-      
+    this.userId$ = (store.select(SelectUserId)).subscribe((d:any)=>{
+      if(!d && localStorage.getItem("logindata")){
+        d = JSON.parse(localStorage.getItem("logindata")??'')["uid"]
+      }
       this.authService.getUserSettings(d).then(userdata=>{
         
         userdata = {...userdata}
