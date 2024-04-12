@@ -1,0 +1,972 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>peakvisor documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">peakvisor documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TrailinformationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/trailinformation/feature/trailinformation.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-trailinformation</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/HeroComponent.html" target="_self" >HeroComponent</a></code>
+                            <code>ImageModule</code>
+                            <code>DialogModule</code>
+                                <code><a href="../components/PhotoBackgroundComponent.html" target="_self" >PhotoBackgroundComponent</a></code>
+                                <code><a href="../components/InformationsectionComponent.html" target="_self" >InformationsectionComponent</a></code>
+                            <code>CommonModule</code>
+                                <code><a href="../components/GoogleMapComponent.html" target="_self" >GoogleMapComponent</a></code>
+                                <code><a href="../components/ButtonComponent.html" target="_self" >ButtonComponent</a></code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./trailinformation.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./trailinformation.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#chat" >chat</a>
+                            </li>
+                            <li>
+                                <a href="#chatcontent" >chatcontent</a>
+                            </li>
+                            <li>
+                                <a href="#contentService" >contentService</a>
+                            </li>
+                            <li>
+                                <a href="#details" >details</a>
+                            </li>
+                            <li>
+                                <a href="#generating" >generating</a>
+                            </li>
+                            <li>
+                                <a href="#locationId" >locationId</a>
+                            </li>
+                            <li>
+                                <a href="#locationPhotos" >locationPhotos</a>
+                            </li>
+                            <li>
+                                <a href="#src" >src</a>
+                            </li>
+                            <li>
+                                <a href="#trails" >trails</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#prompt" >prompt</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#getDescription" >getDescription</a>
+                                </li>
+                                <li>
+                                    <a href="#getBearings" >getBearings</a>
+                                </li>
+                                <li>
+                                    <a href="#getRatings" >getRatings</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prompt"></a>
+                    <span class="name">
+                        <span ><b>prompt</b></span>
+                        <a href="#prompt"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prompt()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chat"></a>
+                    <span class="name">
+                        <span ><b>chat</b></span>
+                        <a href="#chat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chatcontent"></a>
+                    <span class="name">
+                        <span ><b>chatcontent</b></span>
+                        <a href="#chatcontent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contentService"></a>
+                    <span class="name">
+                        <span ><b>contentService</b></span>
+                        <a href="#contentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/TripAdvisorService.html" target="_self" >TripAdvisorService</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(TripAdvisorService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="details"></a>
+                    <span class="name">
+                        <span ><b>details</b></span>
+                        <a href="#details"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generating"></a>
+                    <span class="name">
+                        <span ><b>generating</b></span>
+                        <a href="#generating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="locationId"></a>
+                    <span class="name">
+                        <span ><b>locationId</b></span>
+                        <a href="#locationId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="locationPhotos"></a>
+                    <span class="name">
+                        <span ><b>locationPhotos</b></span>
+                        <a href="#locationPhotos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="src"></a>
+                    <span class="name">
+                        <span ><b>src</b></span>
+                        <a href="#src"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trails"></a>
+                    <span class="name">
+                        <span ><b>trails</b></span>
+                        <a href="#trails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getDescription"></a>
+                        <span class="name"><b>getDescription</b><a href="#getDescription"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>getDescription()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:62</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getBearings"></a>
+                        <span class="name"><b>getBearings</b><a href="#getBearings"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>getBearings()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:66</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="getRatings"></a>
+                        <span class="name"><b>getRatings</b><a href="#getRatings"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>getRatings()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/trailinformation/feature/trailinformation.component.ts:70</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject } from &#x27;@angular/core&#x27;;
+import { HeroComponent } from &#x27;@app/shared/ui/hero/hero.component&#x27;;
+import { PhotoBackgroundComponent } from &#x27;@app/shared/ui/photo-background/photo-background.component&#x27;;
+import { InformationsectionComponent } from &#x27;../ui/informationsection/informationsection.component&#x27;;
+import { TripAdvisorService } from &#x27;@app/shared/data-access/tripadvisor/trip-advisor.service&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { GoogleMapComponent } from &#x27;@app/shared/ui/google-map/google-map.component&#x27;;
+import { ButtonComponent } from &#x27;@app/shared/ui/button/button.component&#x27;;
+import { SidebarModule } from &#x27;primeng/sidebar&#x27;;
+import { DialogModule } from &#x27;primeng/dialog&#x27;;
+import { ImageModule } from &#x27;primeng/image&#x27;;
+
+@Component({
+  selector: &#x27;app-trailinformation&#x27;,
+  standalone: true,
+  imports: [HeroComponent,ImageModule ,DialogModule,PhotoBackgroundComponent,InformationsectionComponent,CommonModule, GoogleMapComponent,ButtonComponent],
+  providers:[],
+  templateUrl: &#x27;./trailinformation.component.html&#x27;,
+  styleUrl: &#x27;./trailinformation.component.css&#x27;
+})
+export class TrailinformationComponent {
+  src:string &#x3D; &#x27;&#x27;;
+  locationPhotos:any &#x3D; [];
+  locationId:string&#x3D;&#x27;&#x27;;
+  chat:boolean &#x3D; false;
+  generating:boolean &#x3D; false;
+  chatcontent:string &#x3D;&#x27;&#x27;
+  contentService: TripAdvisorService &#x3D; inject(TripAdvisorService)
+  
+  details:any &#x3D; {}
+  trails: {title: string, lat: number, lng: number, mapId: string}[];
+  
+  constructor(private route:ActivatedRoute){
+    
+    this.route.params.subscribe(d&#x3D;&gt;{
+      console.log(&quot;di shere&quot;,d)
+      this.locationId &#x3D;d[&#x27;locationId&#x27;]
+      
+      this.contentService.getLocationDetailsByLocationId(this.locationId).then((res)&#x3D;&gt;{
+        this.details &#x3D; res
+        this.trails &#x3D; [{ title: res.name, lat: Number(res.latitude), lng: Number(res.longitude), mapId:&#x27;1&#x27; }]
+        console.log(res)
+        if(this.details[&#x27;name&#x27;]){
+          this.contentService.getLocationPhotosByLocationName(this.details[&#x27;name&#x27;]).then((i)&#x3D;&gt;{
+            console.log(i)
+            if(i[&quot;images_results&quot;][1].original.toString().endsWith(&quot;.jpg&quot;)){
+              this.src &#x3D; i[&quot;images_results&quot;][1].original
+            }
+          })
+        }
+        //this.locationPhotos &#x3D; [...res]
+        //this.src &#x3D; res[0].images.original.url
+      }).catch((e)&#x3D;&gt;{console.log(e)})
+    })
+
+    this.trails &#x3D; [
+      { title: &#x27;New York&#x27;, lat: 40.7128, lng: -74.0060, mapId:&#x27;1&#x27; }, 
+    ];
+  }
+
+  get getDescription(){
+    return this.details[&quot;description&quot;]??&#x27;No Description&#x27;
+  }
+
+  get getBearings(){
+    return &#x60;Longitude: ${this.details[&quot;longitude&quot;]}\nLatitude: ${this.details[&quot;latitude&quot;]}&#x60;??&#x27;No Bearings&#x27;
+  }
+
+  get getRatings(){
+    return &#x60;There are a total of ${this.details[&quot;num_reviews&quot;]} reviews for this location, with an average rating of ${this.details[&quot;rating&quot;]}&#x60;??&#x27;No Ratings&#x27;
+  }
+
+  prompt(){
+    this.generating&#x3D;true
+    this.contentService.getChat(this.details[&quot;name&quot;]).then((res)&#x3D;&gt;{
+      
+      this.chatcontent &#x3D; res.message
+      this.chat &#x3D; true
+      this.generating&#x3D;false
+    }).catch((e)&#x3D;&gt;{
+      this.generating&#x3D;false
+      console.log(e)
+    })
+    this.generating&#x3D;false
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;p-dialog position&#x3D;&quot;bottomright&quot; [(visible)]&#x3D;&quot;chat&quot; [breakpoints]&#x3D;&quot;{ &#x27;860px&#x27;: &#x27;95vw&#x27; }&quot; [style]&#x3D;&quot;{width: &#x27;40vw&#x27;,borderRadius: &#x27;12px&#x27;}&quot;&gt;
+  &lt;ng-template pTemplate&#x3D;&quot;header&quot;&gt;
+    &lt;div class&#x3D;&quot;inline-flex align-items-center justify-content-center gap-2&quot;&gt;
+      &lt;img height&#x3D;&quot;150px&quot; width&#x3D;&quot;150px&quot; src&#x3D;&quot;assets/icons/pv-ai.svg&quot;&gt;
+    &lt;h3 class&#x3D;&quot;text-3xl font-bold text-color-secondary&quot;&gt; PeakVisor AI says...&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+    &lt;span *ngFor&#x3D;&quot;let s of chatcontent&quot; class&#x3D;&quot;font-semibold text-color-primary&quot;&gt;
+      &lt;p class&#x3D;&quot;text-xl&quot;&gt;{{s}}&lt;/p&gt;
+    &lt;/span&gt;
+&lt;/p-dialog&gt;
+&lt;div class&#x3D;&quot;flex flex-column w-full bg-primary&quot;&gt;
+  
+&lt;app-hero subheading&#x3D;&quot;&quot; [heading]&#x3D;&quot;details[&#x27;name&#x27;]&quot;&gt;
+&lt;/app-hero&gt;
+
+&lt;app-photo-background [src]&#x3D;&quot;src&quot;/&gt;
+&lt;app-informationsection sectionHeader&#x3D;&quot;General Information&quot; [content]&#x3D;&quot;details[&#x27;description&#x27;]&quot;/&gt;
+&lt;app-informationsection sectionHeader&#x3D;&quot;Address&quot; [content]&#x3D;&quot;getDescription&quot; class&#x3D;&quot;bg-green-900&quot; /&gt;
+&lt;app-informationsection sectionHeader&#x3D;&quot;Bearings&quot; [content]&#x3D;&quot;getBearings&quot;/&gt;
+&lt;app-informationsection sectionHeader&#x3D;&quot;Rating&quot; [content]&#x3D;&quot;getRatings&quot; class&#x3D;&quot;bg-green-900&quot; &gt;
+  &lt;img *ngIf&#x3D;&quot;details[&#x27;rating_image_url&#x27;]&quot; [src]&#x3D;&quot;details[&#x27;rating_image_url&#x27;]&quot;/&gt;
+&lt;/app-informationsection&gt;
+&lt;div class&#x3D;&quot;flex justify-content-start p-4 md:p-5 flex-column align-items-start gap-2&quot;&gt;
+&lt;div class&#x3D;&quot;w-full&quot; *ngFor&#x3D;&quot;let trail of trails&quot;&gt;
+  &lt;h3 class&#x3D;&quot;heading text-6xl w-full m-0&quot;&gt;{{ trail.title }}&lt;/h3&gt;
+  &lt;app-google-map [title]&#x3D;&quot;trail.title&quot; [lat]&#x3D;&quot;trail.lat&quot; [lng]&#x3D;&quot;trail.lng&quot; [mapId]&#x3D;&quot;trail.mapId&quot;&gt;&lt;/app-google-map&gt;
+  
+&lt;/div&gt; 
+&lt;span class&#x3D;&quot;w-full md:w-2 lg:w-2&quot;&gt;
+  &lt;app-button [disabled]&#x3D;&quot;generating&#x3D;&#x3D;true&quot; ($onClk)&#x3D;&quot;prompt()&quot; severity&#x3D;&quot;secondary&quot; [label]&#x3D;&quot;generating&#x3D;&#x3D;true?&#x27;Loading&#x27;:&#x27;Tell Me More&#x27;&quot;/&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-dialog position="bottomright" [(visible)]="chat" [breakpoints]="{ \'860px\': \'95vw\' }" [style]="{width: \'40vw\',borderRadius: \'12px\'}">  <ng-template pTemplate="header">    <div class="inline-flex align-items-center justify-content-center gap-2">      <img height="150px" width="150px" src="assets/icons/pv-ai.svg">    <h3 class="text-3xl font-bold text-color-secondary"> PeakVisor AI says...</h3>    </div>  </ng-template>    <span *ngFor="let s of chatcontent" class="font-semibold text-color-primary">      <p class="text-xl">{{s}}</p>    </span></p-dialog><div class="flex flex-column w-full bg-primary">  <app-hero subheading="" [heading]="details[\'name\']"></app-hero><app-photo-background [src]="src"/><app-informationsection sectionHeader="General Information" [content]="details[\'description\']"/><app-informationsection sectionHeader="Address" [content]="getDescription" class="bg-green-900" /><app-informationsection sectionHeader="Bearings" [content]="getBearings"/><app-informationsection sectionHeader="Rating" [content]="getRatings" class="bg-green-900" >  <img *ngIf="details[\'rating_image_url\']" [src]="details[\'rating_image_url\']"/></app-informationsection><div class="flex justify-content-start p-4 md:p-5 flex-column align-items-start gap-2"><div class="w-full" *ngFor="let trail of trails">  <h3 class="heading text-6xl w-full m-0">{{ trail.title }}</h3>  <app-google-map [title]="trail.title" [lat]="trail.lat" [lng]="trail.lng" [mapId]="trail.mapId"></app-google-map>  </div> <span class="w-full md:w-2 lg:w-2">  <app-button [disabled]="generating==true" ($onClk)="prompt()" severity="secondary" [label]="generating==true?\'Loading\':\'Tell Me More\'"/></span></div></div></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ButtongroupComponent', 'selector': 'app-buttongroup'},{'name': 'CanvasComponent', 'selector': 'app-canvas'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'DeletesectionComponent', 'selector': 'app-deletesection'},{'name': 'Error404Page', 'selector': 'app-error404-page'},{'name': 'EventspageComponent', 'selector': 'app-eventspage'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GoogleMapComponent', 'selector': 'app-google-map'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HeroComponent', 'selector': 'app-hero'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InformationsectionComponent', 'selector': 'app-informationsection'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginPage', 'selector': 'app-login-page'},{'name': 'MenubuttonComponent', 'selector': 'app-menubutton'},{'name': 'OnboardingcontentdisplayComponent', 'selector': 'app-onboardingcontentdisplay'},{'name': 'OnboardingPage', 'selector': 'app-onboardingpage'},{'name': 'PageWrapperComponent', 'selector': 'app-pagewrapper'},{'name': 'PasswordchangesectionComponent', 'selector': 'app-passwordchangesection'},{'name': 'PhotoBackgroundComponent', 'selector': 'app-photo-background'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoDivComponent', 'selector': 'app-photodiv'},{'name': 'ProfilepageComponent', 'selector': 'app-profilepage'},{'name': 'ProfilestatsComponent', 'selector': 'app-profilestats'},{'name': 'ResetpassworddialogComponent', 'selector': 'app-resetpassworddialog'},{'name': 'SettingsInputComponent', 'selector': 'app-settingsinput'},{'name': 'SettingsPage', 'selector': 'app-settingspage'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupPage', 'selector': 'app-signup-page'},{'name': 'StatsboardComponent', 'selector': 'app-statsboard'},{'name': 'StatsBoardComponent', 'selector': 'app-stats-board'},{'name': 'StatsCardComponent', 'selector': 'app-stats-card'},{'name': 'SvgComponent', 'selector': 'app-svg'},{'name': 'TextInputComponent', 'selector': 'app-textinput'},{'name': 'ToastComponent', 'selector': 'app-toast'},{'name': 'TrailinformationComponent', 'selector': 'app-trailinformation'},{'name': 'TrailsComponent', 'selector': 'app-trails'},{'name': 'TrailsPage', 'selector': 'app-trails-page'},{'name': 'VideoBackground', 'selector': 'app-video-background'},{'name': 'VideoComponent', 'selector': 'app-video'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'TrailinformationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TrailinformationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

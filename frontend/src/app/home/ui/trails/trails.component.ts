@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   providers: [],
   templateUrl: './trails.component.html',
-  styleUrls: ['./trails.component.scss']
+  styleUrls: []
 })
 export class TrailsComponent {}

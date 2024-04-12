@@ -1,0 +1,379 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>peakvisor documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">peakvisor documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SvgComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/ui/svg/svg.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-svg</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styles</td>
+                <td class="col-md-9"><code></code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">template</td>
+                <td class="col-md-9"><pre class="line-numbers"><code class="language-html">&lt;svg id&#x3D;&quot;Layer_2&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 317.08 178.25&quot;&gt;&lt;defs&gt;&lt;style&gt;.cls-1{fill:#fff;}&lt;/style&gt;&lt;/defs&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m93.07,10c23.57,0,42.75,19.18,42.75,42.75s-19.18,42.75-42.75,42.75h-11.82c-23.57,0-42.75-19.18-42.75-42.75S57.68,10,81.25,10h11.82m0-10h-11.82C52.24,0,28.5,23.74,28.5,52.75h0c0,29.01,23.74,52.75,52.75,52.75h11.82c29.01,0,52.75-23.74,52.75-52.75h0C145.82,23.74,122.09,0,93.07,0h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m233.89,10c23.96,0,43.44,19.49,43.44,43.44s-19.49,43.44-43.44,43.44h-11.98c-23.96,0-43.44-19.49-43.44-43.44s19.49-43.44,43.44-43.44h11.98m0-10h-11.98c-29.39,0-53.44,24.05-53.44,53.44h0c0,29.39,24.05,53.44,53.44,53.44h11.98c29.39,0,53.44-24.05,53.44-53.44h0c0-29.39-24.05-53.44-53.44-53.44h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m19.8,55.25v-4.89c0-17.75,8.09-33.7,20.76-44.36h-2.84C18.55,6,2.87,21.68,2.87,40.85v25.3c0,19.17,15.68,34.85,34.85,34.85h4.56c-13.65-10.64-22.48-27.21-22.48-45.75Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m179.81,6h-46.33c12.67,10.66,20.76,26.61,20.76,44.36v4.89c0,18.54-8.83,35.11-22.48,45.75h51.26c-14.1-10.61-23.26-27.46-23.26-46.36v-4.89c0-17.42,7.79-33.09,20.05-43.75Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m281.85,6h-7.7c12.26,10.66,20.05,26.33,20.05,43.75v4.89c0,18.9-9.16,35.75-23.26,46.36h10.91c19.17,0,34.85-15.68,34.85-34.85v-25.3c0-19.17-15.68-34.85-34.85-34.85Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m81.43,80.96c-15.65,0-28.39-12.74-28.39-28.39s12.74-28.39,28.39-28.39h11.37c15.65,0,28.39,12.74,28.39,28.39,0,4.01-.84,7.84-2.35,11.3.4-1.44.62-2.95.62-4.52v-11.67c0-9.19-7.48-16.67-16.67-16.67s-16.67,7.48-16.67,16.67v11.67c0,9.19,7.48,16.67,16.67,16.67,3.79,0,7.29-1.27,10.09-3.41-5.14,5.15-12.25,8.35-20.09,8.35h-11.37Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m91.51,29.18c-6.23,3.81-10.4,10.68-10.4,18.51v11.67c0,6.66,3.02,12.63,7.76,16.61h-7.45c-12.9,0-23.39-10.49-23.39-23.39s10.49-23.39,23.39-23.39h10.09m1.28-10h-11.37c-18.36,0-33.39,15.03-33.39,33.39h0c0,18.36,15.03,33.39,33.39,33.39h11.37c18.36,0,33.39-15.03,33.39-33.39h0c0-18.36-15.03-33.39-33.39-33.39h0Zm9.99,51.85c-6.42,0-11.67-5.25-11.67-11.67v-11.67c0-6.42,5.25-11.67,11.67-11.67h0c6.42,0,11.67,5.25,11.67,11.67v11.67c0,6.42-5.25,11.67-11.67,11.67h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m233.6,19.43h-11.52c-18.61,0-33.83,15.22-33.83,33.83h0c0,18.61,15.22,33.83,33.83,33.83h11.52c18.61,0,33.83-15.22,33.83-33.83h0c0-18.61-15.22-33.83-33.83-33.83Zm22.38,41.12c0,6.51-5.32,11.83-11.83,11.83s-11.83-5.32-11.83-11.83v-11.82c0-6.51,5.32-11.83,11.83-11.83s11.83,5.32,11.83,11.83v11.82Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m34.98,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.01c6.55,0,8.5,2.84,8.5,7.02v4.61c0,4.18-1.94,7.02-8.5,7.02h-4.14v5.98c0,.9-.4,1.3-1.3,1.3h-5.58Zm6.8-13.75h3.24c1.4,0,1.69-.83,1.69-1.76v-1.91c0-.94-.29-1.76-1.69-1.76h-3.24v5.44Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m63.14,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h16.7c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-9.93v2.77h7.02c.9,0,1.3.4,1.3,1.3v3.85c0,.9-.4,1.3-1.3,1.3h-7.02v3.1h9.93c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-16.7Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m95.03,142.35h-5.29c-.9,0-1.3-.4-1.3-1.3v-9.5c0-1.44.43-3.24,1.4-5.76l3.13-8.17c.29-.83.86-1.19,1.84-1.19h9.68c.94,0,1.51.36,1.8,1.19l3.13,8.17c.97,2.52,1.4,4.32,1.4,5.76v9.5c0,.9-.4,1.3-1.3,1.3h-5.44c-.97,0-1.4-.4-1.4-1.3v-5.04h-6.37v5.04c0,.9-.4,1.3-1.3,1.3Zm1.66-12.89h5.65l-1.69-5.47c-.18-.43-.4-.61-.68-.61h-.9c-.29,0-.5.18-.68.61l-1.69,5.47Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m120.16,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h5.58c.9,0,1.3.4,1.3,1.3v8.28h1.44l3.71-8.39c.36-.86.86-1.19,1.8-1.19h5.54c.83,0,1.12.43.79,1.19l-3.67,8.39c2.7.14,4.43,2.02,4.43,4.9v10.15c0,.9-.4,1.3-1.3,1.3h-5.54c-.9,0-1.3-.4-1.3-1.3v-7.02c0-.79-.4-1.22-1.15-1.22h-4.75v8.24c0,.9-.4,1.3-1.3,1.3h-5.58Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m155.12,142.35c-.94,0-1.48-.29-1.84-1.19l-3.53-8.82c-.86-2.16-1.15-2.84-1.15-5.11v-9.5c0-.9.4-1.3,1.3-1.3h5.72c.9,0,1.4.4,1.4,1.3v9.93c0,.5.11.94.29,1.48l1.69,5.04c.14.47.29.61.68.61h.4c.4,0,.54-.14.68-.61l1.69-5.08c.18-.54.29-.97.29-1.48v-9.9c0-.9.4-1.3,1.3-1.3h5.65c.94,0,1.3.4,1.3,1.3v9.5c0,2.27-.29,2.95-1.15,5.11l-3.53,8.82c-.36.9-.9,1.19-1.84,1.19h-9.36Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m178.44,141.05v-4.28c0-.9.4-1.3,1.29-1.3h3.56v-12.09h-3.56c-.9,0-1.29-.4-1.29-1.3v-4.36c0-.9.4-1.3,1.29-1.3h15.33c.9,0,1.3.4,1.3,1.3v4.36c0,.9-.4,1.3-1.3,1.3h-3.49v12.09h3.49c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-15.33c-.9,0-1.29-.4-1.29-1.3Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m205.05,142.35c-.9,0-1.3-.4-1.3-1.3v-4.21c0-.9.4-1.3,1.3-1.3h9.68c.61,0,.94-.47.94-1.04,0-.83-.32-1.15-.94-1.22l-5.4-.76c-3.38-.5-5.58-1.94-5.58-5.97v-3.78c0-4.1,2.77-6.34,7.45-6.34h10.08c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-8.39c-.61,0-.97.43-.97,1.08s.36,1.08.97,1.15l5.36.72c3.38.5,5.62,1.94,5.62,5.98v3.78c0,4.1-2.81,6.33-7.45,6.33h-11.37Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m242.2,142.89c-9,0-11.19-2.95-11.19-7.34v-12.27c0-4.39,2.2-7.38,11.19-7.38s11.16,2.99,11.16,7.38v12.27c0,4.39-2.16,7.34-11.16,7.34Zm0-6.95c2.63,0,3.02-.72,3.02-1.69v-9.68c0-.94-.4-1.66-3.02-1.66s-3.02.72-3.02,1.66v9.68c0,.97.43,1.69,3.02,1.69Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m262.83,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.99c5.4,0,7.09,2.45,7.09,6.01v1.66c0,2.02-.5,3.46-2.02,4.1,2.63.29,4.36,2.2,4.36,5.22v7.63c0,.9-.4,1.3-1.3,1.3h-5.58c-.9,0-1.3-.4-1.3-1.3v-5.51c0-1.08-.36-1.55-1.37-1.55h-5.04v7.05c0,.9-.4,1.3-1.3,1.3h-5.54Zm6.84-14.83h2.7c1.26,0,1.58-.72,1.58-1.69v-1.22c0-.97-.32-1.69-1.58-1.69h-2.7v4.61Z&quot;/&gt;&lt;/svg&gt;</code></pre></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#src" >src</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="src"></a>
+                        <b>src</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;assets/icons/peakvisor-icon.svg&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/shared/ui/svg/svg.component.ts:12</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-svg&#x27;,
+  standalone: true,
+  imports: [],
+  template:  &#x60;&lt;svg id&#x3D;&quot;Layer_2&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 317.08 178.25&quot;&gt;&lt;defs&gt;&lt;style&gt;.cls-1{fill:#fff;}&lt;/style&gt;&lt;/defs&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m93.07,10c23.57,0,42.75,19.18,42.75,42.75s-19.18,42.75-42.75,42.75h-11.82c-23.57,0-42.75-19.18-42.75-42.75S57.68,10,81.25,10h11.82m0-10h-11.82C52.24,0,28.5,23.74,28.5,52.75h0c0,29.01,23.74,52.75,52.75,52.75h11.82c29.01,0,52.75-23.74,52.75-52.75h0C145.82,23.74,122.09,0,93.07,0h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m233.89,10c23.96,0,43.44,19.49,43.44,43.44s-19.49,43.44-43.44,43.44h-11.98c-23.96,0-43.44-19.49-43.44-43.44s19.49-43.44,43.44-43.44h11.98m0-10h-11.98c-29.39,0-53.44,24.05-53.44,53.44h0c0,29.39,24.05,53.44,53.44,53.44h11.98c29.39,0,53.44-24.05,53.44-53.44h0c0-29.39-24.05-53.44-53.44-53.44h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m19.8,55.25v-4.89c0-17.75,8.09-33.7,20.76-44.36h-2.84C18.55,6,2.87,21.68,2.87,40.85v25.3c0,19.17,15.68,34.85,34.85,34.85h4.56c-13.65-10.64-22.48-27.21-22.48-45.75Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m179.81,6h-46.33c12.67,10.66,20.76,26.61,20.76,44.36v4.89c0,18.54-8.83,35.11-22.48,45.75h51.26c-14.1-10.61-23.26-27.46-23.26-46.36v-4.89c0-17.42,7.79-33.09,20.05-43.75Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m281.85,6h-7.7c12.26,10.66,20.05,26.33,20.05,43.75v4.89c0,18.9-9.16,35.75-23.26,46.36h10.91c19.17,0,34.85-15.68,34.85-34.85v-25.3c0-19.17-15.68-34.85-34.85-34.85Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m81.43,80.96c-15.65,0-28.39-12.74-28.39-28.39s12.74-28.39,28.39-28.39h11.37c15.65,0,28.39,12.74,28.39,28.39,0,4.01-.84,7.84-2.35,11.3.4-1.44.62-2.95.62-4.52v-11.67c0-9.19-7.48-16.67-16.67-16.67s-16.67,7.48-16.67,16.67v11.67c0,9.19,7.48,16.67,16.67,16.67,3.79,0,7.29-1.27,10.09-3.41-5.14,5.15-12.25,8.35-20.09,8.35h-11.37Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m91.51,29.18c-6.23,3.81-10.4,10.68-10.4,18.51v11.67c0,6.66,3.02,12.63,7.76,16.61h-7.45c-12.9,0-23.39-10.49-23.39-23.39s10.49-23.39,23.39-23.39h10.09m1.28-10h-11.37c-18.36,0-33.39,15.03-33.39,33.39h0c0,18.36,15.03,33.39,33.39,33.39h11.37c18.36,0,33.39-15.03,33.39-33.39h0c0-18.36-15.03-33.39-33.39-33.39h0Zm9.99,51.85c-6.42,0-11.67-5.25-11.67-11.67v-11.67c0-6.42,5.25-11.67,11.67-11.67h0c6.42,0,11.67,5.25,11.67,11.67v11.67c0,6.42-5.25,11.67-11.67,11.67h0Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m233.6,19.43h-11.52c-18.61,0-33.83,15.22-33.83,33.83h0c0,18.61,15.22,33.83,33.83,33.83h11.52c18.61,0,33.83-15.22,33.83-33.83h0c0-18.61-15.22-33.83-33.83-33.83Zm22.38,41.12c0,6.51-5.32,11.83-11.83,11.83s-11.83-5.32-11.83-11.83v-11.82c0-6.51,5.32-11.83,11.83-11.83s11.83,5.32,11.83,11.83v11.82Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m34.98,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.01c6.55,0,8.5,2.84,8.5,7.02v4.61c0,4.18-1.94,7.02-8.5,7.02h-4.14v5.98c0,.9-.4,1.3-1.3,1.3h-5.58Zm6.8-13.75h3.24c1.4,0,1.69-.83,1.69-1.76v-1.91c0-.94-.29-1.76-1.69-1.76h-3.24v5.44Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m63.14,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h16.7c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-9.93v2.77h7.02c.9,0,1.3.4,1.3,1.3v3.85c0,.9-.4,1.3-1.3,1.3h-7.02v3.1h9.93c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-16.7Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m95.03,142.35h-5.29c-.9,0-1.3-.4-1.3-1.3v-9.5c0-1.44.43-3.24,1.4-5.76l3.13-8.17c.29-.83.86-1.19,1.84-1.19h9.68c.94,0,1.51.36,1.8,1.19l3.13,8.17c.97,2.52,1.4,4.32,1.4,5.76v9.5c0,.9-.4,1.3-1.3,1.3h-5.44c-.97,0-1.4-.4-1.4-1.3v-5.04h-6.37v5.04c0,.9-.4,1.3-1.3,1.3Zm1.66-12.89h5.65l-1.69-5.47c-.18-.43-.4-.61-.68-.61h-.9c-.29,0-.5.18-.68.61l-1.69,5.47Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m120.16,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h5.58c.9,0,1.3.4,1.3,1.3v8.28h1.44l3.71-8.39c.36-.86.86-1.19,1.8-1.19h5.54c.83,0,1.12.43.79,1.19l-3.67,8.39c2.7.14,4.43,2.02,4.43,4.9v10.15c0,.9-.4,1.3-1.3,1.3h-5.54c-.9,0-1.3-.4-1.3-1.3v-7.02c0-.79-.4-1.22-1.15-1.22h-4.75v8.24c0,.9-.4,1.3-1.3,1.3h-5.58Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m155.12,142.35c-.94,0-1.48-.29-1.84-1.19l-3.53-8.82c-.86-2.16-1.15-2.84-1.15-5.11v-9.5c0-.9.4-1.3,1.3-1.3h5.72c.9,0,1.4.4,1.4,1.3v9.93c0,.5.11.94.29,1.48l1.69,5.04c.14.47.29.61.68.61h.4c.4,0,.54-.14.68-.61l1.69-5.08c.18-.54.29-.97.29-1.48v-9.9c0-.9.4-1.3,1.3-1.3h5.65c.94,0,1.3.4,1.3,1.3v9.5c0,2.27-.29,2.95-1.15,5.11l-3.53,8.82c-.36.9-.9,1.19-1.84,1.19h-9.36Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m178.44,141.05v-4.28c0-.9.4-1.3,1.29-1.3h3.56v-12.09h-3.56c-.9,0-1.29-.4-1.29-1.3v-4.36c0-.9.4-1.3,1.29-1.3h15.33c.9,0,1.3.4,1.3,1.3v4.36c0,.9-.4,1.3-1.3,1.3h-3.49v12.09h3.49c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-15.33c-.9,0-1.29-.4-1.29-1.3Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m205.05,142.35c-.9,0-1.3-.4-1.3-1.3v-4.21c0-.9.4-1.3,1.3-1.3h9.68c.61,0,.94-.47.94-1.04,0-.83-.32-1.15-.94-1.22l-5.4-.76c-3.38-.5-5.58-1.94-5.58-5.97v-3.78c0-4.1,2.77-6.34,7.45-6.34h10.08c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-8.39c-.61,0-.97.43-.97,1.08s.36,1.08.97,1.15l5.36.72c3.38.5,5.62,1.94,5.62,5.98v3.78c0,4.1-2.81,6.33-7.45,6.33h-11.37Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m242.2,142.89c-9,0-11.19-2.95-11.19-7.34v-12.27c0-4.39,2.2-7.38,11.19-7.38s11.16,2.99,11.16,7.38v12.27c0,4.39-2.16,7.34-11.16,7.34Zm0-6.95c2.63,0,3.02-.72,3.02-1.69v-9.68c0-.94-.4-1.66-3.02-1.66s-3.02.72-3.02,1.66v9.68c0,.97.43,1.69,3.02,1.69Z&quot;/&gt;&lt;path class&#x3D;&quot;cls-1&quot; d&#x3D;&quot;m262.83,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.99c5.4,0,7.09,2.45,7.09,6.01v1.66c0,2.02-.5,3.46-2.02,4.1,2.63.29,4.36,2.2,4.36,5.22v7.63c0,.9-.4,1.3-1.3,1.3h-5.58c-.9,0-1.3-.4-1.3-1.3v-5.51c0-1.08-.36-1.55-1.37-1.55h-5.04v7.05c0,.9-.4,1.3-1.3,1.3h-5.54Zm6.84-14.83h2.7c1.26,0,1.58-.72,1.58-1.69v-1.22c0-.97-.32-1.69-1.58-1.69h-2.7v4.61Z&quot;/&gt;&lt;/svg&gt;&#x60;,
+  styles: &#x60;&#x60;
+})
+
+export class SvgComponent {
+  @Input() src:string &#x3D; &quot;assets/icons/peakvisor-icon.svg&quot;
+}
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="styleData">
+            <pre class="line-numbers"><code class="language-scss">
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 317.08 178.25"><defs><style>.cls-1{fill:#fff;}</style></defs><path class="cls-1" d="m93.07,10c23.57,0,42.75,19.18,42.75,42.75s-19.18,42.75-42.75,42.75h-11.82c-23.57,0-42.75-19.18-42.75-42.75S57.68,10,81.25,10h11.82m0-10h-11.82C52.24,0,28.5,23.74,28.5,52.75h0c0,29.01,23.74,52.75,52.75,52.75h11.82c29.01,0,52.75-23.74,52.75-52.75h0C145.82,23.74,122.09,0,93.07,0h0Z"/><path class="cls-1" d="m233.89,10c23.96,0,43.44,19.49,43.44,43.44s-19.49,43.44-43.44,43.44h-11.98c-23.96,0-43.44-19.49-43.44-43.44s19.49-43.44,43.44-43.44h11.98m0-10h-11.98c-29.39,0-53.44,24.05-53.44,53.44h0c0,29.39,24.05,53.44,53.44,53.44h11.98c29.39,0,53.44-24.05,53.44-53.44h0c0-29.39-24.05-53.44-53.44-53.44h0Z"/><path class="cls-1" d="m19.8,55.25v-4.89c0-17.75,8.09-33.7,20.76-44.36h-2.84C18.55,6,2.87,21.68,2.87,40.85v25.3c0,19.17,15.68,34.85,34.85,34.85h4.56c-13.65-10.64-22.48-27.21-22.48-45.75Z"/><path class="cls-1" d="m179.81,6h-46.33c12.67,10.66,20.76,26.61,20.76,44.36v4.89c0,18.54-8.83,35.11-22.48,45.75h51.26c-14.1-10.61-23.26-27.46-23.26-46.36v-4.89c0-17.42,7.79-33.09,20.05-43.75Z"/><path class="cls-1" d="m281.85,6h-7.7c12.26,10.66,20.05,26.33,20.05,43.75v4.89c0,18.9-9.16,35.75-23.26,46.36h10.91c19.17,0,34.85-15.68,34.85-34.85v-25.3c0-19.17-15.68-34.85-34.85-34.85Z"/><path class="cls-1" d="m81.43,80.96c-15.65,0-28.39-12.74-28.39-28.39s12.74-28.39,28.39-28.39h11.37c15.65,0,28.39,12.74,28.39,28.39,0,4.01-.84,7.84-2.35,11.3.4-1.44.62-2.95.62-4.52v-11.67c0-9.19-7.48-16.67-16.67-16.67s-16.67,7.48-16.67,16.67v11.67c0,9.19,7.48,16.67,16.67,16.67,3.79,0,7.29-1.27,10.09-3.41-5.14,5.15-12.25,8.35-20.09,8.35h-11.37Z"/><path class="cls-1" d="m91.51,29.18c-6.23,3.81-10.4,10.68-10.4,18.51v11.67c0,6.66,3.02,12.63,7.76,16.61h-7.45c-12.9,0-23.39-10.49-23.39-23.39s10.49-23.39,23.39-23.39h10.09m1.28-10h-11.37c-18.36,0-33.39,15.03-33.39,33.39h0c0,18.36,15.03,33.39,33.39,33.39h11.37c18.36,0,33.39-15.03,33.39-33.39h0c0-18.36-15.03-33.39-33.39-33.39h0Zm9.99,51.85c-6.42,0-11.67-5.25-11.67-11.67v-11.67c0-6.42,5.25-11.67,11.67-11.67h0c6.42,0,11.67,5.25,11.67,11.67v11.67c0,6.42-5.25,11.67-11.67,11.67h0Z"/><path class="cls-1" d="m233.6,19.43h-11.52c-18.61,0-33.83,15.22-33.83,33.83h0c0,18.61,15.22,33.83,33.83,33.83h11.52c18.61,0,33.83-15.22,33.83-33.83h0c0-18.61-15.22-33.83-33.83-33.83Zm22.38,41.12c0,6.51-5.32,11.83-11.83,11.83s-11.83-5.32-11.83-11.83v-11.82c0-6.51,5.32-11.83,11.83-11.83s11.83,5.32,11.83,11.83v11.82Z"/><path class="cls-1" d="m34.98,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.01c6.55,0,8.5,2.84,8.5,7.02v4.61c0,4.18-1.94,7.02-8.5,7.02h-4.14v5.98c0,.9-.4,1.3-1.3,1.3h-5.58Zm6.8-13.75h3.24c1.4,0,1.69-.83,1.69-1.76v-1.91c0-.94-.29-1.76-1.69-1.76h-3.24v5.44Z"/><path class="cls-1" d="m63.14,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h16.7c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-9.93v2.77h7.02c.9,0,1.3.4,1.3,1.3v3.85c0,.9-.4,1.3-1.3,1.3h-7.02v3.1h9.93c.9,0,1.3.4,1.3,1.3v4.21c0,.9-.4,1.3-1.3,1.3h-16.7Z"/><path class="cls-1" d="m95.03,142.35h-5.29c-.9,0-1.3-.4-1.3-1.3v-9.5c0-1.44.43-3.24,1.4-5.76l3.13-8.17c.29-.83.86-1.19,1.84-1.19h9.68c.94,0,1.51.36,1.8,1.19l3.13,8.17c.97,2.52,1.4,4.32,1.4,5.76v9.5c0,.9-.4,1.3-1.3,1.3h-5.44c-.97,0-1.4-.4-1.4-1.3v-5.04h-6.37v5.04c0,.9-.4,1.3-1.3,1.3Zm1.66-12.89h5.65l-1.69-5.47c-.18-.43-.4-.61-.68-.61h-.9c-.29,0-.5.18-.68.61l-1.69,5.47Z"/><path class="cls-1" d="m120.16,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h5.58c.9,0,1.3.4,1.3,1.3v8.28h1.44l3.71-8.39c.36-.86.86-1.19,1.8-1.19h5.54c.83,0,1.12.43.79,1.19l-3.67,8.39c2.7.14,4.43,2.02,4.43,4.9v10.15c0,.9-.4,1.3-1.3,1.3h-5.54c-.9,0-1.3-.4-1.3-1.3v-7.02c0-.79-.4-1.22-1.15-1.22h-4.75v8.24c0,.9-.4,1.3-1.3,1.3h-5.58Z"/><path class="cls-1" d="m155.12,142.35c-.94,0-1.48-.29-1.84-1.19l-3.53-8.82c-.86-2.16-1.15-2.84-1.15-5.11v-9.5c0-.9.4-1.3,1.3-1.3h5.72c.9,0,1.4.4,1.4,1.3v9.93c0,.5.11.94.29,1.48l1.69,5.04c.14.47.29.61.68.61h.4c.4,0,.54-.14.68-.61l1.69-5.08c.18-.54.29-.97.29-1.48v-9.9c0-.9.4-1.3,1.3-1.3h5.65c.94,0,1.3.4,1.3,1.3v9.5c0,2.27-.29,2.95-1.15,5.11l-3.53,8.82c-.36.9-.9,1.19-1.84,1.19h-9.36Z"/><path class="cls-1" d="m178.44,141.05v-4.28c0-.9.4-1.3,1.29-1.3h3.56v-12.09h-3.56c-.9,0-1.29-.4-1.29-1.3v-4.36c0-.9.4-1.3,1.29-1.3h15.33c.9,0,1.3.4,1.3,1.3v4.36c0,.9-.4,1.3-1.3,1.3h-3.49v12.09h3.49c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-15.33c-.9,0-1.29-.4-1.29-1.3Z"/><path class="cls-1" d="m205.05,142.35c-.9,0-1.3-.4-1.3-1.3v-4.21c0-.9.4-1.3,1.3-1.3h9.68c.61,0,.94-.47.94-1.04,0-.83-.32-1.15-.94-1.22l-5.4-.76c-3.38-.5-5.58-1.94-5.58-5.97v-3.78c0-4.1,2.77-6.34,7.45-6.34h10.08c.9,0,1.3.4,1.3,1.3v4.28c0,.9-.4,1.3-1.3,1.3h-8.39c-.61,0-.97.43-.97,1.08s.36,1.08.97,1.15l5.36.72c3.38.5,5.62,1.94,5.62,5.98v3.78c0,4.1-2.81,6.33-7.45,6.33h-11.37Z"/><path class="cls-1" d="m242.2,142.89c-9,0-11.19-2.95-11.19-7.34v-12.27c0-4.39,2.2-7.38,11.19-7.38s11.16,2.99,11.16,7.38v12.27c0,4.39-2.16,7.34-11.16,7.34Zm0-6.95c2.63,0,3.02-.72,3.02-1.69v-9.68c0-.94-.4-1.66-3.02-1.66s-3.02.72-3.02,1.66v9.68c0,.97.43,1.69,3.02,1.69Z"/><path class="cls-1" d="m262.83,142.35c-.9,0-1.3-.4-1.3-1.3v-23.33c0-.9.4-1.3,1.3-1.3h11.99c5.4,0,7.09,2.45,7.09,6.01v1.66c0,2.02-.5,3.46-2.02,4.1,2.63.29,4.36,2.2,4.36,5.22v7.63c0,.9-.4,1.3-1.3,1.3h-5.58c-.9,0-1.3-.4-1.3-1.3v-5.51c0-1.08-.36-1.55-1.37-1.55h-5.04v7.05c0,.9-.4,1.3-1.3,1.3h-5.54Zm6.84-14.83h2.7c1.26,0,1.58-.72,1.58-1.69v-1.22c0-.97-.32-1.69-1.58-1.69h-2.7v4.61Z"/></svg></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ButtongroupComponent', 'selector': 'app-buttongroup'},{'name': 'CanvasComponent', 'selector': 'app-canvas'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'DeletesectionComponent', 'selector': 'app-deletesection'},{'name': 'Error404Page', 'selector': 'app-error404-page'},{'name': 'EventspageComponent', 'selector': 'app-eventspage'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GoogleMapComponent', 'selector': 'app-google-map'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HeroComponent', 'selector': 'app-hero'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InformationsectionComponent', 'selector': 'app-informationsection'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginPage', 'selector': 'app-login-page'},{'name': 'MenubuttonComponent', 'selector': 'app-menubutton'},{'name': 'OnboardingcontentdisplayComponent', 'selector': 'app-onboardingcontentdisplay'},{'name': 'OnboardingPage', 'selector': 'app-onboardingpage'},{'name': 'PageWrapperComponent', 'selector': 'app-pagewrapper'},{'name': 'PasswordchangesectionComponent', 'selector': 'app-passwordchangesection'},{'name': 'PhotoBackgroundComponent', 'selector': 'app-photo-background'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoDivComponent', 'selector': 'app-photodiv'},{'name': 'ProfilepageComponent', 'selector': 'app-profilepage'},{'name': 'ProfilestatsComponent', 'selector': 'app-profilestats'},{'name': 'ResetpassworddialogComponent', 'selector': 'app-resetpassworddialog'},{'name': 'SettingsInputComponent', 'selector': 'app-settingsinput'},{'name': 'SettingsPage', 'selector': 'app-settingspage'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupPage', 'selector': 'app-signup-page'},{'name': 'StatsboardComponent', 'selector': 'app-statsboard'},{'name': 'StatsBoardComponent', 'selector': 'app-stats-board'},{'name': 'StatsCardComponent', 'selector': 'app-stats-card'},{'name': 'SvgComponent', 'selector': 'app-svg'},{'name': 'TextInputComponent', 'selector': 'app-textinput'},{'name': 'ToastComponent', 'selector': 'app-toast'},{'name': 'TrailinformationComponent', 'selector': 'app-trailinformation'},{'name': 'TrailsComponent', 'selector': 'app-trails'},{'name': 'TrailsPage', 'selector': 'app-trails-page'},{'name': 'VideoBackground', 'selector': 'app-video-background'},{'name': 'VideoComponent', 'selector': 'app-video'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SvgComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SvgComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

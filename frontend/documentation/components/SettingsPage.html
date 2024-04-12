@@ -1,0 +1,1686 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>peakvisor documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">peakvisor documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SettingsPage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/settings/feature/settings.page.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-settingspage</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/SettingsInputComponent.html" target="_self" >SettingsInputComponent</a></code>
+                                <code><a href="../components/FooterComponent.html" target="_self" >FooterComponent</a></code>
+                                <code><a href="../components/DeletesectionComponent.html" target="_self" >DeletesectionComponent</a></code>
+                                <code><a href="../components/PasswordchangesectionComponent.html" target="_self" >PasswordchangesectionComponent</a></code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../components/ButtonComponent.html" target="_self" >ButtonComponent</a></code>
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./settings.page.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./settings.page.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#currentlyEditing" >currentlyEditing</a>
+                            </li>
+                            <li>
+                                <a href="#settingsForm" >settingsForm</a>
+                            </li>
+                            <li>
+                                <a href="#userId$" >userId$</a>
+                            </li>
+                            <li>
+                                <a href="#authState$" >authState$</a>
+                            </li>
+                            <li>
+                                <a href="#loadingState$" >loadingState$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#messageService" >messageService</a>
+                            </li>
+                            <li>
+                                <a href="#nrouter" >nrouter</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarVisible" >sidebarVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#store" >store</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#setCurrentlyEditing" >setCurrentlyEditing</a>
+                            </li>
+                            <li>
+                                <a href="#unlinkStrava" >unlinkStrava</a>
+                            </li>
+                            <li>
+                                <a href="#validateName" >validateName</a>
+                            </li>
+                            <li>
+                                <a href="#displayErrorToast" >displayErrorToast</a>
+                            </li>
+                            <li>
+                                <a href="#displaySuccessToast" >displaySuccessToast</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarLogout" >sidebarLogout</a>
+                            </li>
+                            <li>
+                                <a href="#toggleLoader" >toggleLoader</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSidebarVisible" >toggleSidebarVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#name" >name</a>
+                                </li>
+                                <li>
+                                    <a href="#strava" >strava</a>
+                                </li>
+                                <li>
+                                    <a href="#email" >email</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(messageService: MessageService, store: <a href="../interfaces/AppState.html" target="_self">Store&lt;AppState&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/settings/feature/settings.page.ts:81</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/AppState.html" target="_self" >Store&lt;AppState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setCurrentlyEditing"></a>
+                    <span class="name">
+                        <span ><b>setCurrentlyEditing</b></span>
+                        <a href="#setCurrentlyEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setCurrentlyEditing(num: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>num</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unlinkStrava"></a>
+                    <span class="name">
+                        <span ><b>unlinkStrava</b></span>
+                        <a href="#unlinkStrava"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unlinkStrava()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateName"></a>
+                    <span class="name">
+                        <span ><b>validateName</b></span>
+                        <a href="#validateName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateName(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayErrorToast"></a>
+                    <span class="name">
+                        <span ><b>displayErrorToast</b></span>
+                        <a href="#displayErrorToast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>displayErrorToast(header: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:56</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>header</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displaySuccessToast"></a>
+                    <span class="name">
+                        <span ><b>displaySuccessToast</b></span>
+                        <a href="#displaySuccessToast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>displaySuccessToast(header: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:52</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>header</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarLogout"></a>
+                    <span class="name">
+                        <span ><b>sidebarLogout</b></span>
+                        <a href="#sidebarLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sidebarLogout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:65</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleLoader"></a>
+                    <span class="name">
+                        <span ><b>toggleLoader</b></span>
+                        <a href="#toggleLoader"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleLoader(b: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:61</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>b</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebarVisible"></a>
+                    <span class="name">
+                        <span ><b>toggleSidebarVisible</b></span>
+                        <a href="#toggleSidebarVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSidebarVisible()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:72</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(AuthService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/settings/feature/settings.page.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentlyEditing"></a>
+                    <span class="name">
+                        <span ><b>currentlyEditing</b></span>
+                        <a href="#currentlyEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/settings/feature/settings.page.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="settingsForm"></a>
+                    <span class="name">
+                        <span ><b>settingsForm</b></span>
+                        <a href="#settingsForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormGroup({
+    name: new FormControl(&#x27;&#x27;,Validators.required),
+    strava: new FormControl(&#x27;&#x27;),
+    email:new FormControl(&#x27;&#x27;,[Validators.required,Validators.email])
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/settings/feature/settings.page.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userId$"></a>
+                    <span class="name">
+                        <span ><b>userId$</b></span>
+                        <a href="#userId$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/settings/feature/settings.page.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authState$"></a>
+                    <span class="name">
+                        <span ><b>authState$</b></span>
+                        <a href="#authState$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:34</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingState$"></a>
+                    <span class="name">
+                        <span ><b>loadingState$</b></span>
+                        <a href="#loadingState$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:36</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>messageService</b></span>
+                        <a href="#messageService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MessageService</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nrouter"></a>
+                    <span class="name">
+                        <span ><b>nrouter</b></span>
+                        <a href="#nrouter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Router</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:35</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarVisible"></a>
+                    <span class="name">
+                        <span ><b>sidebarVisible</b></span>
+                        <a href="#sidebarVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:33</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="store"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>store</b></span>
+                        <a href="#store"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/AppState.html" target="_self" >Store&lt;AppState&gt;</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../components/PageWrapperComponent.html" target="_self" >PageWrapperComponent</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>name()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/settings/feature/settings.page.ts:36</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="strava"></a>
+                        <span class="name"><b>strava</b><a href="#strava"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>strava()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/settings/feature/settings.page.ts:40</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name"><b>email</b><a href="#email"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>email()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/settings/feature/settings.page.ts:44</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterViewInit, Component, OnInit, inject } from &#x27;@angular/core&#x27;;
+import { HeaderComponent } from &#x27;@app/shared/ui/header/header.component&#x27;;
+import { SettingsInputComponent } from &#x27;@app/shared/ui/settings-input/settings-input.component&#x27;;
+import { DeletesectionComponent } from &#x27;../ui/deletesection/deletesection.component&#x27;;
+import { AuthService } from &#x27;@app/shared/data-access/auth/auth.service&#x27;;
+import { FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl } from &#x27;@angular/forms&#x27;;
+import { AppState } from &#x27;@app/shared/feature/state/app-state/app.state&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { SelectUserId } from &#x27;@app/shared/feature/state/auth-state/auth-state.selector&#x27;;
+import { ButtonComponent } from &#x27;@app/shared/ui/button/button.component&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { PasswordchangesectionComponent } from &#x27;../ui/passwordchangesection/passwordchangesection.component&#x27;;
+import { PageWrapperComponent } from &#x27;@app/shared/ui/page-wrapper/page-wrapper.component&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+import { FooterComponent } from &#x27;@app/shared/ui/footer/footer.component&#x27;;
+
+@Component({
+  selector: &#x27;app-settingspage&#x27;,
+  standalone: true,
+  imports: [HeaderComponent, SettingsInputComponent,FooterComponent,DeletesectionComponent,PasswordchangesectionComponent,ReactiveFormsModule,ButtonComponent,CommonModule],
+  templateUrl: &#x27;./settings.page.html&#x27;,
+  styleUrl: &#x27;./settings.page.css&#x27;
+})
+
+export class SettingsPage extends PageWrapperComponent implements AfterViewInit, OnInit {
+  authService &#x3D; inject(AuthService)
+  userId$:any;
+  currentlyEditing &#x3D; 0;
+  settingsForm &#x3D; new FormGroup({
+    name: new FormControl(&#x27;&#x27;,Validators.required),
+    strava: new FormControl(&#x27;&#x27;),
+    email:new FormControl(&#x27;&#x27;,[Validators.required,Validators.email])
+  })
+
+  get name() {
+    return this.settingsForm.get(&#x27;name&#x27;)
+  }
+
+  get strava() {
+    return this.settingsForm.get(&#x27;strava&#x27;)
+  }
+
+  get email() {
+    return this.settingsForm.get(&#x27;email&#x27;)
+  }
+
+  ngOnInit(): void {
+      this.settingsForm &#x3D;new FormGroup({
+        name: new FormControl(&#x27;&#x27;,[Validators.required, this.validateName]),
+        strava: new FormControl(&#x27;&#x27;,Validators.required),
+        email:new FormControl(&#x27;&#x27;,[Validators.required,Validators.email])
+      })
+      console.log(this.settingsForm)
+  }
+
+  setCurrentlyEditing(num:number){
+    if(!this.settingsForm.valid){
+      this.displayErrorToast(&quot;Saving failed&quot;,&quot;Please fix the input errors.&quot;)
+    }else{
+      
+      
+      this.store.select(SelectUserId).subscribe(d&#x3D;&gt;{
+        const {email,name,strava} &#x3D; this.settingsForm.value
+        this.currentlyEditing &#x3D; num
+        if(num&#x3D;&#x3D;0){
+        this.authService.update(email??&#x27;&#x27;,name??&#x27;&#x27;,strava??&#x27;&#x27;,d).then(res&#x3D;&gt;{
+          
+          if(res[&quot;status&quot;]&#x3D;&#x3D;&quot;failure&quot;) throw new Error
+          
+            this.displaySuccessToast(&quot;Changes saved&quot;,&quot;yay&quot;)
+          
+          
+        }).catch(e&#x3D;&gt;{
+          
+          this.displayErrorToast(&quot;Changes not saved.&quot;,&quot;Something went wrong.&quot;)
+        })
+      }  })
+    
+    }
+  }
+
+  constructor(messageService:MessageService,store:Store&lt;AppState&gt;){
+    super(messageService,store)
+    this.userId$ &#x3D; (store.select(SelectUserId)).subscribe((d:any)&#x3D;&gt;{
+      if(!d &amp;&amp; localStorage.getItem(&quot;logindata&quot;)){
+        d &#x3D; JSON.parse(localStorage.getItem(&quot;logindata&quot;)??&#x27;&#x27;)[&quot;uid&quot;]
+      }
+      this.authService.getUserSettings(d).then(userdata&#x3D;&gt;{
+        
+        userdata &#x3D; {...userdata}
+        this.settingsForm.setValue({
+              name: userdata.name ?? &#x27;&#x27;,
+              strava:userdata.strava ?? &#x27;Not Connected&#x27;,
+              email:userdata.email ?? &#x27;&#x27;
+        })
+      })
+    
+
+    })
+  }
+
+  ngAfterViewInit(): void {
+      
+  }
+
+  unlinkStrava(){
+    this.store.select(SelectUserId).subscribe(d&#x3D;&gt;{
+      this.authService.unlinkStrava(d).then((e)&#x3D;&gt;{
+        
+        if(e[&#x27;status&#x27;]&#x3D;&#x3D;&#x27;Success&#x27;){
+          
+          this.settingsForm.setValue({
+            name: this.settingsForm.value.name??&#x27; &#x27;,
+            strava:&#x27;Not Connected&#x27;,
+            email:this.settingsForm.value.email??&#x27;&#x27;
+      })
+          this.displaySuccessToast(&quot;Changes saved.&quot;,&quot;Strava Unlinked&quot;)
+        }
+      }).catch((e)&#x3D;&gt;{
+        console.log(e)
+        this.displayErrorToast(&quot;Changes not saved.&quot;,&quot;Something went wrong.&quot;)
+      })
+      
+    })
+    
+  }
+
+
+  validateName(control: AbstractControl): {[key: string]: any} | null {
+    const nameRegex &#x3D; /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
+    if (!nameRegex.test(control.value)) {
+      return { &#x27;invalidName&#x27;: true };
+    }
+    return null;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;w-full bg-primary flex flex-column align-items-center flex-1 mt-8&quot;&gt;
+    &lt;div class&#x3D;&quot;align-items-center justify-content-center gap-2 vertical-align-middle flex flex-column h-auto mt-5 bg-primary&quot;&gt;
+        &lt;div class&#x3D;&quot;w-full&quot;&gt;
+            &lt;h1 class&#x3D;&quot;text-color lg:text-8xl md:text-7xl sm:text-6xl  text-center heading p-2&quot;&gt;Account Settings&lt;/h1&gt;
+        &lt;/div&gt;
+        &lt;form [formGroup]&#x3D;&quot;settingsForm&quot; class&#x3D;&quot;w-full p-4&quot;&gt;
+                    &lt;div class&#x3D;&quot;flex flex-column w-full gap-2 mt-3 mb-3&quot;&gt;
+                        &lt;h5 class&#x3D;&quot;text-3xl m-0&quot;&gt;Name&lt;/h5&gt;
+                        &lt;small class&#x3D;&quot;p-error block font-bold&quot; *ngIf&#x3D;&quot;name!.errors?.[&#x27;required&#x27;] &amp;&amp; name?.touched&quot;&gt;Name is required.&lt;/small&gt;
+                        &lt;small class&#x3D;&quot;p-error block font-bold&quot; *ngIf&#x3D;&quot;name!.errors?.[&#x27;invalidName&#x27;] &amp;&amp; name?.touched &amp;&amp; !name!.errors?.[&#x27;required&#x27;]&quot;&gt;Name is invalid.&lt;/small&gt;
+                    &lt;div class&#x3D;&quot;flex flex-row w-full gap-2&quot;&gt;
+                        &lt;div class&#x3D;&quot;flex w-9&quot;&gt;
+                            &lt;span class&#x3D;&quot;p-float-label flex-grow-1 flex w-full&quot;&gt;
+                                &lt;input type&#x3D;&quot;text&quot; [readonly]&#x3D;&quot;currentlyEditing!&#x3D;1&quot; id&#x3D;&quot;name&quot; formControlName&#x3D;&quot;name&quot; class&#x3D;&quot;w-full h-full p-inputtext-lg h-3rem&quot;  pInputText/&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;flex flex-row w-3&quot;&gt;
+                            &lt;app-button class&#x3D;&quot;flex-grow-1&quot; (click)&#x3D;&quot;(currentlyEditing!&#x3D;0 &amp;&amp; currentlyEditing!&#x3D;1) ? null : (currentlyEditing&#x3D;&#x3D;1 &amp;&amp; !name!.errors?.[&#x27;required&#x27;] &amp;&amp; !name!.errors?.[&#x27;invalidName&#x27;]) ? setCurrentlyEditing(0):setCurrentlyEditing(1)&quot; 
+                                [label]&#x3D;&quot;currentlyEditing&#x3D;&#x3D;1?&#x27;Save&#x27;:&#x27;Edit&#x27;&quot; [disabled]&#x3D;&quot;(currentlyEditing!&#x3D;0 &amp;&amp; currentlyEditing!&#x3D;1)&quot; [severity]&#x3D;&quot;currentlyEditing&#x3D;&#x3D;1?&#x27;warning&#x27;:&#x27;secondary&#x27;&quot;/&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;flex flex-column w-full gap-2 mt-3 mb-3&quot;&gt;
+                        &lt;h5 class&#x3D;&quot;text-3xl m-0&quot;&gt;Strava&lt;/h5&gt;
+                    &lt;div class&#x3D;&quot;flex flex-row w-full gap-2&quot;&gt;
+                        &lt;div class&#x3D;&quot;flex w-9&quot;&gt;
+                            &lt;span class&#x3D;&quot;p-float-label flex-grow-1 flex w-full&quot;&gt;
+                                &lt;input [readonly]&#x3D;&quot;currentlyEditing!&#x3D;2&quot; id&#x3D;&quot;strava&quot; formControlName&#x3D;&quot;strava&quot; class&#x3D;&quot;w-full h-full p-inputtext-lg h-3rem&quot;  pInputText/&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div *ngIf&#x3D;&quot;settingsForm.value.strava!&#x3D;&#x27;Not Connected&#x27;&quot; class&#x3D;&quot;flex flex-row w-3&quot;&gt;
+                            &lt;app-button class&#x3D;&quot;flex-grow-1&quot; (click)&#x3D;&quot;unlinkStrava()&quot; 
+                                label&#x3D;&quot;Unlink&quot;  severity&#x3D;&quot;danger&quot;/&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class&#x3D;&quot;flex flex-column w-full gap-2 mt-3 mb-3&quot;&gt;
+                        &lt;h5 class&#x3D;&quot;text-3xl m-0&quot;&gt;Email&lt;/h5&gt;
+                        &lt;small class&#x3D;&quot;p-error block font-bold&quot; *ngIf&#x3D;&quot;email!.errors?.[&#x27;required&#x27;] &amp;&amp; email?.touched&quot;&gt;Email is required.&lt;/small&gt;
+                        &lt;small class&#x3D;&quot;p-error block font-bold&quot; *ngIf&#x3D;&quot;email!.errors?.[&#x27;email&#x27;] &amp;&amp; email?.touched&quot;&gt;Email has to be valid&lt;/small&gt;
+                    &lt;div class&#x3D;&quot;flex flex-row w-full gap-2&quot;&gt;
+                        &lt;div class&#x3D;&quot;flex w-9&quot;&gt;
+                            &lt;span class&#x3D;&quot;p-float-label flex-grow-1 flex w-full&quot;&gt;
+                                &lt;input type&#x3D;&quot;email&quot; [readonly]&#x3D;&quot;currentlyEditing!&#x3D;3&quot; id&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot; class&#x3D;&quot;w-full h-full p-inputtext-lg h-3rem&quot;  pInputText/&gt;
+                            &lt;/span&gt;
+                        &lt;/div&gt;
+                       
+                    &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;div class&#x3D;&quot;mt-8&quot;&gt;
+                        &lt;app-passwordchangesection [email]&#x3D;&quot;this.settingsForm.value.email ?? &#x27;&#x27;&quot;/&gt;
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;mt-8&quot;&gt;
+                    &lt;app-deletesection /&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;app-footer/&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="w-full bg-primary flex flex-column align-items-center flex-1 mt-8">    <div class="align-items-center justify-content-center gap-2 vertical-align-middle flex flex-column h-auto mt-5 bg-primary">        <div class="w-full">            <h1 class="text-color lg:text-8xl md:text-7xl sm:text-6xl  text-center heading p-2">Account Settings</h1>        </div>        <form [formGroup]="settingsForm" class="w-full p-4">                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">                        <h5 class="text-3xl m-0">Name</h5>                        <small class="p-error block font-bold" *ngIf="name!.errors?.[\'required\'] && name?.touched">Name is required.</small>                        <small class="p-error block font-bold" *ngIf="name!.errors?.[\'invalidName\'] && name?.touched && !name!.errors?.[\'required\']">Name is invalid.</small>                    <div class="flex flex-row w-full gap-2">                        <div class="flex w-9">                            <span class="p-float-label flex-grow-1 flex w-full">                                <input type="text" [readonly]="currentlyEditing!=1" id="name" formControlName="name" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>                            </span>                        </div>                        <div class="flex flex-row w-3">                            <app-button class="flex-grow-1" (click)="(currentlyEditing!=0 && currentlyEditing!=1) ? null : (currentlyEditing==1 && !name!.errors?.[\'required\'] && !name!.errors?.[\'invalidName\']) ? setCurrentlyEditing(0):setCurrentlyEditing(1)"                                 [label]="currentlyEditing==1?\'Save\':\'Edit\'" [disabled]="(currentlyEditing!=0 && currentlyEditing!=1)" [severity]="currentlyEditing==1?\'warning\':\'secondary\'"/>                        </div>                    </div>                    </div>                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">                        <h5 class="text-3xl m-0">Strava</h5>                    <div class="flex flex-row w-full gap-2">                        <div class="flex w-9">                            <span class="p-float-label flex-grow-1 flex w-full">                                <input [readonly]="currentlyEditing!=2" id="strava" formControlName="strava" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>                            </span>                        </div>                        <div *ngIf="settingsForm.value.strava!=\'Not Connected\'" class="flex flex-row w-3">                            <app-button class="flex-grow-1" (click)="unlinkStrava()"                                 label="Unlink"  severity="danger"/>                        </div>                    </div>                    </div>                    <div class="flex flex-column w-full gap-2 mt-3 mb-3">                        <h5 class="text-3xl m-0">Email</h5>                        <small class="p-error block font-bold" *ngIf="email!.errors?.[\'required\'] && email?.touched">Email is required.</small>                        <small class="p-error block font-bold" *ngIf="email!.errors?.[\'email\'] && email?.touched">Email has to be valid</small>                    <div class="flex flex-row w-full gap-2">                        <div class="flex w-9">                            <span class="p-float-label flex-grow-1 flex w-full">                                <input type="email" [readonly]="currentlyEditing!=3" id="email" formControlName="email" class="w-full h-full p-inputtext-lg h-3rem"  pInputText/>                            </span>                        </div>                                           </div>                    </div>                <div class="mt-8">                        <app-passwordchangesection [email]="this.settingsForm.value.email ?? \'\'"/>                </div>                <div class="mt-8">                    <app-deletesection />                </div>            </form>    </div></div><app-footer/></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'app-about'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ButtongroupComponent', 'selector': 'app-buttongroup'},{'name': 'CanvasComponent', 'selector': 'app-canvas'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'DeletesectionComponent', 'selector': 'app-deletesection'},{'name': 'Error404Page', 'selector': 'app-error404-page'},{'name': 'EventspageComponent', 'selector': 'app-eventspage'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GoogleMapComponent', 'selector': 'app-google-map'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'GridsectionComponent', 'selector': 'app-gridsection'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HeroComponent', 'selector': 'app-hero'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'IconButtonComponent', 'selector': 'app-icon-button'},{'name': 'InformationsectionComponent', 'selector': 'app-informationsection'},{'name': 'LoaderComponent', 'selector': 'app-loader'},{'name': 'LoginPage', 'selector': 'app-login-page'},{'name': 'MenubuttonComponent', 'selector': 'app-menubutton'},{'name': 'OnboardingcontentdisplayComponent', 'selector': 'app-onboardingcontentdisplay'},{'name': 'OnboardingPage', 'selector': 'app-onboardingpage'},{'name': 'PageWrapperComponent', 'selector': 'app-pagewrapper'},{'name': 'PasswordchangesectionComponent', 'selector': 'app-passwordchangesection'},{'name': 'PhotoBackgroundComponent', 'selector': 'app-photo-background'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoCardComponent', 'selector': 'app-photocard'},{'name': 'PhotoDivComponent', 'selector': 'app-photodiv'},{'name': 'ProfilepageComponent', 'selector': 'app-profilepage'},{'name': 'ProfilestatsComponent', 'selector': 'app-profilestats'},{'name': 'ResetpassworddialogComponent', 'selector': 'app-resetpassworddialog'},{'name': 'SettingsInputComponent', 'selector': 'app-settingsinput'},{'name': 'SettingsPage', 'selector': 'app-settingspage'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SignupPage', 'selector': 'app-signup-page'},{'name': 'StatsboardComponent', 'selector': 'app-statsboard'},{'name': 'StatsBoardComponent', 'selector': 'app-stats-board'},{'name': 'StatsCardComponent', 'selector': 'app-stats-card'},{'name': 'SvgComponent', 'selector': 'app-svg'},{'name': 'TextInputComponent', 'selector': 'app-textinput'},{'name': 'ToastComponent', 'selector': 'app-toast'},{'name': 'TrailinformationComponent', 'selector': 'app-trailinformation'},{'name': 'TrailsComponent', 'selector': 'app-trails'},{'name': 'TrailsPage', 'selector': 'app-trails-page'},{'name': 'VideoBackground', 'selector': 'app-video-background'},{'name': 'VideoComponent', 'selector': 'app-video'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SettingsPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SettingsPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

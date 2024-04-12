@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   imports: [],
   providers: [],
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: []
 })
 
 export class AboutComponent {}

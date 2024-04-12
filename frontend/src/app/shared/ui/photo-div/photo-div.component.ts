@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-photodiv',
   standalone: true,
   imports: [],
-  templateUrl: './photodiv.component.html',
-  styleUrl: './photodiv.component.css'
+  templateUrl: './photo-div.component.html',
+  styleUrl: './photo-div.component.css'
 })
 export class PhotoDivComponent {
 

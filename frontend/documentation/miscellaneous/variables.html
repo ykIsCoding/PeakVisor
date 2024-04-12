@@ -1,0 +1,785 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>peakvisor documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">peakvisor documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#AppConfig" title="src/app/app.config.ts" ><b>AppConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#authGuard" title="src/app/shared/feature/guards/auth.guard.ts" ><b>authGuard</b>&nbsp;&nbsp;&nbsp;(src/.../auth.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AuthStateReducer" title="src/app/shared/feature/state/auth-state/auth-state.reducer.ts" ><b>AuthStateReducer</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DisplayStateReducer" title="src/app/shared/feature/state/display-state/display-state.reducer.ts" ><b>DisplayStateReducer</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initialAuthState" title="src/app/shared/feature/state/auth-state/auth-state.reducer.ts" ><b>initialAuthState</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#initialAuthState" title="src/app/shared/feature/state/display-state/display-state.reducer.ts" ><b>initialAuthState</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.reducer.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Load" title="src/app/shared/feature/state/display-state/display-state.actions.ts" ><b>Load</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Login" title="src/app/shared/feature/state/auth-state/auth-state.actions.ts" ><b>Login</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Logout" title="src/app/shared/feature/state/auth-state/auth-state.actions.ts" ><b>Logout</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.actions.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectAccessToken" title="src/app/shared/feature/state/auth-state/auth-state.selector.ts" ><b>SelectAccessToken</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectAuthenticated" title="src/app/shared/feature/state/auth-state/auth-state.selector.ts" ><b>SelectAuthenticated</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectAuthState" title="src/app/shared/feature/state/auth-state/auth-state.selector.ts" ><b>SelectAuthState</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectDisplayState" title="src/app/shared/feature/state/display-state/display-state.selector.ts" ><b>SelectDisplayState</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectLoading" title="src/app/shared/feature/state/display-state/display-state.selector.ts" ><b>SelectLoading</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectRefreshToken" title="src/app/shared/feature/state/auth-state/auth-state.selector.ts" ><b>SelectRefreshToken</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SelectUserId" title="src/app/shared/feature/state/auth-state/auth-state.selector.ts" ><b>SelectUserId</b>&nbsp;&nbsp;&nbsp;(src/.../auth-state.selector.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SlideTopDownAnimation" title="src/app/shared/ui/transitions/slide-top-down-animation.ts" ><b>SlideTopDownAnimation</b>&nbsp;&nbsp;&nbsp;(src/.../slide-top-down-animation.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Unload" title="src/app/shared/feature/state/display-state/display-state.actions.ts" ><b>Unload</b>&nbsp;&nbsp;&nbsp;(src/.../display-state.actions.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AppConfig"></a>
+                    <span class="name">
+                        <span ><b>AppConfig</b></span>
+                        <a href="#AppConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    
+  providers: [
+    provideRouter(AppRoutes), 
+    provideAnimations(), 
+    provideStore(), 
+    provideState({name: &#x27;authState&#x27;, reducer: AuthStateReducer}),
+    provideState({name: &#x27;displayState&#x27;, reducer: DisplayStateReducer})
+],
+
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/guards/auth.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authGuard"></a>
+                    <span class="name">
+                        <span ><b>authGuard</b></span>
+                        <a href="#authGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (route, state) &#x3D;&gt; {
+
+  const router &#x3D; inject(Router)
+  const authservice &#x3D; inject(AuthService)
+  var authState &#x3D; authservice.getAuthStatus()
+  var authenticated &#x3D; new Promise(async resolve&#x3D;&gt;(await authState).subscribe(a&#x3D;&gt;{
+    resolve(a)
+  }))
+  var r &#x3D; await authenticated
+  if(r){
+    return true
+  }else{
+    router.navigateByUrl(&#x27;/**&#x27;)
+    return false;
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/auth-state/auth-state.reducer.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthStateReducer"></a>
+                    <span class="name">
+                        <span ><b>AuthStateReducer</b></span>
+                        <a href="#AuthStateReducer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createReducer(
+    initialAuthState,
+    on(Login,(state,props)&#x3D;&gt;{
+        const {token_manager,userId} &#x3D; props
+        return ({...state,uid:userId,refresh_token:token_manager.refresh_token,access_token:token_manager.access_token,...props,authenticated:true})
+    }),
+    on(Logout,state&#x3D;&gt;({userId:&#x27;&#x27;,refresh_token:&#x27;&#x27;,access_token:&#x27;&#x27;,authenticated:false}))
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialAuthState"></a>
+                    <span class="name">
+                        <span ><b>initialAuthState</b></span>
+                        <a href="#initialAuthState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/AuthState.html" target="_self" >AuthState</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    authenticated:false,
+    access_token:&#x27;&#x27;,
+    refresh_token:&#x27;&#x27;,
+    userId:&#x27;&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/display-state/display-state.reducer.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DisplayStateReducer"></a>
+                    <span class="name">
+                        <span ><b>DisplayStateReducer</b></span>
+                        <a href="#DisplayStateReducer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createReducer(
+    initialAuthState,
+    on(Load,state&#x3D;&gt;{
+        return ({...state, loading:true})
+    }),
+    on(Unload,state&#x3D;&gt;({...state, loading:false}))
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialAuthState"></a>
+                    <span class="name">
+                        <span ><b>initialAuthState</b></span>
+                        <a href="#initialAuthState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DisplayState.html" target="_self" >DisplayState</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    loading:false
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    production: false,
+    // backendUrl: &#x27;http://peakvisor.malepsyche.com/api&#x27;,
+    stravaBackendUrl: &#x27;http://localhost:3100&#x27;
+  }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/display-state/display-state.actions.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Load"></a>
+                    <span class="name">
+                        <span ><b>Load</b></span>
+                        <a href="#Load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createAction(&#x27;[displayState Component] load&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Unload"></a>
+                    <span class="name">
+                        <span ><b>Unload</b></span>
+                        <a href="#Unload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createAction(&#x27;[displayState Component] unload&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/auth-state/auth-state.actions.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Login"></a>
+                    <span class="name">
+                        <span ><b>Login</b></span>
+                        <a href="#Login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createAction(&#x27;[authState Component] login&#x27;, props&lt;Object|any&gt;())</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="Logout"></a>
+                    <span class="name">
+                        <span ><b>Logout</b></span>
+                        <a href="#Logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createAction(&#x27;[authState Component] logout&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/auth-state/auth-state.selector.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectAccessToken"></a>
+                    <span class="name">
+                        <span ><b>SelectAccessToken</b></span>
+                        <a href="#SelectAccessToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createSelector(SelectAuthState,(state)&#x3D;&gt;state.access_token)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectAuthenticated"></a>
+                    <span class="name">
+                        <span ><b>SelectAuthenticated</b></span>
+                        <a href="#SelectAuthenticated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createSelector(SelectAuthState,(state)&#x3D;&gt;state.authenticated)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectAuthState"></a>
+                    <span class="name">
+                        <span ><b>SelectAuthState</b></span>
+                        <a href="#SelectAuthState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(state:AppState)&#x3D;&gt;state.authState</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectRefreshToken"></a>
+                    <span class="name">
+                        <span ><b>SelectRefreshToken</b></span>
+                        <a href="#SelectRefreshToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createSelector(SelectAuthState,(state)&#x3D;&gt;state.refresh_token)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectUserId"></a>
+                    <span class="name">
+                        <span ><b>SelectUserId</b></span>
+                        <a href="#SelectUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createSelector(SelectAuthState,(state)&#x3D;&gt;state.userId)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/feature/state/display-state/display-state.selector.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectDisplayState"></a>
+                    <span class="name">
+                        <span ><b>SelectDisplayState</b></span>
+                        <a href="#SelectDisplayState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(state:AppState)&#x3D;&gt;state.displayState</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SelectLoading"></a>
+                    <span class="name">
+                        <span ><b>SelectLoading</b></span>
+                        <a href="#SelectLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createSelector(SelectDisplayState,(state)&#x3D;&gt;{
+    return state.loading
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/ui/transitions/slide-top-down-animation.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SlideTopDownAnimation"></a>
+                    <span class="name">
+                        <span ><b>SlideTopDownAnimation</b></span>
+                        <a href="#SlideTopDownAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>trigger(&#x27;routeAnimations&#x27;, [
+    transition(&#x27;HomePage &lt;&#x3D;&gt; AboutPage&#x27;, [
+      style({ position: &#x27;relative&#x27; }),
+      query(&#x27;:enter, :leave&#x27;, [
+        style({
+          position: &#x27;absolute&#x27;,
+          top: 0,
+          left: 0,
+          width: &#x27;100%&#x27;
+        })
+      ]),
+      query(&#x27;:enter&#x27;, [
+        style({ left: &#x27;-100%&#x27; })
+      ], { optional: true }),
+      query(&#x27;:leave&#x27;, animateChild(), { optional: true }),
+      group([
+        query(&#x27;:leave&#x27;, [
+          animate(&#x27;300ms ease-out&#x27;, style({ left: &#x27;100%&#x27; }))
+        ], { optional: true }),
+        query(&#x27;:enter&#x27;, [
+          animate(&#x27;300ms ease-out&#x27;, style({ left: &#x27;0%&#x27; }))
+        ], { optional: true }),
+      ]),
+    ]),
+    transition(&#x27;* &lt;&#x3D;&gt; *&#x27;, [
+      style({ position: &#x27;relative&#x27; }),
+      query(&#x27;:enter, :leave&#x27;, [
+        style({
+          position: &#x27;absolute&#x27;,
+          top: 0,
+          left: 0,
+          width: &#x27;100%&#x27;
+        })
+      ], { optional: true }),
+      query(&#x27;:enter&#x27;, [
+        style({ left: &#x27;-100%&#x27; })
+      ], { optional: true }),
+      query(&#x27;:leave&#x27;, animateChild(), { optional: true }),
+      group([
+        query(&#x27;:leave&#x27;, [
+          animate(&#x27;200ms ease-out&#x27;, style({ left: &#x27;100%&#x27;, opacity: 0 }))
+        ], { optional: true }),
+        query(&#x27;:enter&#x27;, [
+          animate(&#x27;300ms ease-out&#x27;, style({ left: &#x27;0%&#x27; }))
+        ], { optional: true }),
+        query(&#x27;@*&#x27;, animateChild(), { optional: true })
+      ]),
+    ])
+  ])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,12 @@
+"filename", "language", "JavaScript", "JSON", "HTML", "comment", "blank", "total"
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\admin.json", "JSON", 0, 13, 0, 0, 1, 14
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\graphql\schema.js", "JavaScript", 12, 0, 0, 7, 1, 20
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\mailtemplates\verifyemail.html", "HTML", 0, 0, 205, 19, 3, 227
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\package-lock.json", "JSON", 0, 16201, 0, 0, 1, 16202
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\package.json", "JSON", 0, 33, 0, 0, 1, 34
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\routes\ai.js", "JavaScript", 25, 0, 0, 0, 6, 31
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\routes\authentication.js", "JavaScript", 584, 0, 0, 8, 108, 700
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\routes\meetup.js", "JavaScript", 101, 0, 0, 1, 15, 117
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\routes\tripadvisor.js", "JavaScript", 44, 0, 0, 6, 14, 64
+"c:\Users\yongk\Desktop\programming\PeakVisor\PeakVisor\backend 2\src\index.js", "JavaScript", 32, 0, 0, 1, 12, 45
+"Total", "-", 798, 16247, 205, 42, 162, 17454

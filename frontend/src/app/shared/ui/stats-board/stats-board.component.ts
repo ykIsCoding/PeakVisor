@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-statsboard',
   standalone: true,
   imports: [],
-  templateUrl: './statsboard.component.html',
-  styleUrl: './statsboard.component.css'
+  templateUrl: './stats-board.component.html',
+  styleUrl: './stats-board.component.css'
 })
 export class StatsboardComponent {
 
