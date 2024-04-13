@@ -1,3 +1,4 @@
+// Type interfaces 
 export interface Athlete {
     id: number;
     username: string;
@@ -8,7 +9,7 @@ export interface Athlete {
     city: null | string;
     state: null | string;
     country: null | string;
-    sex: 'M' | 'F'; // Assuming these are the only two values, adjust if there are more
+    sex: 'M' | 'F'; 
     premium: boolean;
     summit: boolean;
     created_at: string;
@@ -17,8 +18,8 @@ export interface Athlete {
     weight: null | number;
     profile_medium: string;
     profile: string;
-    friend: null; // Assuming this would be a specific type if not null
-    follower: null; // Same assumption as above
+    friend: null; 
+    follower: null; 
 }
   
 export interface TokenData {
@@ -43,8 +44,8 @@ export interface AchievementTotals extends Totals {
 }
   
 export interface AthleteStats {
-    biggest_ride_distance: null | number; // Assuming this can be a number when available
-    biggest_climb_elevation_gain: null | number; // Assuming this can be a number when available
+    biggest_ride_distance: null | number; 
+    biggest_climb_elevation_gain: null | number; 
     recent_ride_totals: AchievementTotals;
     all_ride_totals: Totals;
     recent_run_totals: AchievementTotals;
