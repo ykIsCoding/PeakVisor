@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-
+/**
+ * This icon button component
+ */
 @Component({
   selector: 'app-icon-button',
   standalone: true,

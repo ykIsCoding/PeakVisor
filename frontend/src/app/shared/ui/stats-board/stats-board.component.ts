@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+/**
+ * This is the stats board component to render statistics on the landing page
+ */
 @Component({
   selector: 'app-statsboard',
   standalone: true,

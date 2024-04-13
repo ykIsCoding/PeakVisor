@@ -1,6 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {GoogleMap, MapMarker} from '@angular/google-maps';
-
+/**
+ * This is the google map component
+ * It renders the google map in the trails information page
+ */
 @Component({
   selector: 'app-google-map',
   templateUrl: 'google-map.component.html',

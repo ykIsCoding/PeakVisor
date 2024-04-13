@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 import { TextInputComponent } from '../text-input/textinput.component';
-
+/**
+ * This is the settings input component
+ */
 @Component({
   selector: 'app-settingsinput',
   standalone: true,

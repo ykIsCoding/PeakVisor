@@ -6,6 +6,9 @@ import { Store } from '@ngrx/store';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { GraphicsLoaderService } from '@app/shared/data-access/graphics-loader/graphics-loader.service';
 import { ImageModule } from 'primeng/image';
+ /**
+ * This is the photo background component, for the trails information page
+ */
 @Component({
   selector: 'app-photo-background',
   standalone: true,

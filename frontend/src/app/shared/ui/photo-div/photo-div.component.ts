@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+/**
+ * This is the photo div component
+ */
 @Component({
   selector: 'app-photodiv',
   standalone: true,

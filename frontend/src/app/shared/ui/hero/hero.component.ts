@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { AfterContentInit, Component, Input, ViewChild } from '@angular/core';
 import { animate, glide, spring, stagger } from "motion"
-
+/**
+ * This hero component that renders the video background
+ */
 @Component({
   selector: 'app-hero',
   standalone: true,

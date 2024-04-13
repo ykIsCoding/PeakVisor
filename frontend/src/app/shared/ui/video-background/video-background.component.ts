@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import { CanvasComponent } from '../canvas/canvas.component';
-
+/**
+ * This is the video background component. It renders the video background.
+ */
 @Component({
   selector: 'app-video-background',
   standalone: true,

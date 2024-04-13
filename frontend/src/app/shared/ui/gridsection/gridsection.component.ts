@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { PhotoCardComponent } from '../photo-card/photo-card.component';
 import { CommonModule } from '@angular/common';
-
+/**
+ * This gridsection for the photo-cards
+ */
 @Component({
   selector: 'app-gridsection',
   standalone: true,

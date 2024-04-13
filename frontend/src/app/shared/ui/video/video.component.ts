@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild,AfterContentInit, ElementRef, Input } from '@angular/core';
-
+/**
+ * This is the video component
+ */
 @Component({
   selector: 'app-video',
   standalone: true,

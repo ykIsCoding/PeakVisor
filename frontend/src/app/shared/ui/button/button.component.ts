@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component,EventEmitter,Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-
+/**
+ * This is the button component
+ * This enables code-reuse and separation of concerns.
+ */
 @Component({
   selector: 'app-button',
   standalone: true,
@@ -23,6 +26,9 @@ export class ButtonComponent {
   @Input() fn:Function= ()=>null;
   @Output() $onClk = new EventEmitter();
 
+  /**
+ * This emits the event when the button is clicked.
+ */
   public handleClick():void{
     if(this.disabled) return
     this.$onClk.emit();

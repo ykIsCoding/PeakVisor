@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ImageModule } from 'primeng/image';
 import { CardModule } from 'primeng/card';
-
+ /**
+ * This is the photo card component
+ */
 @Component({
   selector: 'app-photocard',
   standalone: true,
@@ -16,6 +18,9 @@ export class PhotoCardComponent {
   @Input() name:String = '';
   @Input() linkTo:any;
   constructor(private router:Router){}
+  /**
+ * This redirects the user when the photocard is clicked
+ */
   handleClick(){
     console.log(this.linkTo)
     this.router.navigateByUrl(this.linkTo)

@@ -1,5 +1,7 @@
 import { animate, animateChild, group, query, style, transition, trigger } from "@angular/animations";
-
+/**
+ * This is settings for the page navigation transition
+ */
 export const SlideTopDownAnimation =
   trigger('routeAnimations', [
     transition('HomePage <=> AboutPage', [

@@ -14,6 +14,9 @@ import { AuthStateReducer } from '@app/shared/feature/state/auth-state/auth-stat
 import { FormsModule } from '@angular/forms';
 import { MenubuttonComponent } from '../menubutton/menubutton.component';
 
+/**
+ * This is the footer component
+ */
 @Component({
   selector: 'app-footer',
   standalone: true,

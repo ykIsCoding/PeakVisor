@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
+/**
+ * This is the toast component
+ */
 @Component({
   selector: 'app-toast',
   standalone: true,

@@ -20,6 +20,11 @@ import { NgIcon } from '@ng-icons/core';
 import { Login, Logout } from '@app/shared/feature/state/auth-state/auth-state.actions';
 import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+/**
+ * This is the pagewrapper component
+ * This is the parent component for several page components
+ * The component contains common functions and data for the child components to use
+ */
 
 @Component({
     selector: 'app-pagewrapper',
@@ -49,19 +54,30 @@ export class PageWrapperComponent{
     }
   }
 
+  /**
+ * This function displays the success toast (notification) to the user
+ */
   displaySuccessToast(header:string,message:string){
     this.messageService.add({ severity: 'success', summary: header, detail: message });
   }
 
+  /**
+ * This function displays the error toast (notification) to the user
+ */
   displayErrorToast(header:string,message:string){
       this.messageService.add({ severity: 'error', summary: header, detail: message });
   }
 
-
+/**
+ * This function toggles the loading page
+ */
   toggleLoader(b:boolean){
     b?this.store.dispatch(Load()):this.store.dispatch(Unload())
   }
 
+  /**
+ * This function handles logging out through the side bar
+ */
   sidebarLogout(){
     console.log("logging out")
     this.store.dispatch(Logout())
@@ -69,6 +85,9 @@ export class PageWrapperComponent{
     localStorage.removeItem("logindata")
   }
 
+  /**
+ * This function toggles the visibility of the sidebar
+ */
   toggleSidebarVisible(){
     this.sidebarVisible=!this.sidebarVisible
   }

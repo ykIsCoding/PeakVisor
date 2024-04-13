@@ -6,7 +6,10 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { Logout } from '@app/shared/feature/state/auth-state/auth-state.actions';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { Store } from '@ngrx/store';
-
+/**
+ * This is menu component for small screen sizes.
+ * This replaces the header component on small screen sizes.
+ */
 @Component({
   selector: 'app-menubutton',
   standalone: true,

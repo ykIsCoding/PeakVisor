@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-
+/**
+ * This is the svg component for the PeakVisor logo
+ */
 @Component({
   selector: 'app-svg',
   standalone: true,

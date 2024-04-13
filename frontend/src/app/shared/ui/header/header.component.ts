@@ -13,7 +13,9 @@ import { SelectAuthenticated } from '@app/shared/feature/state/auth-state/auth-s
 import { AuthStateReducer } from '@app/shared/feature/state/auth-state/auth-state.reducer';
 import { FormsModule } from '@angular/forms';
 import { MenubuttonComponent } from '../menubutton/menubutton.component';
-
+/**
+ * This the header component, it is used to show the navigation bar
+ */
 @Component({
   selector: 'app-header',
   standalone: true,

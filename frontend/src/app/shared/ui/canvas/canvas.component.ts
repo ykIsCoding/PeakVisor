@@ -7,7 +7,10 @@ import { RenderPixelatedPass } from 'three/examples/jsm/postprocessing/RenderPix
 import { RGBShiftShader } from 'three/examples/jsm/shaders/RGBShiftShader.js'
 import {TriangleBlurShader} from 'three/examples/jsm/shaders/TriangleBlurShader'
 import {ShaderPass} from 'three/examples/jsm/postprocessing/ShaderPass';
-
+/**
+ * This is the canvas component that uses ThreeJS to render effects on the video background
+ * This component is not used but will serve as a component for future development
+ */
 @Component({
   selector: 'app-canvas',
   standalone: true,
@@ -73,7 +76,9 @@ ngOnDestroy(): void {
 
   }
 }
-
+/**
+ * This creates a pass over the canvas which will render an effect over the video background
+ */
   createThreePass(){
     
     const video = document.getElementById('vid')
