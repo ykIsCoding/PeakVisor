@@ -41,6 +41,18 @@
 - ExpressJS
 <br>
 
+## Features
+1. AI powered location information to provide users with more information of places
+2. Users can connect their Strava accounts to get their activities
+3. Users can view hiking events
+4. Users can view trails
+
+## Design Features
+1. Fully responsive web design to ensure a smooth and consistent user expeierence across devices
+2. 2 Backend servers to ensure system reliability and optimal application speed
+3. Strict authentication guards to prevent unauthorised access to protect users' data
+4. Accomodative design to allow users seamless recovery of account if they forget password
+5. Accomodative design to allow users seamless recovery of account if they deleted their account by accident as they have 7 days to log back in to cancel the deletion
 
 ## APIs and Services Used
 
@@ -78,7 +90,8 @@
 - Provides authentication and database storage support
 <br>
 
-
+## Documentation
+Documentation for the application's frontend be accessed at: [here](https://github.com/softwarelab3/2006-SCCA-Missing1/blob/main/frontend/documentation/index.html)
 
 
 

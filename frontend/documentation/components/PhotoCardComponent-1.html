@@ -127,6 +127,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the photo card component</p>
+
+    </p>
 
 
 
@@ -248,7 +255,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -304,7 +311,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:19</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -330,7 +337,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:18</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -356,7 +363,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:17</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -390,14 +397,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/shared/ui/photo-card/photo-card.component.ts:24</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This redirects the user when the photocard is clicked</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -417,7 +426,9 @@
 import { Router, RouterLink, RouterModule } from &#x27;@angular/router&#x27;;
 import { ImageModule } from &#x27;primeng/image&#x27;;
 import { CardModule } from &#x27;primeng/card&#x27;;
-
+ /**
+ * This is the photo card component
+ */
 @Component({
   selector: &#x27;app-photocard&#x27;,
   standalone: true,
@@ -431,6 +442,9 @@ export class PhotoCardComponent {
   @Input() name:String &#x3D; &#x27;&#x27;;
   @Input() linkTo:any;
   constructor(private router:Router){}
+  /**
+ * This redirects the user when the photocard is clicked
+ */
   handleClick(){
     console.log(this.linkTo)
     this.router.navigateByUrl(this.linkTo)

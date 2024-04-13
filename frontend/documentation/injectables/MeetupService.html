@@ -126,6 +126,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This is the injectable service for all meetup.com related services.</p>
+
+            </p>
 
 
 
@@ -173,7 +180,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -238,14 +245,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:16</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This calls the backend 2 /authenticate to get access token to query meetup.com&#39;s API</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>unknown</code>
@@ -277,14 +286,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/app/shared/data-access/meetup/meetup.service.ts:25</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This calls the backend 2 /events to get event data from meetup.com&#39;s API</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>unknown</code>
@@ -302,7 +313,9 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-
+ /**
+ * This is the injectable service for all meetup.com related services.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -310,12 +323,18 @@ export class MeetupService {
 
   constructor(private http:HttpClient) { }
   
+   /**
+ * This calls the backend 2 /authenticate to get access token to query meetup.com&#x27;s API
+ */
   async authenticate(){
     const url &#x3D; &#x27;http://localhost:3000/meetup/authenticate&#x27;
     const data &#x3D; await fetch(url)
     return data
   }
 
+  /**
+ * This calls the backend 2 /events to get event data from meetup.com&#x27;s API
+ */
   async getEvents(){
     const url &#x3D; &#x27;http://localhost:3000/meetup/events&#x27;
     const token &#x3D; await this.authenticate()

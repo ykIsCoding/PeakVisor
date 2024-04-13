@@ -131,6 +131,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the home page component</p>
+
+    </p>
 
 
     <p class="comment">
@@ -281,7 +288,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/home/feature/home.page.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/home/feature/home.page.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -348,14 +355,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/app/home/feature/home.page.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/home/feature/home.page.ts:48</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This plays the mouse scroll animation</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -385,8 +394,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/app/home/feature/home.page.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/home/feature/home.page.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -467,7 +476,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/home/feature/home.page.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/home/feature/home.page.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -498,7 +507,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/home/feature/home.page.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/home/feature/home.page.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -524,7 +533,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/home/feature/home.page.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/home/feature/home.page.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -552,6 +561,9 @@ import { animate } from &#x27;@angular/animations&#x27;;
 import { Footer } from &#x27;primeng/api&#x27;;
 import { FooterComponent } from &#x27;@app/shared/ui/footer/footer.component&#x27;;
 
+ /**
+ * This is the home page component
+ */
 @Component({
   selector: &#x27;app-home&#x27;,
   standalone: true,
@@ -578,13 +590,16 @@ export class HomePage implements OnInit{
     console.log(e)
   }
 
+   /**
+ * This plays the mouse scroll animation
+ */
   ngOnInit(): void {
       this.options &#x3D;  {
         path: &#x27;../../../assets/animations/scrolldown.json&#x27;,
         loop: true,
         autoplay:true,
       };
-      console.log(this.options)
+      
   }
 }
 

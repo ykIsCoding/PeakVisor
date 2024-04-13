@@ -127,6 +127,14 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the event page component
+It shows all the events from Meetup.com API</p>
+
+    </p>
 
     <p class="comment">
         <h3>Extends</h3>
@@ -140,7 +148,6 @@
     </p>
     <p class="comment">
                 <code>OnInit</code>
-                <code>AfterContentInit</code>
                 <code>AfterViewInit</code>
     </p>
 
@@ -265,9 +272,6 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngAfterContentInit" >ngAfterContentInit</a>
-                            </li>
-                            <li>
                                 <a href="#ngAfterViewInit" >ngAfterViewInit</a>
                             </li>
                             <li>
@@ -311,7 +315,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:32</a></div>
                             </td>
                         </tr>
 
@@ -398,43 +402,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngAfterContentInit"></a>
-                    <span class="name">
-                        <span ><b>ngAfterContentInit</b></span>
-                        <a href="#ngAfterContentInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngAfterContentInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:40</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngAfterViewInit"></a>
                     <span class="name">
                         <span ><b>ngAfterViewInit</b></span>
@@ -451,14 +418,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="32"
-                                    class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:32</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:43</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>when the events data are available, it will set loading state to false to remove the loading page
+This is angular lifecycle method</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -488,14 +458,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:54</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Makes the query to get the events, sets the loading state to true to display the loading</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -531,7 +503,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:56</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:67</a></code>
 </div>
                         </td>
                     </tr>
@@ -539,6 +511,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function displays the error toast (notification) to the user</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -616,7 +590,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:52</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:60</a></code>
 </div>
                         </td>
                     </tr>
@@ -624,6 +598,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function displays the success toast (notification) to the user</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -701,7 +677,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:65</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:81</a></code>
 </div>
                         </td>
                     </tr>
@@ -709,6 +685,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function handles logging out through the side bar</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -744,7 +722,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:61</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:74</a></code>
 </div>
                         </td>
                     </tr>
@@ -752,6 +730,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function toggles the loading page</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -817,7 +797,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:72</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:91</a></code>
 </div>
                         </td>
                     </tr>
@@ -825,6 +805,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function toggles the visibility of the sidebar</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -864,7 +846,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -895,7 +877,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -921,7 +903,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/eventspage/feature/eventspage.component.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -953,7 +935,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:34</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -986,7 +968,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:36</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:41</a></code>
 </div>
                         </td>
                     </tr>
@@ -1020,7 +1002,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:42</a></code>
 </div>
                         </td>
                     </tr>
@@ -1058,7 +1040,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:35</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:40</a></code>
 </div>
                         </td>
                     </tr>
@@ -1096,7 +1078,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:33</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:38</a></code>
 </div>
                         </td>
                     </tr>
@@ -1130,7 +1112,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:42</a></code>
 </div>
                         </td>
                     </tr>
@@ -1158,6 +1140,11 @@ import { MessageService } from &#x27;primeng/api&#x27;;
 import { GridsectionComponent } from &#x27;../ui/gridsection/gridsection.component&#x27;;
 import { FooterComponent } from &#x27;@app/shared/ui/footer/footer.component&#x27;;
 
+/**
+ * This is the event page component
+ * It shows all the events from Meetup.com API
+ */
+
 @Component({
   selector: &#x27;app-eventspage&#x27;,
   standalone: true,
@@ -1166,7 +1153,8 @@ import { FooterComponent } from &#x27;@app/shared/ui/footer/footer.component&#x2
   providers:[MeetupService],
   styleUrl: &#x27;./eventspage.component.css&#x27;
 })
-export class EventspageComponent extends PageWrapperComponent implements OnInit,AfterContentInit, AfterViewInit {
+
+export class EventspageComponent extends PageWrapperComponent implements OnInit, AfterViewInit {
   content:any &#x3D; [{name:&#x27;kakais&#x27;}]
   contentService: MeetupService &#x3D; inject(MeetupService)
   src:string;
@@ -1175,18 +1163,22 @@ export class EventspageComponent extends PageWrapperComponent implements OnInit,
     this.src &#x3D; this.graphicsLoaderService.getGraphic(&#x27;eventsvideo&#x27;)
   }
 
+  /**
+ * 
+ * when the events data are available, it will set loading state to false to remove the loading page
+ * This is angular lifecycle method
+ */
  ngAfterViewInit(): void {
   this.contentService.getEvents().then((cnt)&#x3D;&gt;{
-    console.log(cnt)
     this.content &#x3D; cnt
     this.toggleLoader(false)
   })
  }
 
- ngAfterContentInit(): void {
-    
- }
 
+ /**
+ * Makes the query to get the events, sets the loading state to true to display the loading
+ */
   ngOnInit(): void {
     this.toggleLoader(true)
   }

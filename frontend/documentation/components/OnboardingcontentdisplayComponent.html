@@ -127,6 +127,14 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This component changes the content for the onboarding page
+when the stage number changes, the content changes</p>
+
+    </p>
 
 
     <p class="comment">
@@ -266,7 +274,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -327,7 +335,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:37</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -361,14 +369,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:34</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This is the Angular&#39;s component lifecycle method</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -398,14 +408,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="24"
+                                    class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:24</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function sets the photo of the associated onboarding page</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -445,7 +457,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -476,7 +488,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/onboarding/ui/onboardingcontentdisplay/onboardingcontentdisplay.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -492,6 +504,11 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, DoCheck, Input } from &#x27;@angular/core&#x27;;
 import { GraphicsLoaderService } from &#x27;@app/shared/data-access/graphics-loader/graphics-loader.service&#x27;;
 
+/**
+ * This component changes the content for the onboarding page
+ * when the stage number changes, the content changes
+ */
+
 @Component({
   selector: &#x27;app-onboardingcontentdisplay&#x27;,
   standalone: true,
@@ -504,6 +521,9 @@ export class OnboardingcontentdisplayComponent implements DoCheck {
   phtos &#x3D; [&#x27;onboard&#x27;,&#x27;parks&#x27;,&#x27;linkaccount&#x27;,&#x27;allset&#x27;];
   src:string&#x3D;&#x27;&#x27;;
 
+  /**
+ * This function sets the photo of the associated onboarding page
+ */
   updateSrc(){
     this.src &#x3D; this.graphicsLoaderService.getGraphic(this.phtos[this.stage])
   }
@@ -511,6 +531,9 @@ export class OnboardingcontentdisplayComponent implements DoCheck {
     this.updateSrc()
   }
 
+  /**
+ * This is the Angular&#x27;s component lifecycle method
+ */
   ngDoCheck(): void {
     this.updateSrc()
   }

@@ -127,6 +127,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This component shows the stats of the user on the profile page</p>
+
+    </p>
 
 
     <p class="comment">
@@ -268,7 +275,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:17</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -294,7 +301,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:16</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -328,8 +335,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +382,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +413,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/profile/ui/profilestats/profilestats.component.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -422,6 +429,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Input, OnInit, inject } from &#x27;@angular/core&#x27;;
 import { AuthService } from &#x27;@app/shared/data-access/auth/auth.service&#x27;;
 
+/**
+ * This component shows the stats of the user on the profile page
+ */
 @Component({
   selector: &#x27;app-profilestats&#x27;,
   standalone: true,
@@ -429,6 +439,7 @@ import { AuthService } from &#x27;@app/shared/data-access/auth/auth.service&#x27
   templateUrl: &#x27;./profilestats.component.html&#x27;,
   styleUrl: &#x27;./profilestats.component.css&#x27;
 })
+
 export class ProfilestatsComponent implements AfterViewInit {
   @Input() uid:any&#x3D;&#x27;&#x27;;
   @Input() stats:any;

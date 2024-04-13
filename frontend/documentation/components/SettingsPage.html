@@ -127,6 +127,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the settings page for the user</p>
+
+    </p>
 
     <p class="comment">
         <h3>Extends</h3>
@@ -336,12 +343,16 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/settings/feature/settings.page.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/settings/feature/settings.page.ts:102</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
+                            <div class="io-description"><p>This is the constructor
+when the page is initialised, it will invoke the authentication service to get data of the user from firebase database
+set the data to the form group so that they can be displayed to the user</p>
+</div>
                             <div>
                                     <b>Parameters :</b>
                                     <table class="params">
@@ -415,8 +426,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -452,14 +463,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:65</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This is the lifecycle method for Angular
+when the component is first initialised, it will set up the settings form with form controls</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -489,14 +503,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="57"
-                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:57</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:78</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function checks for form validation when the user is no longer editing
+if valid, it will call the service that will save the data into firebase database</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -556,14 +573,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="107"
-                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:107</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:137</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function allows user to disconnect their strava
+Their strava id and data will be removed from the firebase database through the auth service</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -593,14 +613,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="130"
-                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:130</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/app/settings/feature/settings.page.ts:162</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function check if the name entered by the user is valid</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -666,7 +688,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:56</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:67</a></code>
 </div>
                         </td>
                     </tr>
@@ -674,6 +696,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function displays the error toast (notification) to the user</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -751,7 +775,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:52</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:60</a></code>
 </div>
                         </td>
                     </tr>
@@ -759,6 +783,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function displays the success toast (notification) to the user</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -836,7 +862,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:65</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:81</a></code>
 </div>
                         </td>
                     </tr>
@@ -844,6 +870,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function handles logging out through the side bar</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -879,7 +907,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:61</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:74</a></code>
 </div>
                         </td>
                     </tr>
@@ -887,6 +915,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function toggles the loading page</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -952,7 +982,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:72</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:91</a></code>
 </div>
                         </td>
                     </tr>
@@ -960,6 +990,8 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function toggles the visibility of the sidebar</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
@@ -993,7 +1025,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/settings/feature/settings.page.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/settings/feature/settings.page.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -1024,7 +1056,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/settings/feature/settings.page.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/settings/feature/settings.page.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -1053,7 +1085,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/settings/feature/settings.page.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/settings/feature/settings.page.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -1079,7 +1111,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/settings/feature/settings.page.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/settings/feature/settings.page.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -1111,7 +1143,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:34</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:39</a></code>
 </div>
                         </td>
                     </tr>
@@ -1144,7 +1176,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:36</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:41</a></code>
 </div>
                         </td>
                     </tr>
@@ -1178,7 +1210,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:42</a></code>
 </div>
                         </td>
                     </tr>
@@ -1216,7 +1248,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:35</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:40</a></code>
 </div>
                         </td>
                     </tr>
@@ -1254,7 +1286,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:33</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:38</a></code>
 </div>
                         </td>
                     </tr>
@@ -1288,7 +1320,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:37</a></code>
+                                <div class="io-line">Defined in         <code><a href="../components/PageWrapperComponent.html#source" target="_self" >PageWrapperComponent:42</a></code>
 </div>
                         </td>
                     </tr>
@@ -1318,9 +1350,16 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/settings/feature/settings.page.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/settings/feature/settings.page.ts:43</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>This is getter to get the name of the user on the settings form group</p>
+</div>
+
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -1340,9 +1379,16 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/settings/feature/settings.page.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/settings/feature/settings.page.ts:50</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>This is getter to get the strava id of the user on the settings form group</p>
+</div>
+
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -1362,9 +1408,16 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/settings/feature/settings.page.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/settings/feature/settings.page.ts:57</a></div>
                                 </td>
                             </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>This is getter to get the email of the user on the settings form group</p>
+</div>
+
+                        </td>
+                    </tr>
 
             </tbody>
         </table>
@@ -1390,6 +1443,10 @@ import { PageWrapperComponent } from &#x27;@app/shared/ui/page-wrapper/page-wrap
 import { MessageService } from &#x27;primeng/api&#x27;;
 import { FooterComponent } from &#x27;@app/shared/ui/footer/footer.component&#x27;;
 
+  /**
+ * This is the settings page for the user
+ */
+
 @Component({
   selector: &#x27;app-settingspage&#x27;,
   standalone: true,
@@ -1408,27 +1465,44 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     email:new FormControl(&#x27;&#x27;,[Validators.required,Validators.email])
   })
 
+    /**
+ * This is getter to get the name of the user on the settings form group
+ */
   get name() {
     return this.settingsForm.get(&#x27;name&#x27;)
   }
 
+   /**
+ * This is getter to get the strava id of the user on the settings form group
+ */
   get strava() {
     return this.settingsForm.get(&#x27;strava&#x27;)
   }
 
+   /**
+ * This is getter to get the email of the user on the settings form group
+ */
   get email() {
     return this.settingsForm.get(&#x27;email&#x27;)
   }
 
+   /**
+ * This is the lifecycle method for Angular
+ * when the component is first initialised, it will set up the settings form with form controls
+ */
   ngOnInit(): void {
       this.settingsForm &#x3D;new FormGroup({
         name: new FormControl(&#x27;&#x27;,[Validators.required, this.validateName]),
         strava: new FormControl(&#x27;&#x27;,Validators.required),
         email:new FormControl(&#x27;&#x27;,[Validators.required,Validators.email])
       })
-      console.log(this.settingsForm)
+      
   }
 
+     /**
+ * This function checks for form validation when the user is no longer editing
+ * if valid, it will call the service that will save the data into firebase database
+ */
   setCurrentlyEditing(num:number){
     if(!this.settingsForm.valid){
       this.displayErrorToast(&quot;Saving failed&quot;,&quot;Please fix the input errors.&quot;)
@@ -1455,6 +1529,11 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     }
   }
 
+    /**
+ * This is the constructor
+ * when the page is initialised, it will invoke the authentication service to get data of the user from firebase database
+ * set the data to the form group so that they can be displayed to the user
+ */
   constructor(messageService:MessageService,store:Store&lt;AppState&gt;){
     super(messageService,store)
     this.userId$ &#x3D; (store.select(SelectUserId)).subscribe((d:any)&#x3D;&gt;{
@@ -1479,6 +1558,10 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
       
   }
 
+    /**
+ * This function allows user to disconnect their strava
+ * Their strava id and data will be removed from the firebase database through the auth service
+ */
   unlinkStrava(){
     this.store.select(SelectUserId).subscribe(d&#x3D;&gt;{
       this.authService.unlinkStrava(d).then((e)&#x3D;&gt;{
@@ -1501,7 +1584,9 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     
   }
 
-
+ /**
+ * This function check if the name entered by the user is valid
+ */
   validateName(control: AbstractControl): {[key: string]: any} | null {
     const nameRegex &#x3D; /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
     if (!nameRegex.test(control.value)) {

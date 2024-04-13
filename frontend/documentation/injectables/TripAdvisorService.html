@@ -126,6 +126,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This is the injectable service for all tripadvisor and seraAPI related services.</p>
+
+            </p>
 
 
 
@@ -181,7 +188,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -246,14 +253,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="10"
-                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:10</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:15</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function gets a list of location data from TripAdvisor&#39;s API</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>    <code>unknown</code>
@@ -285,14 +294,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:47</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function gets AI powered content for 1 location</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -354,8 +365,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -423,14 +434,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:18</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="26"
+                                    class="link-to-prism">src/app/shared/data-access/tripadvisor/trip-advisor.service.ts:26</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This function gets a list of photos from 1 location from SeraAPI</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -478,13 +491,18 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-
+ /**
+ * This is the injectable service for all tripadvisor and seraAPI related services.
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class TripAdvisorService {
   constructor(private http:HttpClient) { }
 
+   /**
+ * This function gets a list of location data from TripAdvisor&#x27;s API
+ */
   async getAllLocations(){
     const url &#x3D; &#x27;https://peakvisor.onrender.com/tripadvisor/all&#x27;
     const data &#x3D; await fetch(url)
@@ -493,6 +511,9 @@ export class TripAdvisorService {
     return await data.json()??[];
   }
 
+  /**
+ * This function gets a list of photos from 1 location from SeraAPI
+ */
   async getLocationPhotosByLocationName(locationName:string){
     const url &#x3D; &#x60;http://localhost:3000/tripadvisor/location/photo&#x60;
     
@@ -511,6 +532,9 @@ export class TripAdvisorService {
     return &#x27;&#x27;;
   }
 
+  /**
+ * This function gets AI powered content for 1 location
+ */
   async getChat(prompt:string){
     try{
       const url &#x3D; &#x60;http://localhost:3000/ai/chat?location&#x3D;${prompt}&#x60;

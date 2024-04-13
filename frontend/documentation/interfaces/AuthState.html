@@ -133,6 +133,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This sets up the AuthState, which is one of the states that comprises the app&#39;s overall state</p>
+
+            </p>
 
 
         <section data-compodoc="block-index">
@@ -322,7 +329,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { createReducer, on } from &quot;@ngrx/store&quot;
 import { Login, Logout } from &quot;./auth-state.actions&quot;
 
-
+/**
+ * This sets up the AuthState, which is one of the states that comprises the app&#x27;s overall state
+ */
 export interface AuthState{
     authenticated:boolean,
     access_token:string,

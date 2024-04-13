@@ -126,6 +126,14 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>This is the injectable service for all getting graphics to render on the frontend
+This is used to ensure modularity and facilitate dependency injection</p>
+
+            </p>
 
 
 
@@ -182,7 +190,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:31</a></div>
                             </td>
                         </tr>
 
@@ -215,14 +223,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:29</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This gets the graphic based on the name of the graphic</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -304,7 +314,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/data-access/graphics-loader/graphics-loader.service.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -318,7 +328,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-
+/**
+ * This is the injectable service for all getting graphics to render on the frontend
+ * This is used to ensure modularity and facilitate dependency injection
+ */
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
@@ -339,6 +352,9 @@ export class GraphicsLoaderService {
     &#x27;eventsvideo&#x27;:&#x27;../../../assets/videos/events.mov&#x27;,
     &#x27;scrolldown&#x27;:&#x27;../../../assets/animations/scrolldown.json&#x27;,
   }
+  /**
+ * This gets the graphic based on the name of the graphic
+ */
   getGraphic(name:string):string{
     return this.images[name]?this.images[name]:&#x27;&#x27;
   }

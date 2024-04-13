@@ -127,6 +127,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This main app component</p>
+
+    </p>
 
 
 
@@ -250,7 +257,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/app.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -329,14 +336,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/app.component.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/app.component.ts:31</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This renders the route animation to give a nice slide in effect when users navigate from a page to another</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -376,7 +385,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/app.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/app.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -398,7 +407,9 @@ import { SlideTopDownAnimation } from &#x27;./shared/ui/transitions/slide-top-do
 import { BrowserAnimationsModule, provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 import { MessageService } from &#x27;primeng/api&#x27;;
 import { PageWrapperComponent } from &#x27;./shared/ui/page-wrapper/page-wrapper.component&#x27;;
-
+/**
+ * This main app component
+ */
 
 @Component({
   selector: &#x27;app-root&#x27;,
@@ -414,6 +425,9 @@ export class AppComponent {
   title &#x3D; &#x27;peakvisor&#x27;;
   constructor(private contexts: ChildrenOutletContexts, private messageService:MessageService) {}
 
+  /**
+ * This renders the route animation to give a nice slide in effect when users navigate from a page to another
+ */
   getRouteAnimationData() {
     return this.contexts.getContext(&#x27;primary&#x27;)?.route?.snapshot?.data?.[&#x27;animation&#x27;];
   }

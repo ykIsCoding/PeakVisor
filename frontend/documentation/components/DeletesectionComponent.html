@@ -127,6 +127,13 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>This is the delete section to show the button and information related to deletion of account</p>
+
+    </p>
 
 
 
@@ -249,7 +256,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -318,14 +325,17 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:33</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>This calls the auth service which will handle the deletion of the account
+logs the user out if successful</p>
+</div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -359,7 +369,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -384,7 +394,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -411,7 +421,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/settings/ui/deletesection/deletesection.component.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -433,7 +443,9 @@ import { ButtonComponent } from &#x27;@app/shared/ui/button/button.component&#x2
 import { Store } from &#x27;@ngrx/store&#x27;;
 import { FieldsetModule } from &#x27;primeng/fieldset&#x27;;
 
-
+/**
+ * This is the delete section to show the button and information related to deletion of account
+ */
 @Component({
   selector: &#x27;app-deletesection&#x27;,
   standalone: true,
@@ -449,6 +461,11 @@ export class DeletesectionComponent {
   constructor(public store:Store&lt;AppState&gt;){
     
   }
+
+  /**
+ * This calls the auth service which will handle the deletion of the account
+ * logs the user out if successful
+ */
   async deleteAccount(){
     try{
     (await this.authService.getUid()).subscribe(async e&#x3D;&gt;{
