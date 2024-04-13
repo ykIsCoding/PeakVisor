@@ -93,5 +93,7 @@
 ## Documentation
 Documentation for the application's frontend be accessed at: [here](https://github.com/softwarelab3/2006-SCCA-Missing1/blob/main/frontend/documentation/index.html)
 
+Alternatively, visit: [](https://ykiscoding.github.io/peakvisor-documentation/overview.html)
+
 
 
