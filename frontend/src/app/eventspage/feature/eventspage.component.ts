@@ -12,6 +12,11 @@ import { MessageService } from 'primeng/api';
 import { GridsectionComponent } from '../ui/gridsection/gridsection.component';
 import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
+/**
+ * This is the event page component
+ * It shows all the events from Meetup.com API
+ */
+
 @Component({
   selector: 'app-eventspage',
   standalone: true,
@@ -20,7 +25,8 @@ import { FooterComponent } from '@app/shared/ui/footer/footer.component';
   providers:[MeetupService],
   styleUrl: './eventspage.component.css'
 })
-export class EventspageComponent extends PageWrapperComponent implements OnInit,AfterContentInit, AfterViewInit {
+
+export class EventspageComponent extends PageWrapperComponent implements OnInit, AfterViewInit {
   content:any = [{name:'kakais'}]
   contentService: MeetupService = inject(MeetupService)
   src:string;
@@ -29,18 +35,22 @@ export class EventspageComponent extends PageWrapperComponent implements OnInit,
     this.src = this.graphicsLoaderService.getGraphic('eventsvideo')
   }
 
+  /**
+ * 
+ * when the events data are available, it will set loading state to false to remove the loading page
+ * This is angular lifecycle method
+ */
  ngAfterViewInit(): void {
   this.contentService.getEvents().then((cnt)=>{
-    console.log(cnt)
     this.content = cnt
     this.toggleLoader(false)
   })
  }
 
- ngAfterContentInit(): void {
-    
- }
 
+ /**
+ * Makes the query to get the events, sets the loading state to true to display the loading
+ */
   ngOnInit(): void {
     this.toggleLoader(true)
   }

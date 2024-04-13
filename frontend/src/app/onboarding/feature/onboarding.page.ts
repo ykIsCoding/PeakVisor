@@ -4,7 +4,11 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { NgModel } from '@angular/forms';
 import { OnboardingcontentdisplayComponent } from '../ui/onboardingcontentdisplay/onboardingcontentdisplay.component';
 import { Router } from '@angular/router';
-// import { OnboardcontentdisplayComponent } from '../../components/onboardcontentdisplay/onboardcontentdisplay.component';
+
+/**
+ * This is the onboarding page component
+ * This allows us to ease new users into our application
+ */
 
 @Component({
   selector: 'app-onboardingpage',
@@ -38,7 +42,9 @@ export class OnboardingPage {
   heading=this.contentList[0].heading
   stage= 0;
   
-  
+  /**
+ * This function sets the onboarding stage to the next stage for our user
+ */
   nextStage(){
     this.stage+=1;
     if(this.stage==4){
@@ -50,6 +56,9 @@ export class OnboardingPage {
     
   }
 
+   /**
+ * This function sets the onboarding stage to the previous stage for our user
+ */
   previousStage(){
     this.stage-=1;
     this.content=this.contentList[this.stage].content

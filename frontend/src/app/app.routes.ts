@@ -11,7 +11,9 @@ import { EventspageComponent } from './eventspage/feature/eventspage.component';
 import { ProfilepageComponent } from './profile/features/profilepage/profilepage.component';
 import { TrailinformationComponent } from './trailinformation/feature/trailinformation.component';
 import { authGuard } from './shared/feature/guards/auth.guard';
-
+ /**
+ * This sets up all the routes and authentication guards for the routes for the entire app.
+ */
 export const AppRoutes: Routes = [
     {
         path: '',

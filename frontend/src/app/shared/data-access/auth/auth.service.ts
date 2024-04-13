@@ -5,7 +5,9 @@ import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { SelectAuthenticated, SelectUserId } from '@app/shared/feature/state/auth-state/auth-state.selector';
 import { State, Store, select } from '@ngrx/store';
 import { Observable, first } from 'rxjs';
-
+ /**
+ * This is the injectable service for all authentication related services.
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +18,9 @@ export class AuthService {
     this.authState$ = this.store.pipe(select(SelectAuthenticated))
   }
 
+   /**
+ * This queries the backend 2 /appstats for application statistics
+ */
   async getAppStats(){
     try{
       const url = "http://localhost:3000/authentication/appstats"
@@ -29,6 +34,9 @@ export class AuthService {
     }
   }
 
+  /**
+ * This queries the backend 2 /unlinkstrava
+ */
   async unlinkStrava(uid:string){
     try{
       console.log("UNLINKING",uid)
@@ -44,6 +52,9 @@ export class AuthService {
     }
   }
 
+   /**
+ * This queries the backend 2 /userstats for the user's statistics
+ */
   async getUserStats(uid:string){
     try{
       const url = "http://localhost:3000/authentication/userstats"
@@ -58,14 +69,23 @@ export class AuthService {
     }
   }
 
+   /**
+ * This queries the store (ngRX State) to see if the user is currently authenticated
+ */
   async getAuthStatus(){
     return this.store.pipe(select(SelectAuthenticated))
   }
 
+  /**
+ * This queries the store (ngRX State) to for user's UID
+ */
   async getUid(){
     return this.store.pipe(select(SelectUserId))
   }
 
+   /**
+ * This queries the backend 2 /verifyemail for getting OTP
+ */
   async getOTP(email:string){
     try{
       const url = "http://localhost:3000/authentication/verifyemail"
@@ -82,7 +102,9 @@ export class AuthService {
   }
 
   
-
+/**
+ * This queries the backend 2 /login to handle login
+ */
   async login(email:string,password:string){
     try{
       const url = "http://localhost:3000/authentication/login"
@@ -99,6 +121,9 @@ export class AuthService {
     }
   }
 
+  /**
+ * This queries the backend 2 /logout for logging the user out
+ */
   async logout(){
     try{
       const url = "http://localhost:3000/authentication/logout"
@@ -114,6 +139,9 @@ export class AuthService {
     }
   }
 
+   /**
+ * This queries the backend 2 /resetpassword for resetting the user's password
+ */
   async passwordReset(email:string){
     try{
       const url = "http://localhost:3000/authentication/resetpassword"
@@ -129,6 +157,9 @@ export class AuthService {
     }
   }
 
+  /**
+ * This queries the backend 2 /userdata for user's data
+ */
   async getUserSettings(uid:string){
     try{
       const url = "http://localhost:3000/authentication/userdata"
@@ -145,6 +176,9 @@ export class AuthService {
     }
   }
 
+   /**
+ * This queries the backend 2 /deleteaccount to handle account deletion
+ */
   async deleteAccount(uid:string){
     try{
       const url = "http://localhost:3000/authentication/deleteaccount"
@@ -160,7 +194,9 @@ export class AuthService {
   }
 
 
-
+/**
+ * This queries the backend 2 /register to handle registration of user
+ */
   async register(email:string,password:string,name:string,identifier:string, otp:string){
     try{
       const url = "http://localhost:3000/authentication/register"
@@ -181,6 +217,9 @@ export class AuthService {
     }
   }
 
+  /**
+ * This queries the backend 2 /update to update user's data
+ */
   async update(email:string,name:string,strava:string,uid:string){
     try{
       const url = "http://localhost:3000/authentication/update"

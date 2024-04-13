@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { PhotoCardComponent } from '../photo-card/photo-card.component';
 import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
+ /**
+ * This is the grid to show the photo-cards on the eventspage
+ */
+
 @Component({
   selector: 'app-gridsection',
   standalone: true,

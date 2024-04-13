@@ -13,6 +13,10 @@ import { TextInputComponent } from '@app/shared/ui/text-input/textinput.componen
 import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 
+/**
+ * This is the sign up page 
+ */
+
 @Component({
   selector: 'app-signup-page',
   standalone: true,
@@ -41,26 +45,44 @@ export class SignupPage extends PageWrapperComponent{
     otp: new FormControl('',[Validators.required])
   })
 
+  /**
+ * This is getter to get the email from the form group
+ */
   get email(){
     return this.signUpForm.get('email')
   }
 
+  /**
+ * This is getter to get the password from the form group
+ */
   get password(){
     return this.signUpForm.get('password')
   }
 
+  /**
+ * This is getter to get the name from the form group
+ */
   get name(){
     return this.signUpForm.get('name')
   }
 
+  /**
+ * This is getter to get the otp from the form group
+ */
   get onetimepassword(){
     return this.signUpForm.get('otp')
   }
 
+  /**
+ * This is getter to get the re-entered password from the form group
+ */
   get reenterpassword(){
     return this.signUpForm.get('reenterpassword')
   }
 
+  /**
+ * This checks if the password and re-entered passwords match
+ */
   checkIfPasswordsMatch(){
     return this.password?.value===this.reenterpassword?.value
   }
@@ -69,7 +91,10 @@ export class SignupPage extends PageWrapperComponent{
     super(messageService,store)
     this.src = this.graphicsLoaderService.getGraphic('signupphoto')
   }
-
+/**
+ * This calls the auth service that we injected into the component
+ * Sends the user an email with the OTP
+ */
   async getOTP(){
     let d = await this.authService.getOTP(this.signUpForm.value.email as string)
     if(d && d.status=="failure"){
@@ -85,6 +110,10 @@ export class SignupPage extends PageWrapperComponent{
     }, 120000);
   }
 
+  /**
+ * This calls the auth service that we injected into the component
+ * Checks if credentials entered are valid and register new user
+ */
   async register(){
     const res = await this.authService.register(this.signUpForm.value.email as string,this.signUpForm.value.password as string,this.signUpForm.value.name as string,this.identifier,this.signUpForm.value.otp as string)
     console.log(res)
@@ -100,16 +129,20 @@ export class SignupPage extends PageWrapperComponent{
     }
   }
 
+  /**
+ * This changes the form to show the second part of the form
+ */
   async signUpNextStage(){
     // this.stage=1;
     const enteredOTP = this.signUpForm.value.otp as string;
-    console.log(enteredOTP);
-    console.log(this.sentOTP);
 
     if (enteredOTP == this.sentOTP) this.stage = 1;
     else this.displayErrorToast("Wrong OTP", "Please try again.");
   }
 
+  /**
+ * This validates the name of the user
+ */
   validateName(control: AbstractControl): {[key: string]: any} | null {
     const nameRegex = /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
     if (!nameRegex.test(control.value)) {

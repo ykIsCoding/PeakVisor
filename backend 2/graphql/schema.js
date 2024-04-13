@@ -1,11 +1,8 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString } =require('graphql');
 
 /**
- * Construct a GraphQL schema and define the necessary resolvers.
+ * A GraphQL Schema for querying the API of meetup.com
  *
- * type Query {
- *   hello: String
- * }
  */
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({

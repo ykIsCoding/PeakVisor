@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ImageModule } from 'primeng/image';
 import { CardModule } from 'primeng/card';
-
+/**
+ * This is the photocard component for each location of the tripadvisor's API data
+ */
 @Component({
   selector: 'app-photocard',
   standalone: true,

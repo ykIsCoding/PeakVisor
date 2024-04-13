@@ -7,6 +7,9 @@ import { CardModule } from 'primeng/card';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
+/**
+ * This is the card component to show when the user has not connected to Strava
+ */
 export class CardComponent {
 
 }

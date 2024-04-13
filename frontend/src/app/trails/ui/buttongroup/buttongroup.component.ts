@@ -2,6 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ButtonComponent } from '@app/shared/ui/button/button.component';
 
+/**
+ * This is the buttongroup component
+ */
+
 @Component({
   selector: 'app-buttongroup',
   standalone: true,
@@ -11,6 +15,6 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
 })
 export class ButtongroupComponent {
   handleClick(){
-    console.log("hola")
+    
   }
 }

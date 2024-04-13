@@ -8,6 +8,10 @@ import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.c
 import { TextInputComponent } from '@app/shared/ui/text-input/textinput.component';
 import { MessageService } from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
+
+ /**
+ * This is the password reset dialog component
+ */
 @Component({
   selector: 'app-resetpassworddialog',
   standalone: true,
@@ -25,30 +29,52 @@ export class ResetpassworddialogComponent extends PageWrapperComponent{
     newpassword:new FormControl('',[Validators.required,Validators.minLength(8)]),
     reenternewpassword:new FormControl('',[Validators.required,Validators.minLength(8)])
   })
+
+   /**
+ * This is the getter for email from the form group
+ */
   get email(){
     return this.resetPasswordForm.get('email')
   }
 
+  /**
+ * This is the getter for otp from the form group
+ */
   get otp(){
     return this.resetPasswordForm.get('otp')
   }
 
+  /**
+ * This is the getter for password from the form group
+ */
   get newpassword(){
     return this.resetPasswordForm.get('newpassword')
   }
 
+  /**
+ * This is the getter for re-entered password from the form group
+ */
   get reenternewpassword(){
     return this.resetPasswordForm.get('reenternewpassword')
   }
   
+  /**
+ * This is to close the password reset dialog
+ */
   closeDialog(){
     this.displayStatus.emit(false);
   }
 
+   /**
+ * This checks if the password and the re-entered password match
+ */
   checkIfPasswordsMatch(){
     return this.newpassword?.value===this.reenternewpassword?.value
   }
 
+   /**
+ * This sends the password reset email to the user
+ */
   async sendPasswordResetEmail(){
     const data = await this.authService.passwordReset(this.resetPasswordForm.value.email as string)
     if(data && data.status=="failure"){
@@ -60,8 +86,6 @@ export class ResetpassworddialogComponent extends PageWrapperComponent{
     return
   }
 
-  async getOTP(){
-    
-  }
+  
 
 }

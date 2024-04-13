@@ -16,7 +16,9 @@ import { ButtongroupComponent } from '../ui/buttongroup/buttongroup.component';
 import { TripAdvisorService } from '@app/shared/data-access/tripadvisor/trip-advisor.service';
 import { GridsectionComponent } from '../ui/gridsection/gridsection.component';
 import { RouterOutlet } from '@angular/router';
-
+/**
+ * This is the trails page. It shows all the trails data queries from TripAdvisor's API
+ */
 
 @Component({
   selector: 'app-trails-page',

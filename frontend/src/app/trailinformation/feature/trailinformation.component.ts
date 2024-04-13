@@ -10,7 +10,9 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { DialogModule } from 'primeng/dialog';
 import { ImageModule } from 'primeng/image';
-
+/**
+ * This is the trails information page component showing specific data of the location
+ */
 @Component({
   selector: 'app-trailinformation',
   standalone: true,
@@ -59,18 +61,31 @@ export class TrailinformationComponent {
     ];
   }
 
+  
+  /**
+ * This is getter to get the description from the details object
+ */
   get getDescription(){
     return this.details["description"]??'No Description'
   }
 
+  /**
+ * This is getter to get the bearings from the details object
+ */
   get getBearings(){
     return `Longitude: ${this.details["longitude"]}\nLatitude: ${this.details["latitude"]}`??'No Bearings'
   }
 
+  /**
+ * This is getter to get the ratings from the details object
+ */
   get getRatings(){
     return `There are a total of ${this.details["num_reviews"]} reviews for this location, with an average rating of ${this.details["rating"]}`??'No Ratings'
   }
 
+  /**
+ * This is to show the AI generated content to the user
+ */
   prompt(){
     this.generating=true
     this.contentService.getChat(this.details["name"]).then((res)=>{

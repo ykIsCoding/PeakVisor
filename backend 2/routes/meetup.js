@@ -1,3 +1,4 @@
+
 require("dotenv").config()
 const nodemailer = require("nodemailer")
 var express = require('express');
@@ -44,7 +45,11 @@ query {
 `
 
 
-
+/**
+ * This is used to get access token to make API requests with the meetup.com API
+ * Meetup.com API uses OAuth2 for security purposes, hence JSON Web Token is used to sign the credentials to obtain the access token
+ * 
+ */
 router.get('/authenticate',async function(req, res, next) {
     //const codeEndpoint = `https://secure.meetup.com/oauth2/authorize?client_id=${process.env.MEETUP_CLIENTID}&response_type=code&redirect_uri=https://redirectmeto.com/http://localhost:4200/`
     const endpoint = `https://secure.meetup.com/oauth2/access?client_id=${process.env.MEETUP_CLIENTID}&client_secret=${process.env.MEETUP_SECRET}&grant_type=authorization_code&redirect_uri=https://redirectmeto.com/http://localhost:4200/&code=${process.env.MEETUP_CODE}`
@@ -90,12 +95,22 @@ router.get('/authenticate',async function(req, res, next) {
     
 })
 
+/**
+ * This is used to get access token to make API requests with the meetup.com API
+ * This is used to refesh the token when they expire
+ * 
+ */
 async function refreshToken(refresh_token){
     const endpoint = `https://secure.meetup.com/oauth2/access?client_id=${process.env.MEETUP_CLIENTID}&client_secret=${process.env.MEETUP_SECRET}&grant_type=refresh_token&refresh_token=${refresh_token}`
     const {data} = await axios.post(endpoint)
     return data
 }
 
+/**
+ * This is used to query the Meetup.com API for hiking events
+ * It takes in the access token in the request body
+ * 
+ */
 router.post('/events', async function(req, res, next) {
   try{
     const endpoint = 'https://api.meetup.com/gql'

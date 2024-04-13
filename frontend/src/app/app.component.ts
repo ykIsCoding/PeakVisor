@@ -7,7 +7,9 @@ import { SlideTopDownAnimation } from './shared/ui/transitions/slide-top-down-an
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { PageWrapperComponent } from './shared/ui/page-wrapper/page-wrapper.component';
-
+/**
+ * This main app component
+ */
 
 @Component({
   selector: 'app-root',
@@ -23,6 +25,9 @@ export class AppComponent {
   title = 'peakvisor';
   constructor(private contexts: ChildrenOutletContexts, private messageService:MessageService) {}
 
+  /**
+ * This renders the route animation to give a nice slide in effect when users navigate from a page to another
+ */
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }

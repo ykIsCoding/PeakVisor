@@ -1,7 +1,9 @@
 import { createReducer, on } from "@ngrx/store"
 import { Login, Logout } from "./auth-state.actions"
 
-
+/**
+ * This sets up the AuthState, which is one of the states that comprises the app's overall state
+ */
 export interface AuthState{
     authenticated:boolean,
     access_token:string,

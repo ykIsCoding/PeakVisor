@@ -8,7 +8,9 @@ import { AuthStateReducer } from './shared/feature/state/auth-state/auth-state.r
 import {DisplayStateReducer} from './shared/feature/state/display-state/display-state.reducer'
 import { ToastModule } from 'primeng/toast';
 import { ToastService } from './shared/data-access/toast/toast.service';
-
+ /**
+ * This is the application configuration component where the providers and store for the application is set up
+ */
 export const AppConfig: ApplicationConfig = {
     
   providers: [

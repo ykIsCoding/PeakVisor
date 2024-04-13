@@ -13,6 +13,9 @@ import { animate } from '@angular/animations';
 import { Footer } from 'primeng/api';
 import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
+ /**
+ * This is the home page component
+ */
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -39,13 +42,16 @@ export class HomePage implements OnInit{
     console.log(e)
   }
 
+   /**
+ * This plays the mouse scroll animation
+ */
   ngOnInit(): void {
       this.options =  {
         path: '../../../assets/animations/scrolldown.json',
         loop: true,
         autoplay:true,
       };
-      console.log(this.options)
+      
   }
 }
 

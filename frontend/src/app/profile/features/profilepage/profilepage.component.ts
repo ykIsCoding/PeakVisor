@@ -15,6 +15,9 @@ import { MessageService } from 'primeng/api';
 import { AppState } from '@app/shared/feature/state/app-state/app.state';
 import { Store } from '@ngrx/store';
 
+/**
+ * This is the profile page component for our users
+ */
 @Component({
   selector: 'app-profilepage',
   standalone: true,
@@ -22,7 +25,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.css'
 })
-export class ProfilepageComponent extends PageWrapperComponent implements OnInit,AfterContentInit{
+export class ProfilepageComponent extends PageWrapperComponent implements AfterContentInit{
   connected:boolean = false;
   userid:any = ''
   stats = { total_trips: 0, total_distance: 0 }
@@ -37,6 +40,9 @@ export class ProfilepageComponent extends PageWrapperComponent implements OnInit
     super(messageService,store)
   }
 
+  /**
+ * This function gets the user id that is saved in state or in the localstorage and queries for strava data of the user
+ */
   async retreiveUID(){
     try{
     var uidObservable = new Promise(async resolve=>(await this.authService.getUid()).subscribe(a=>{
@@ -51,11 +57,11 @@ export class ProfilepageComponent extends PageWrapperComponent implements OnInit
     var udata = await this.authService.getUserStats(uid as string)
     this.connected = udata.data && udata.data.strava && String(udata.data.strava).length>0 && String(udata.data.strava)!='Not Connected'
     this.stats = udata.data.stravaData
-    console.log(this.stats)
+    
     this.userid = uid
     let cnt = await this.stravaAuthService.getActivities(udata.data.stravaData.code)
     this.content = cnt;
-    console.log(cnt)
+    
     }catch(e){
       console.log(e)
     }
@@ -65,12 +71,9 @@ export class ProfilepageComponent extends PageWrapperComponent implements OnInit
     this.retreiveUID()
   }
 
-  ngOnInit(): void {
-      
-      
-      //change state n set connected to true
-  }
-  
+   /**
+ * This function initiates the strava connection for the user to authorise peakvisor to access their strava data
+ */
   async requestStravaAuth() {
     
     let creds:any =   localStorage.getItem("logindata");

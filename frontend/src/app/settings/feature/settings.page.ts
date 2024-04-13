@@ -15,6 +15,10 @@ import { PageWrapperComponent } from '@app/shared/ui/page-wrapper/page-wrapper.c
 import { MessageService } from 'primeng/api';
 import { FooterComponent } from '@app/shared/ui/footer/footer.component';
 
+  /**
+ * This is the settings page for the user
+ */
+
 @Component({
   selector: 'app-settingspage',
   standalone: true,
@@ -33,27 +37,44 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     email:new FormControl('',[Validators.required,Validators.email])
   })
 
+    /**
+ * This is getter to get the name of the user on the settings form group
+ */
   get name() {
     return this.settingsForm.get('name')
   }
 
+   /**
+ * This is getter to get the strava id of the user on the settings form group
+ */
   get strava() {
     return this.settingsForm.get('strava')
   }
 
+   /**
+ * This is getter to get the email of the user on the settings form group
+ */
   get email() {
     return this.settingsForm.get('email')
   }
 
+   /**
+ * This is the lifecycle method for Angular
+ * when the component is first initialised, it will set up the settings form with form controls
+ */
   ngOnInit(): void {
       this.settingsForm =new FormGroup({
         name: new FormControl('',[Validators.required, this.validateName]),
         strava: new FormControl('',Validators.required),
         email:new FormControl('',[Validators.required,Validators.email])
       })
-      console.log(this.settingsForm)
+      
   }
 
+     /**
+ * This function checks for form validation when the user is no longer editing
+ * if valid, it will call the service that will save the data into firebase database
+ */
   setCurrentlyEditing(num:number){
     if(!this.settingsForm.valid){
       this.displayErrorToast("Saving failed","Please fix the input errors.")
@@ -80,6 +101,11 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     }
   }
 
+    /**
+ * This is the constructor
+ * when the page is initialised, it will invoke the authentication service to get data of the user from firebase database
+ * set the data to the form group so that they can be displayed to the user
+ */
   constructor(messageService:MessageService,store:Store<AppState>){
     super(messageService,store)
     this.userId$ = (store.select(SelectUserId)).subscribe((d:any)=>{
@@ -104,6 +130,10 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
       
   }
 
+    /**
+ * This function allows user to disconnect their strava
+ * Their strava id and data will be removed from the firebase database through the auth service
+ */
   unlinkStrava(){
     this.store.select(SelectUserId).subscribe(d=>{
       this.authService.unlinkStrava(d).then((e)=>{
@@ -126,7 +156,9 @@ export class SettingsPage extends PageWrapperComponent implements AfterViewInit,
     
   }
 
-
+ /**
+ * This function check if the name entered by the user is valid
+ */
   validateName(control: AbstractControl): {[key: string]: any} | null {
     const nameRegex = /^[a-zA-Z ]+$/; // Regex to allow only alphabets and space
     if (!nameRegex.test(control.value)) {

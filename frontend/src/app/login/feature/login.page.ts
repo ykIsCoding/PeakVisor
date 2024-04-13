@@ -19,7 +19,9 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ResetpassworddialogComponent } from '../ui/resetpassworddialog/resetpassworddialog/resetpassworddialog.component';
-
+ /**
+ * This is the Login Page
+ */
 @Component({
   selector: 'app-login-page',
   standalone: true,
@@ -53,6 +55,9 @@ export class LoginPage extends PageWrapperComponent {
     this.src = this.graphicsLoaderService.getGraphic('mbs')
   }
 
+   /**
+ * This handles the login when the user clicks the login button
+ */
   async login(){
     try {
     let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
@@ -74,20 +79,20 @@ export class LoginPage extends PageWrapperComponent {
     }
   }
 
+   /**
+ * This toggles the password reset dialog
+ * true means the password dialog will show, otherwise it will not be shown
+ */
   setDisplayStatus(value:boolean){
     this.display = value
   }
 
+  /**
+ * This toggles the password reset dialog
+ * true means the password dialog will show
+ */
   async changePassword(){
     this.display = true;
-  }
-
-  async logout(){
-    let data = await this.authService.login(this.loginForm.value.email as string,this.loginForm.value.password as string)
-  }
-
-  async resetPassword(){
-    
   }
   
 }

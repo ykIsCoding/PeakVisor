@@ -1,3 +1,6 @@
+/**
+ * The file contains the routes for making requests to firebase, this is also where we access the database and authentication with firebase
+ */
 require("dotenv").config()
 const nodemailer = require("nodemailer")
 var express = require('express');
@@ -12,9 +15,12 @@ const firebaseAdmin = require("firebase-admin/auth");
 
 const { getDatabase, set, ref, update, onValue , get, remove,child} = require('firebase/database');
 
+
 var firebaseApp
 var db
 const url = 'http://localhost:3000/authentication'
+
+
 let mailsender = nodemailer.createTransport({
     //host: "smtp.mail.yahoo.com",
     service:"hotmail",
@@ -24,6 +30,10 @@ let mailsender = nodemailer.createTransport({
     }
   })
 
+/**
+ * The function sends an email with the OTP to user when they sign up
+ * It takes in the email of the recipient, the subject of the email, and the otp to be included in the email
+ */
 function sendmail(to,subject,otp){
     let verifyemailHTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -267,9 +277,18 @@ try{
 
 }
 
+
+/**
+ * /verifyemail generates an OTP, send it to the user when they are signing up
+ * After the OTP has been generated, a unique id (uuid) is generated and associated with the otp
+ * both the uuid and the otp is temporarily stored in the database. They have an expiry time of 2 minutes, after which it will be deleted from the database
+ * this will make the OTP invalid.
+ * 
+ * 
+ */
 router.post('/verifyemail', async function(req, res, next) {
     //generate uuid send to client, when client enter otp use the uuid to verify
-    //to test
+    
     const identifier = v4()
     const timeout = 180000;
     const otpExpiry = Date.now() + timeout
@@ -295,7 +314,7 @@ router.post('/verifyemail', async function(req, res, next) {
         }).catch(e=>{
             res.send({status:"failure",message:"Something went wrong. Please try again."})
         })
-        //res.send({status:"success",message:"Check your email for One-Time Password",identifier:identifier,otpExpires:otpExpiry})
+        
       } catch (e) {
         res.send({status:"failure",message:"Something went wrong. Please try again."})
       }
@@ -303,6 +322,14 @@ router.post('/verifyemail', async function(req, res, next) {
 });
 
 
+
+/**
+ * This function queries the firebase realtime database, checks every user if their 'deleted' key in the object is set to true
+ * If true, the time of the scheduled deletion is checked. If it is within the next 2 minutes, it wll schedule the deletion
+ * This function makes use of the firebase admin service account to carry out the deletion.
+ * 
+ * 
+ */
 function deleteDeletedAccounts(){
     console.log("testing")
     
@@ -344,7 +371,10 @@ function deleteDeletedAccounts(){
         }}
 
 
-
+/**
+ * /register takes in the data sent after the user submits the sign up form
+ * It will check if the otp is valid, and if it is it will then use the user details and create an account on firebase
+ */
 router.post('/register', async function(req, res, next) {
     //post request to /register should have email and password data
     const {email,password,otp,identifier, name} = req.body
@@ -405,6 +435,10 @@ router.post('/register', async function(req, res, next) {
     return
 });
 
+/**
+ * This route takes in the user's email and password to execute a login with firebase
+ * 
+ */
 router.post('/login', async function(req, res, next) {
     const {email,password} = req.body
     initialiseApp()
@@ -441,6 +475,12 @@ router.post('/login', async function(req, res, next) {
     
 });
 
+/**
+ * /userdata gets the details of the user by their user id (uid)
+ * this is used in the settings page for users to see their account details
+ * 
+ * 
+ */
 router.post('/userdata', async function(req, res, next) {
     const {uid} = req.body
     initialiseApp()
@@ -461,6 +501,11 @@ router.post('/userdata', async function(req, res, next) {
 });
 
 
+/**
+ * This is used for the user to log out of the session with firebase
+ * 
+ * 
+ */
 router.post('/logout', async function(req, res, next) {
     initialiseApp()
     const auth = getAuth();
@@ -473,6 +518,11 @@ router.post('/logout', async function(req, res, next) {
       });
 });
 
+/**
+ * This is used to send the user a password reset email
+ * It takes in the user's email in the request body
+ * 
+ */
 router.post('/resetpassword', async function(req, res, next) {
     
     try{
@@ -492,9 +542,14 @@ router.post('/resetpassword', async function(req, res, next) {
     }
 });
 
+/**
+ * This deletes the user's account with firebase, but it will first 
+ * set the user's deleted key to true and add in a time that the account will be deleted, which is 7 days
+ * 
+ */
 router.post('/deleteaccount',(req,res,next)=>{
     const {uid} = req.body
-    const timeTillDelete = 120000+Date.now()// 7*24*3600*1000 + Date.now()
+    const timeTillDelete =  7*24*3600*1000 + Date.now()
     try{
         const dbRef = ref(getDatabase());
         const db = getDatabase()
@@ -527,6 +582,11 @@ router.post('/deleteaccount',(req,res,next)=>{
     
 })
 
+/**
+ * This removes the strava data of the user when they press the unlink button on their settings page
+ * No queries of the user's data on strava will be made after removal
+ * 
+ */
 router.post('/unlinkstrava',(req,res,next)=>{
     const {uid} = req.body
     try{
@@ -562,6 +622,11 @@ router.post('/unlinkstrava',(req,res,next)=>{
     }
 })
 
+/**
+ * This is used to update user's data after they change them
+ * 
+ * 
+ */
 router.post('/update',(req,res,next)=>{
     const {uid,email,name,strava,stravaData} = req.body
     
@@ -615,6 +680,10 @@ router.post('/update',(req,res,next)=>{
 
 })
 
+/**
+ * This is used to query the overall data which will be computed to statistics to be shown on the home page
+ * 
+ */
 router.get('/appstats',(req,res,next)=>{
     try{
         initialiseApp()
@@ -648,6 +717,10 @@ router.get('/appstats',(req,res,next)=>{
     }
 })
 
+/**
+ * This is used to query the user's strava data which will be computed to statistics to be shown on the profile page
+ * 
+ */
 router.post('/userstats',(req,res,next)=>{
     const {uid} = req.body
     try{
@@ -675,6 +748,10 @@ router.post('/userstats',(req,res,next)=>{
     }
 })
 
+/**
+ * Initialises the firebase app
+ * Thereafter, actions be taken with the firebase application, such as login
+ */
 function initialiseApp(){
     const firebaseConfig = {
         apiKey: process.env.FIREBASE_APIKEY,

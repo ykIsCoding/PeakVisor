@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-
+/**
+ * This is the injectable service for all getting graphics to render on the frontend
+ * This is used to ensure modularity and facilitate dependency injection
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +23,9 @@ export class GraphicsLoaderService {
     'eventsvideo':'../../../assets/videos/events.mov',
     'scrolldown':'../../../assets/animations/scrolldown.json',
   }
+  /**
+ * This gets the graphic based on the name of the graphic
+ */
   getGraphic(name:string):string{
     return this.images[name]?this.images[name]:''
   }

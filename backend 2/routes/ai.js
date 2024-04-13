@@ -1,9 +1,16 @@
-
+/**
+ * The file contains the routes for making requests to OpenAI's API
+ */
 
 require("dotenv").config()
 const { OpenAI } = require("openai");
 var express = require('express');
 var router = express.Router();
+
+/**
+ * /chat takes in the location as a query param and makes a get request to openAI's API
+ * The expected response is generated from ChatGPT 3.5 Turbo LLM
+ */
 
 router.get('/chat', async function(req, res, next) {
 

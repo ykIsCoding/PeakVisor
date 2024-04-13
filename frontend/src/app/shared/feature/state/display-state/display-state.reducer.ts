@@ -1,7 +1,9 @@
 import { createReducer, on } from "@ngrx/store"
 import { Load,Unload } from "./display-state.actions"
 
-
+/**
+ * This sets up the DisplayState, which is one of the states that comprises the app's overall state
+ */
 export interface DisplayState{
     loading:boolean
 }

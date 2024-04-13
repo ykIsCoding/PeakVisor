@@ -7,7 +7,9 @@ import { ButtonComponent } from '@app/shared/ui/button/button.component';
 import { Store } from '@ngrx/store';
 import { FieldsetModule } from 'primeng/fieldset';
 
-
+/**
+ * This is the delete section to show the button and information related to deletion of account
+ */
 @Component({
   selector: 'app-deletesection',
   standalone: true,
@@ -23,6 +25,11 @@ export class DeletesectionComponent {
   constructor(public store:Store<AppState>){
     
   }
+
+  /**
+ * This calls the auth service which will handle the deletion of the account
+ * logs the user out if successful
+ */
   async deleteAccount(){
     try{
     (await this.authService.getUid()).subscribe(async e=>{
