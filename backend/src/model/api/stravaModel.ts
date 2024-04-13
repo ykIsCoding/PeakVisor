@@ -1,7 +1,6 @@
-// import database or ORM functions
-
 import axios from "axios";
 
+// stores athleteStats into database
 const storeAthleteStats = async(code:string,uid:string,athleteId: number, athleteTotalRunTrips: number, athleteTotalRunDistance: number): Promise<any> => {
     try {
         const res = await axios.post('http://localhost:3000/authentication/update',
