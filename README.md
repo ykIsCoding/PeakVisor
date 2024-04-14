@@ -13,7 +13,7 @@
 
 ## Demo Video
 We leveraged on influencer marketing to promote our application
-![](https://www.youtube.com/watch?v=SXhBdIjRt4U)
+![Watch the demo video](https://www.youtube.com/watch?v=SXhBdIjRt4U)
 
 
 ## Team Members
