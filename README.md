@@ -73,7 +73,7 @@ After cloning from Github, run ```npm install``` to install the dependencies in 
 - Makes dynamic requests to Google Maps API
 - Provides live frontend rendering of Google Maps
 
-#### SeraApi
+#### SerpApi
 - Gets images of the different places
 - API Limitation: 100 API calls/day for free plan that we are using
 - REST Architecture
