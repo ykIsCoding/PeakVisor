@@ -29,7 +29,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './trails.page.css'
 })
 
-export class TrailsPage extends PageWrapperComponent implements AfterContentInit {
+export class TrailsPage extends PageWrapperComponent {
   src:string;
   content = [{name:'MacRitchie',routerLink:'/trailinfo', location_id:'0'}];
   contentService: TripAdvisorService = inject(TripAdvisorService);
@@ -46,7 +46,5 @@ export class TrailsPage extends PageWrapperComponent implements AfterContentInit
 
   }
 
-  ngAfterContentInit(): void {
-      
-  }
+  
 }

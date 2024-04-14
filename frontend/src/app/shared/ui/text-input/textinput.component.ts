@@ -16,6 +16,4 @@ export class TextInputComponent {
   @Output() value:String = ""
   @Input() data:String=""
   @Input() id=""
-  
-  
 }

@@ -22,7 +22,7 @@
 
 
 ## Installation
-
+After cloning from Github, run ```npm install``` to install the dependencies in backend 2, backend, and frontend.
 #### Frontend
 - Run `ng serve --open` inside ```frontend``` to serve it on the browser
 - AngularJS w/ Typescript

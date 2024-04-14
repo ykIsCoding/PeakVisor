@@ -1,6 +1,8 @@
 import { AfterContentInit, Component, Input, OnInit, inject } from '@angular/core';
 import { AuthService } from '@app/shared/data-access/auth/auth.service';
-
+/**
+ * This is the stats card component for homepage
+ */
 @Component({
   selector: 'app-stats-card',
   standalone: true,
@@ -9,12 +11,15 @@ import { AuthService } from '@app/shared/data-access/auth/auth.service';
   styleUrl: './stats-card.component.css'
 })
 
-export class StatsCardComponent implements OnInit,AfterContentInit {
+export class StatsCardComponent implements AfterContentInit {
   @Input() mode:string = 'app'
   
   authService:AuthService = inject(AuthService)
   data:any = []
 
+  /**
+ * This is the lifecycle method for Angular to execute some functions when the component is rendered
+ */
   ngAfterContentInit(): void {
     if(this.mode=='app'){
       this.authService.getAppStats().then((x)=>{
@@ -27,8 +32,5 @@ export class StatsCardComponent implements OnInit,AfterContentInit {
       })
 
     }
-  }
-  ngOnInit(): void {
-      
   }
 }
