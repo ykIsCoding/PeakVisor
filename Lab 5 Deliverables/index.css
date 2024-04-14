@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya Sans');
+
+.header {
+    font-family: 'Alegreya Sans';
+}
+
+.header img {
+    width: 25%;
+    display: block;
+}
+
+/* .center {
+    margin-left: auto;
+    margin-right: auto;
+} */
